@@ -14,8 +14,17 @@ const Layout = async ({ leftMenu, topMenu, swiper }: any) => {
             height={50}
           />
         </div>
-        <div className="col-span-5 bg-yellow-400 ">
-          <div className="bg-red-500 h-full self-center">this is menu</div>
+        <div className="col-span-5 grid bg-yellow-400 ">
+          <div className="bg-red-500 h-full flex self-center">
+            <div className="self-center bg-yellow-100 flex-auto">qqq</div>
+            <div className="self-center bg-yellow-200  flex mx-8 p-4 gap-4">
+              <div className="h-12 w-12 rounded-full bg-red-500"></div>
+              <div className="h-12 w-12 rounded-full bg-red-500"></div>
+              <div className="h-12 w-12 rounded-full bg-red-500"></div>
+              <div className="h-12 w-12 rounded-full bg-red-500"></div>
+              <div className="h-12 w-12 rounded-full bg-red-500"></div>
+            </div>
+          </div>
         </div>
       </div>
       <div className="col-span-6 grid grid-cols-6 flex-auto h-full">
