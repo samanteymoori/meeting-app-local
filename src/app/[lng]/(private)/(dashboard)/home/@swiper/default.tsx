@@ -1,4 +1,4 @@
 const Default = () => {
-  return <div className="bg-green-400 h-full">test</div>;
+  return <div className=" h-full">test</div>;
 };
 export default Default;

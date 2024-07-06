@@ -3,9 +3,9 @@ import React from "react";
 
 const Layout = async ({ leftMenu, topMenu, swiper }: any) => {
   return (
-    <div className="grid grid-cols-6 h-[40rem] w-full  bg-yellow-500">
-      <div className="col-span-6 bg-green-400 grid grid-cols-6 self-top h-30">
-        <div className=" self-center flex-none bg-red-800">
+    <div className="grid grid-cols-6 h-[40rem] w-full  ">
+      <div className="col-span-6  grid grid-cols-6 self-top h-30">
+        <div className=" self-center flex-none ">
           <Image
             className="bg-transparent mx-auto "
             src={"/images/logo.jpg"}
@@ -14,21 +14,21 @@ const Layout = async ({ leftMenu, topMenu, swiper }: any) => {
             height={50}
           />
         </div>
-        <div className="col-span-5 grid bg-yellow-400 ">
-          <div className="bg-red-500 h-full flex self-center">
-            <div className="self-center bg-yellow-100 flex-auto">qqq</div>
-            <div className="self-center bg-yellow-200  flex mx-8 p-4 gap-4">
-              <div className="h-12 w-12 rounded-full bg-red-500"></div>
-              <div className="h-12 w-12 rounded-full bg-red-500"></div>
-              <div className="h-12 w-12 rounded-full bg-red-500"></div>
-              <div className="h-12 w-12 rounded-full bg-red-500"></div>
-              <div className="h-12 w-12 rounded-full bg-red-500"></div>
+        <div className="col-span-5 grid  ">
+          <div className=" h-full flex self-center">
+            <div className="self-center  flex-auto">qqq</div>
+            <div className="self-center   flex mx-8 p-4 gap-4">
+              <div className="h-12 w-12 rounded-full "></div>
+              <div className="h-12 w-12 rounded-full "></div>
+              <div className="h-12 w-12 rounded-full "></div>
+              <div className="h-12 w-12 rounded-full "></div>
+              <div className="h-12 w-12 rounded-full "></div>
             </div>
           </div>
         </div>
       </div>
       <div className="col-span-6 grid grid-cols-6 flex-auto h-full">
-        <div className="h-full bg-purple-100">{leftMenu}</div>
+        <div className="h-full ">{leftMenu}</div>
         <div className="col-span-5 mt-4 h-full self-start">{swiper}</div>
       </div>
     </div>
