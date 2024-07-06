@@ -1,6 +1,4 @@
-import Image from "next/image";
-
 const Default = () => {
-  return <div>test</div>;
+  return <div className="border rounded-lg border-black">test2</div>;
 };
 export default Default;

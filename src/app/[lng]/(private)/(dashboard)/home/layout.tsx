@@ -16,13 +16,13 @@ const Layout = async ({ leftMenu, topMenu, swiper }: any) => {
         </div>
         <div className="col-span-5 grid  ">
           <div className=" h-full flex self-center">
-            <div className="self-center  flex-auto">qqq</div>
+            <div className="self-center  flex-auto"></div>
             <div className="self-center   flex mx-8 p-4 gap-4">
-              <div className="h-12 w-12 rounded-full "></div>
-              <div className="h-12 w-12 rounded-full "></div>
-              <div className="h-12 w-12 rounded-full "></div>
-              <div className="h-12 w-12 rounded-full "></div>
-              <div className="h-12 w-12 rounded-full "></div>
+              <div className="h-12 w-12 rounded-full bg-green-100"></div>
+              <div className="h-12 w-12 rounded-full bg-green-100"></div>
+              <div className="h-12 w-12 rounded-full bg-green-100"></div>
+              <div className="h-12 w-12 rounded-full bg-green-100"></div>
+              <div className="h-12 w-12 rounded-full bg-green-100"></div>
             </div>
           </div>
         </div>

@@ -1,4 +1,4 @@
 const Default = () => {
-  return <div className=" h-full">test</div>;
+  return <div className=" h-full rounded-lg border p-4">test</div>;
 };
 export default Default;
