@@ -15,13 +15,13 @@ const Default = () => {
   ];
   return (
     <div className=" h-full ">
-      <div className="mt-4 p-4">
+      {/* <div className="mt-4 p-4">
         {menu.map((menuitem) => (
           <div className="grid cursor-pointer p-8 mx-auto px-4 mt-4  w-40 my-4 text-center text-bold text-xl rounded-lg">
             {menuitem.title}
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };
