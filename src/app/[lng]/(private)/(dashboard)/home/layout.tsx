@@ -1,6 +1,8 @@
 import Image from "next/image";
 import React from "react";
-
+import { FaSearch } from "react-icons/fa";
+import { FaWalking } from "react-icons/fa";
+import { FaCalendar } from "react-icons/fa";
 const Layout = async ({ leftMenu, topMenu, swiper }: any) => {
   return (
     <div className="grid grid-cols-6  w-full  h-24 bg-slate-500 rounded-t-lg">
@@ -24,9 +26,24 @@ const Layout = async ({ leftMenu, topMenu, swiper }: any) => {
             <div className="self-center mx-auto flex-auto">
               <div className="flex mx-auto">
                 <div className="h-16 [&>*]:uppercase [&>*]:self-center [&>*]:h-16 [&>*]:py-4 [&>*]:w-44 [&>*]:text-center rounded-lg [&>*]:mx-auto [&>*]:px-8 ml-8 [&>*]:border  shadow-xl rounded-lg bg-white flex">
-                  <div className="rounded-tl-lg rounded-bl-lg">Find</div>
-                  <div> Book</div>
-                  <div className="rounded-tr-lg rounded-br-lg"> Meet</div>
+                  <div className="rounded-tl-lg flex [&>*]:self-center gap-4 rounded-bl-lg flex">
+                    <div>
+                      <FaSearch />
+                    </div>
+                    <div>Find</div>
+                  </div>
+                  <div className="rounded-tl-lg flex [&>*]:self-center gap-4 rounded-bl-lg flex">
+                    <div>
+                      <FaCalendar />
+                    </div>
+                    <div> Book</div>
+                  </div>
+                  <div className="rounded-tl-lg flex [&>*]:self-center gap-4 rounded-bl-lg flex">
+                    <div>
+                      <FaWalking />
+                    </div>
+                    <div> Meet</div>
+                  </div>
                 </div>
               </div>
             </div>
