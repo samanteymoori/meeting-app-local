@@ -1,4 +1,6 @@
+"use client";
+import { withGoogleMap, GoogleMap, Marker } from "react-google-maps";
 const Default = () => {
-  return <div className=" h-full rounded-lg border mr-8 p-4">test</div>;
+  return <div></div>;
 };
 export default Default;
