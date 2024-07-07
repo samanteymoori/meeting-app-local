@@ -38,7 +38,7 @@ const Layout = async ({ leftMenu, topMenu, swiper }: any) => {
                     </div>
                     <div> Book</div>
                   </div>
-                  <div className="rounded-tl-lg flex [&>*]:self-center gap-4 rounded-bl-lg flex">
+                  <div className="rounded-tr-lg flex [&>*]:self-center gap-4 rounded-br-lg flex">
                     <div>
                       <FaWalking />
                     </div>
