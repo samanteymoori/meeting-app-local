@@ -1,5 +1,5 @@
-import UniversalForm from "@/components/UniversalForm";
-import UniversalTextBox from "@/components/UniversalTextBox";
+import UniversalForm from "@/components/UniversalForm/UniversalForm";
+import UniversalTextBox from "@/components/UniversalTextBox/UniversalTextBox";
 import React from "react";
 
 const Page = async ({ params: { lng } }: any) => {
