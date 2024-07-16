@@ -1,6 +1,6 @@
-import { RoundedImageType } from "@/types/RoundedImageType";
+import { ProfileType } from "@/types/ProfileType";
 
-export const profileList: Array<RoundedImageType> = [
+export const profileList: Array<ProfileType> = [
   {
     src: "/images/profile4.webp",
     size: "small",
