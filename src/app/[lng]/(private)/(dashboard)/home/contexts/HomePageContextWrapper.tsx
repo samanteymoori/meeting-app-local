@@ -1,14 +1,20 @@
 "use client";
 import { profileList } from "@/mocks/profile-list";
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, useReducer } from "react";
 import { HomePageContext } from "./HomePageContext";
+import homepageReducer from "./homepageReducer";
 
 const HomePageContextWrapper: React.FC<PropsWithChildren> = ({ children }) => {
+  const [editableProfiles, dispatch] = useReducer(homepageReducer, {
+    listOfProfiles: profileList,
+    currentProfile: profileList[0],
+  }) as any;
+
   return (
     <HomePageContext.Provider
       value={{
-        currentProfile: null,
-        listOfProfiles: profileList,
+        editableProfiles,
+        dispatch,
       }}
     >
       {children}
