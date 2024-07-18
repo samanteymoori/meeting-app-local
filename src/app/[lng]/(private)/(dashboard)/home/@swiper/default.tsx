@@ -20,7 +20,7 @@ const Default = () => {
             })
           }
         >
-          <RoundedImage src={profile.src} size={profile.size} />
+          <RoundedImage src={profile.image.src} size={profile.image.size} />
         </div>
       ))}
     </div>

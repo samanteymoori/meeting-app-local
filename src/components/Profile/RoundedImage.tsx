@@ -1,7 +1,10 @@
 import { ProfileType } from "@/types/ProfileType";
 import Image from "next/image";
 
-const RoundedImage: React.FC<ProfileType> = ({ src, size }) => {
+const RoundedImage: React.FC<{
+  src: string;
+  size: string;
+}> = ({ src, size }: { src: string; size: string }) => {
   const items = [
     {
       key: "small",
