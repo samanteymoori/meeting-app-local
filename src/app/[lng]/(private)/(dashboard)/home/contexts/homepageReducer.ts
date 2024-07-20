@@ -1,4 +1,4 @@
-import homepageActions from "./homepageActions";
+import homepageActions, { meetingStep } from "./homepageActions";
 
 const homepageReducer = (state: any, action: any) => {
   switch (action.type) {
@@ -6,6 +6,13 @@ const homepageReducer = (state: any, action: any) => {
       return {
         ...state,
         currentLocation: action.payload,
+      };
+    }
+    case homepageActions.pickPersonToMeet: {
+      return {
+        ...state,
+        step: meetingStep.book,
+        personToMeet: action.payload,
       };
     }
     case homepageActions.setStep: {

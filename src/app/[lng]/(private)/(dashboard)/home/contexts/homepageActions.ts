@@ -3,6 +3,7 @@ enum homepageActions {
   initProfiles,
   setGeoLocation,
   setStep,
+  pickPersonToMeet,
 }
 export enum meetingStep {
   find = 0,

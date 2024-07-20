@@ -29,8 +29,8 @@ const Default = () => {
           <input
             onClick={() =>
               dispatch?.({
-                type: homepageActions.setStep,
-                payload: meetingStep.book,
+                type: homepageActions.pickPersonToMeet,
+                payload: editableProfiles?.currentProfile,
               })
             }
             type={"button"}
