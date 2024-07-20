@@ -2,6 +2,12 @@ import homepageActions from "./homepageActions";
 
 const homepageReducer = (state: any, action: any) => {
   switch (action.type) {
+    case homepageActions.setGeoLocation: {
+      return {
+        ...state,
+        currentLocation: action.payload,
+      };
+    }
     case homepageActions.initProfiles: {
       return {
         ...state,

@@ -6,6 +6,8 @@ export const profileList: Array<ProfileType> = [
     height: "5 feet 10 inches",
     hobbies: "Hiking, Painting",
     education: "BSc. Computer Science",
+    firstName: "Alice",
+    lastName: "Smith",
     location: [49.2609, -123.1139],
     job: "Software Developer",
     image: {
@@ -17,6 +19,8 @@ export const profileList: Array<ProfileType> = [
     weight: "130lbs",
     height: "5 feet 5 inches",
     hobbies: "Reading, Cooking",
+    firstName: "Bob",
+    lastName: "Johnson",
     location: [49.3043, -123.1443],
     education: "MSc. Biology",
     job: "Biologist",
@@ -28,6 +32,9 @@ export const profileList: Array<ProfileType> = [
   {
     weight: "180lbs",
     height: "6 feet 2 inches",
+    firstName: "Charlie",
+    lastName: "Williams",
+
     hobbies: "Cycling, Chess",
     location: [49.2713, -123.134],
     education: "BA. Literature",
@@ -42,6 +49,8 @@ export const profileList: Array<ProfileType> = [
     height: "5 feet 2 inches",
     hobbies: "Dancing, Gardening",
     location: [49.2745, -123.153],
+    firstName: "Diana",
+    lastName: "Jones",
 
     education: "PhD. Physics",
     job: "Research Scientist",
@@ -55,6 +64,9 @@ export const profileList: Array<ProfileType> = [
     height: "5 feet 8 inches",
     hobbies: "Photography, Travel",
     education: "BEng. Civil Engineering",
+    firstName: "Eve",
+    lastName: "Brown",
+
     location: [49.2606, -123.246],
     job: "Civil Engineer",
     image: {
@@ -66,6 +78,9 @@ export const profileList: Array<ProfileType> = [
     weight: "140lbs",
     height: "5 feet 6 inches",
     hobbies: "Writing, Yoga",
+    firstName: "Frank",
+    lastName: "Davis",
+
     education: "MA. History",
     job: "Museum Curator",
     location: [49.2834, -123.1061],
@@ -77,6 +92,9 @@ export const profileList: Array<ProfileType> = [
   {
     weight: "170lbs",
     height: "5 feet 11 inches",
+    firstName: "Grace",
+    lastName: "Miller",
+
     hobbies: "Running, Fishing",
     education: "BBA. Business Administration",
     location: [49.2741, -123.1216],
@@ -89,6 +107,9 @@ export const profileList: Array<ProfileType> = [
   {
     weight: "120lbs",
     height: "5 feet 3 inches",
+    firstName: "Hank",
+    lastName: "Wilson",
+
     hobbies: "Knitting, Swimming",
     education: "MSc. Chemistry",
     location: [49.2416, -123.1127],
@@ -102,6 +123,9 @@ export const profileList: Array<ProfileType> = [
     weight: "155lbs",
     height: "5 feet 9 inches",
     hobbies: "Gaming, Cooking",
+    firstName: "Ivy",
+    lastName: "Moore",
+
     location: [49.3004, -123.1305],
     education: "PhD. Mathematics",
     job: "Professor",
@@ -117,6 +141,9 @@ export const profileList: Array<ProfileType> = [
     education: "BSc. Environmental Science",
     location: [49.2767, -123.1119],
     job: "Environmental Consultant",
+    firstName: "Jack",
+    lastName: "Taylor",
+
     image: {
       src: "https://images.unsplash.com/photo-1520813792240-56fc4a3765a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDR8fHByb2ZpbGV8ZW58MHx8fHwxNjM4NjY0MzE0&ixlib=rb-1.2.1&q=80&w=400",
       size: "small",

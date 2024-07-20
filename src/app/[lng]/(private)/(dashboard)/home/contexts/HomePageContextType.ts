@@ -4,6 +4,7 @@ import homepageActions from "./homepageActions";
 export type ProfileState = {
   listOfProfiles: ProfileType[];
   currentProfile: ProfileType;
+  currentLocation: any;
 };
 export enum profileActions {
   changeCurrentProfile,

@@ -11,35 +11,64 @@ import { useContext, useEffect } from "react";
 import { HomePageContext } from "@/app/[lng]/(private)/(dashboard)/home/contexts/HomePageContext";
 import { HomePageContextType } from "@/app/[lng]/(private)/(dashboard)/home/contexts/HomePageContextType";
 import { posix } from "path";
+import RoundedImage from "../Profile/RoundedImage";
+import homepageActions from "@/app/[lng]/(private)/(dashboard)/home/contexts/homepageActions";
 
 interface MapProps {
   zoom?: number;
 }
 
 const defaults = {
-  zoom: 12,
+  zoom: 15,
 };
 
 const Map = (Map: MapProps) => {
   const { zoom = defaults.zoom } = Map;
-  const { editableProfiles } = useContext<HomePageContextType>(HomePageContext);
+  const { editableProfiles, dispatch } =
+    useContext<HomePageContextType>(HomePageContext);
 
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude, accuracy } = position.coords;
+          dispatch?.({
+            type: homepageActions.setGeoLocation,
+            payload: { lat: latitude, lng: longitude, accuracy },
+          });
+        },
+        (error) => {}
+      );
+    } else {
+    }
+  }, []);
+  if (!editableProfiles?.currentLocation) return <></>;
   return (
     <div id="map">
       <MapContainer
         center={
-          editableProfiles?.currentProfile.location || [49.2609, -123.1139]
+          editableProfiles?.currentProfile.location ||
+          editableProfiles?.currentLocation || [49.2609, -123.1139]
         }
         zoom={zoom}
-        scrollWheelZoom={false}
+        scrollWheelZoom={true}
         onClick={() => {}}
-        style={{ height: "100vh", width: "100vw" }}
+        style={{ height: "100vh", width: "calc(100vw - 4rem)" }}
       >
         <TileLayer
           onClick={() => {}}
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+        {editableProfiles?.currentLocation && (
+          <Marker
+            onClick={() => {}}
+            position={editableProfiles?.currentLocation}
+            draggable={false}
+          >
+            <Popup>{"Me!"}</Popup>
+          </Marker>
+        )}
         {editableProfiles?.currentProfile && (
           <Marker
             onClick={() => {}}
@@ -51,13 +80,28 @@ const Map = (Map: MapProps) => {
         )}
         {editableProfiles?.listOfProfiles &&
           editableProfiles?.listOfProfiles.map((person) => (
-            <Marker
-              onClick={() => {}}
-              position={person.location}
-              draggable={false}
+            <div
+              onClick={() => {
+                dispatch?.({
+                  type: homepageActions.setProfile,
+                  payload: person,
+                });
+              }}
             >
-              <Popup>{person.education}</Popup>
-            </Marker>
+              <Marker position={person.location} draggable={false}>
+                <Popup
+                  onClick={() => {
+                    debugger;
+                    dispatch?.({
+                      type: homepageActions.setProfile,
+                      payload: person,
+                    });
+                  }}
+                >
+                  <RoundedImage src={person.image.src} size={"small"} />
+                </Popup>
+              </Marker>
+            </div>
           ))}
       </MapContainer>
     </div>
