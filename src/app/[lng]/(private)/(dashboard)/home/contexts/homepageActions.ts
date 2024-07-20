@@ -5,9 +5,9 @@ enum homepageActions {
   setStep,
 }
 export enum meetingStep {
-  find,
-  book,
-  meet,
+  find = 0,
+  book = 1,
+  meet = 2,
 }
 
 export default homepageActions;
