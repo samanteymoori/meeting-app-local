@@ -4,7 +4,7 @@ import OpenMap from "@/components/Map/OpenMap";
 const Default = () => {
   return (
     <div className="p-2 bg-white rounded-lg">
-      <OpenMap />
+      <OpenMap posix={[51.505, -0.09]} />
     </div>
   );
 };
