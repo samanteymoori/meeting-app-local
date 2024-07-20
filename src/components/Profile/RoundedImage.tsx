@@ -3,14 +3,23 @@ import Image from "next/image";
 
 const RoundedImage: React.FC<{
   src: string;
+  backdrop?: "backdrop" | null | undefined;
   size: string;
-}> = ({ src, size }: { src: string; size: string }) => {
+}> = ({
+  src,
+  size,
+  backdrop,
+}: {
+  backdrop?: "backdrop" | null | undefined;
+  src: string;
+  size: string;
+}) => {
   const items = [
     {
       key: "small",
       w: "w-[5rem] rounded-full ",
       h: "h-[5rem]",
-      wrapper: "w-[5.5rem]  rounded-full  h-[5.5rem] self-end m-1",
+      wrapper: "w-[5.5rem]   rounded-full  h-[5.5rem] self-end m-1",
     },
     {
       key: "medium",
@@ -29,7 +38,7 @@ const RoundedImage: React.FC<{
   ];
   const item = items.find((p) => p.key === size);
   return (
-    <div className="">
+    <div className={`${item?.wrapper} `}>
       <div
         className={`bg-transparent  absolute grid z-20 relative  p-1 ${item?.wrapper} bg-slate-200 cursor-pointer`}
       >
@@ -43,10 +52,12 @@ const RoundedImage: React.FC<{
           />
         </div>
       </div>
-      <div
-        style={{ backgroundImage: `url(${src})` }}
-        className={`relative transform -translate-y-[25rem] blur-lg z-10 ${item?.w} ${item?.h}`}
-      ></div>
+      {backdrop && backdrop === "backdrop" && (
+        <div
+          style={{ backgroundImage: `url(${src})` }}
+          className={`relative transform -translate-y-[25rem] blur-lg z-10 ${item?.w} ${item?.h}`}
+        ></div>
+      )}
     </div>
   );
 };

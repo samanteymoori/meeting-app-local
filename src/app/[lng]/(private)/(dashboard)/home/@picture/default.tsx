@@ -9,6 +9,7 @@ const Default = () => {
   return (
     <div className="h-[25rem]">
       <RoundedImage
+        backdrop={"backdrop"}
         src={editableProfiles?.currentProfile.image.src || ""}
         size={"large"}
       />
