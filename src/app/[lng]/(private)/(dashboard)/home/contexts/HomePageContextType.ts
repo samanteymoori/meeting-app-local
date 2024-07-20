@@ -1,10 +1,11 @@
 import { ProfileType } from "@/types/ProfileType";
-import homepageActions from "./homepageActions";
+import homepageActions, { meetingStep } from "./homepageActions";
 
 export type ProfileState = {
   listOfProfiles: ProfileType[];
   currentProfile: ProfileType;
   currentLocation: any;
+  step: meetingStep;
 };
 export enum profileActions {
   changeCurrentProfile,

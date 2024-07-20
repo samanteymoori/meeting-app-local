@@ -8,6 +8,9 @@ const homepageReducer = (state: any, action: any) => {
         currentLocation: action.payload,
       };
     }
+    case homepageActions.setStep: {
+      return { ...state, step: action.payload };
+    }
     case homepageActions.initProfiles: {
       return {
         ...state,

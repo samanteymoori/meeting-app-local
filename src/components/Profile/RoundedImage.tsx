@@ -30,10 +30,10 @@ const RoundedImage: React.FC<{
 
     {
       key: "large",
-      w: "w-full object-scale-down rounded-lg",
+      w: "w-full object-scale-down p-8 rounded-lg",
       h: "h-[25rem]",
       hrem: "25rem",
-      wrapper: "  rounded-lg   self-end ",
+      wrapper: " rounded-lg   self-end ",
     },
   ];
   const item = items.find((p) => p.key === size);
@@ -44,7 +44,7 @@ const RoundedImage: React.FC<{
       >
         <div className="rounded-lg">
           <Image
-            className={`shadow-xl mx-auto self-center object-top  mx-auto self-center ${item?.w} ${item?.h} object-cover`}
+            className={` mx-auto self-center object-top  mx-auto self-center ${item?.w} ${item?.h} object-cover`}
             src={src}
             width={512}
             height={512}
@@ -54,7 +54,7 @@ const RoundedImage: React.FC<{
       </div>
       {backdrop && backdrop === "backdrop" && (
         <div
-          style={{ backgroundImage: `url(${src})` }}
+          style={{ backgroundImage: `url(${src})`, backgroundSize: "cover" }}
           className={`relative transform -translate-y-[25rem] blur-lg z-10 ${item?.w} ${item?.h}`}
         ></div>
       )}

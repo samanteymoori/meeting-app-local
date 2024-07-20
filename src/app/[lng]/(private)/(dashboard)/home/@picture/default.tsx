@@ -7,7 +7,7 @@ import { HomePageContextType } from "../contexts/HomePageContextType";
 const Default = () => {
   const { editableProfiles } = useContext<HomePageContextType>(HomePageContext);
   return (
-    <div className="h-[25rem]">
+    <div className="h-[25rem] ">
       <RoundedImage
         backdrop={"backdrop"}
         src={editableProfiles?.currentProfile.image.src || ""}
