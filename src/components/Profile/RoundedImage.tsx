@@ -21,7 +21,7 @@ const RoundedImage: React.FC<{
 
     {
       key: "large",
-      w: "w-full object-cover rounded-lg",
+      w: "w-full object-scale-down rounded-lg",
       h: "h-[25rem]",
       wrapper: "  rounded-lg   self-end ",
     },
@@ -32,7 +32,7 @@ const RoundedImage: React.FC<{
       className={`bg-white p-1 ${item?.wrapper} bg-slate-200 cursor-pointer`}
     >
       <Image
-        className={`shadow-xl mx-auto self-center ${item?.w} ${item?.h} object-cover`}
+        className={`shadow-xl object-top $ mx-auto self-center ${item?.w} ${item?.h} object-cover`}
         src={src}
         width={512}
         height={512}

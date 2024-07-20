@@ -7,29 +7,32 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { HomePageContext } from "@/app/[lng]/(private)/(dashboard)/home/contexts/HomePageContext";
+import { HomePageContextType } from "@/app/[lng]/(private)/(dashboard)/home/contexts/HomePageContextType";
+import { posix } from "path";
 
 interface MapProps {
-  posix: LatLngExpression | LatLngTuple;
   zoom?: number;
 }
 
 const defaults = {
-  zoom: 19,
+  zoom: 12,
 };
 
 const Map = (Map: MapProps) => {
-  const { zoom = defaults.zoom, posix } = Map;
+  const { zoom = defaults.zoom } = Map;
+  const { editableProfiles } = useContext<HomePageContextType>(HomePageContext);
 
   return (
     <div id="map">
       <MapContainer
-        center={posix}
+        center={
+          editableProfiles?.currentProfile.location || [49.2609, -123.1139]
+        }
         zoom={zoom}
         scrollWheelZoom={false}
-        onClick={() => {
-          debugger;
-        }}
+        onClick={() => {}}
         style={{ height: "100vh", width: "100vw" }}
       >
         <TileLayer
@@ -37,9 +40,25 @@ const Map = (Map: MapProps) => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker onClick={() => {}} position={posix} draggable={false}>
-          <Popup>Hey ! I study here</Popup>
-        </Marker>
+        {editableProfiles?.currentProfile && (
+          <Marker
+            onClick={() => {}}
+            position={editableProfiles?.currentProfile.location}
+            draggable={false}
+          >
+            <Popup>{editableProfiles?.currentProfile.education}</Popup>
+          </Marker>
+        )}
+        {editableProfiles?.listOfProfiles &&
+          editableProfiles?.listOfProfiles.map((person) => (
+            <Marker
+              onClick={() => {}}
+              position={person.location}
+              draggable={false}
+            >
+              <Popup>{person.education}</Popup>
+            </Marker>
+          ))}
       </MapContainer>
     </div>
   );

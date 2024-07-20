@@ -46,7 +46,7 @@ export const profileList: Array<ProfileType> = [
     education: "PhD. Physics",
     job: "Research Scientist",
     image: {
-      src: "/images/profile2.jpg",
+      src: "https://images.unsplash.com/photo-1552058544-f2b08422138a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDd8fHByb2ZpbGV8ZW58MHx8fHwxNjM4NjY0MzE0&ixlib=rb-1.2.1&q=80&w=400",
       size: "small",
     },
   },
@@ -58,7 +58,7 @@ export const profileList: Array<ProfileType> = [
     location: [49.2606, -123.246],
     job: "Civil Engineer",
     image: {
-      src: "/images/profile3.jpg",
+      src: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDJ8fHByb2ZpbGV8ZW58MHx8fHwxNjM4NjY0MzE0&ixlib=rb-1.2.1&q=80&w=400",
       size: "small",
     },
   },
@@ -70,7 +70,7 @@ export const profileList: Array<ProfileType> = [
     job: "Museum Curator",
     location: [49.2834, -123.1061],
     image: {
-      src: "/images/profile4.webp",
+      src: "https://images.unsplash.com/photo-1607746882042-944635dfe10e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDh8fHByb2ZpbGV8ZW58MHx8fHwxNjM4NjY0MzE0&ixlib=rb-1.2.1&q=80&w=400",
       size: "small",
     },
   },
@@ -82,7 +82,7 @@ export const profileList: Array<ProfileType> = [
     location: [49.2741, -123.1216],
     job: "Marketing Manager",
     image: {
-      src: "/images/profile2.jpg",
+      src: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDV8fHByb2ZpbGV8ZW58MHx8fHwxNjM4NjY0MzE0&ixlib=rb-1.2.1&q=80&w=400",
       size: "small",
     },
   },
@@ -106,7 +106,7 @@ export const profileList: Array<ProfileType> = [
     education: "PhD. Mathematics",
     job: "Professor",
     image: {
-      src: "/images/profile4.webp",
+      src: "https://images.unsplash.com/photo-1517841905240-472988babdf9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDR8fHByb2ZpbGV8ZW58MHx8fHwxNjM4NjY0MzE0&ixlib=rb-1.2.1&q=80&w=400",
       size: "small",
     },
   },
@@ -118,7 +118,7 @@ export const profileList: Array<ProfileType> = [
     location: [49.2767, -123.1119],
     job: "Environmental Consultant",
     image: {
-      src: "/images/profile2.jpg",
+      src: "https://images.unsplash.com/photo-1520813792240-56fc4a3765a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDR8fHByb2ZpbGV8ZW58MHx8fHwxNjM4NjY0MzE0&ixlib=rb-1.2.1&q=80&w=400",
       size: "small",
     },
   },
