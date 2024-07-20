@@ -36,7 +36,6 @@ const StepComponent: React.FC = () => {
         {steps.map((step) => (
           <div
             onClick={() => {
-              debugger;
               if (
                 editableProfiles?.step &&
                 editableProfiles?.step > step.step
