@@ -7,8 +7,10 @@ import { HomePageContextType } from "../contexts/HomePageContextType";
 
 const Default = () => {
   return (
-    <div className="p-2 bg-white rounded-lg">
-      <OpenMap />
+    <div className="col-span-6 p-2 h-full  gap-2 h-full bg-white  grid grid-cols-1">
+      <div className="p-2 bg-white rounded-lg">
+        <OpenMap />
+      </div>
     </div>
   );
 };

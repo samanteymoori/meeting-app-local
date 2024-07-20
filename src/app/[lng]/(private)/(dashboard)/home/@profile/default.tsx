@@ -9,6 +9,12 @@ const Default = () => {
     useContext<HomePageContextType>(HomePageContext);
   const { firstName, lastName, weight, height, hobbies, education, job }: any =
     editableProfiles?.currentProfile;
+  if (
+    editableProfiles?.step !== undefined &&
+    editableProfiles.step === meetingStep.book
+  ) {
+    return null;
+  }
   return (
     <div className="  h-full  rounded-lg grid gap-x-4 gap-y-2 [&>*]:p-4 [&>*]:flex-auto flex">
       <h1 className="col-span-2 xl:col-span-4 text-2xl text-green-500 ">
