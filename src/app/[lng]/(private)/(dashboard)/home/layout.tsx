@@ -12,13 +12,13 @@ const Layout = async ({ topMenu, swiper, map, profile, picture }: any) => {
           <div className="col-span-6 bg-gray-200  h-full self-start p-2">
             {swiper}
           </div>
-          <div className="col-span-6 p-2  gap-2 h-full bg-red-100  grid grid-cols-2">
-            <div className="grid">
-              <div>{picture}</div>
+          <div className="col-span-6 p-2  gap-2 h-full bg-white  grid grid-cols-2">
+            <div className="grid ">
+              <div className="">{picture}</div>
             </div>
             <div>{profile}</div>
           </div>
-          <div className="col-span-6 p-2 h-full  gap-2 h-full bg-red-100  grid grid-cols-1">
+          <div className="col-span-6 p-2 h-full  gap-2 h-full bg-white  grid grid-cols-1">
             {map}
           </div>
         </div>

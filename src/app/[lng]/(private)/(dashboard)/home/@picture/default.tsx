@@ -7,7 +7,7 @@ import { HomePageContextType } from "../contexts/HomePageContextType";
 const Default = () => {
   const { editableProfiles } = useContext<HomePageContextType>(HomePageContext);
   return (
-    <div>
+    <div className="h-[25rem]">
       <RoundedImage
         src={editableProfiles?.currentProfile.image.src || ""}
         size={"large"}

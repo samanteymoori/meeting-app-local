@@ -9,7 +9,7 @@ const Default = () => {
   const { dispatch, editableProfiles } =
     useContext<HomePageContextType>(HomePageContext);
   return (
-    <div className="flex">
+    <div className="flex h-24">
       {editableProfiles?.listOfProfiles?.map((profile, index) => (
         <div
           key={index}
