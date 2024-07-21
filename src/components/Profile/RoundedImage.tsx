@@ -16,6 +16,12 @@ const RoundedImage: React.FC<{
 }) => {
   const items = [
     {
+      key: "profile",
+      w: "w-12 rounded-full",
+      h: "h-12",
+      wrapper: "rounded-full",
+    },
+    {
       key: "small",
       w: "w-[5rem] rounded-full ",
       h: "h-[5rem]",

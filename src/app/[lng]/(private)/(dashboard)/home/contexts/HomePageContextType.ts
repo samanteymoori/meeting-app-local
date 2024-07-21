@@ -4,6 +4,7 @@ import homepageActions, { meetingStep } from "./homepageActions";
 export type ProfileState = {
   listOfProfiles: ProfileType[];
   currentProfile: ProfileType;
+  authenticatedProfile: ProfileType;
   currentLocation: any;
   step: meetingStep;
 };

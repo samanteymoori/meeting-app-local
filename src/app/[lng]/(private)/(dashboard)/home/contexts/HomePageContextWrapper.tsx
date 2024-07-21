@@ -9,6 +9,7 @@ const HomePageContextWrapper: React.FC<PropsWithChildren> = ({ children }) => {
   const [editableProfiles, dispatch] = useReducer(homepageReducer, {
     listOfProfiles: profileList,
     currentProfile: profileList[0],
+    authenticatedProfile: profileList[1],
     step: meetingStep.find,
   }) as any;
 

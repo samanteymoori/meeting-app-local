@@ -21,6 +21,7 @@ const homepageReducer = (state: any, action: any) => {
     case homepageActions.initProfiles: {
       return {
         ...state,
+        authenticatedProfile: action.payload.authenticatedProfile,
         listOfProfiles: action.payload.listOfProfiles,
         currentProfile: action.payload.currentProfile,
       };
