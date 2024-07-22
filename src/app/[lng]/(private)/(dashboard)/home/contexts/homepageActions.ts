@@ -5,6 +5,7 @@ enum homepageActions {
   setGeoLocation,
   setStep,
   pickPersonToMeet,
+  pickPlaceToMeet,
   setMeetLocation,
 }
 export enum meetingStep {
