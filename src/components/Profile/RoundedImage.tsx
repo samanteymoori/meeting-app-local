@@ -17,19 +17,25 @@ const RoundedImage: React.FC<{
   const items = [
     {
       key: "profile",
-      w: "w-12 rounded-full",
+      w: "w-12 rounded-full object-cover",
       h: "h-12",
       wrapper: "rounded-full",
     },
     {
       key: "small",
-      w: "w-[5rem] rounded-full ",
+      w: "w-[5rem] rounded-full object-cover",
       h: "h-[5rem]",
       wrapper: "w-[5.5rem]   rounded-full  h-[5.5rem] self-end m-1",
     },
     {
+      key: "rectangle-small",
+      w: "w-[5rem] rounded-lg object-scale-down",
+      h: "h-[5rem]",
+      wrapper: "w-[6rem]   rounded-lg  h-[6rem] self-end m-1",
+    },
+    {
       key: "medium",
-      w: "w-[8rem] rounded-full ",
+      w: "w-[8rem] rounded-full object-cover",
       h: "h-[8rem]",
       wrapper: "w-[9rem]   rounded-full h-[9rem]  self-end mx-2",
     },
@@ -50,7 +56,7 @@ const RoundedImage: React.FC<{
       >
         <div className="rounded-lg">
           <Image
-            className={` mx-auto self-center object-top  mx-auto self-center ${item?.w} ${item?.h} object-cover`}
+            className={` mx-auto self-center object-top  mx-auto self-center ${item?.w} ${item?.h} `}
             src={src}
             width={512}
             height={512}

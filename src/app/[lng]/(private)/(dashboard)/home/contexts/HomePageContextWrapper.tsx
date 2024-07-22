@@ -14,7 +14,7 @@ const HomePageContextWrapper: React.FC<PropsWithChildren> = ({ children }) => {
     places: placesList,
     currentPlace: placesList[0],
     meetingPlace: null,
-    step: meetingStep.find,
+    step: meetingStep.book,
   }) as any;
 
   return (

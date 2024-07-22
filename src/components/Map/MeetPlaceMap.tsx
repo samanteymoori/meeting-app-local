@@ -41,7 +41,6 @@ const MeetPlaceMap: React.FC = (Map: MapProps) => {
   if (!editableProfiles?.currentLocation) return <></>;
   return (
     <div id="mapMeet">
-      {"test"}
       <MapContainer
         center={
           editableProfiles?.currentProfile.location ||
@@ -70,7 +69,10 @@ const MeetPlaceMap: React.FC = (Map: MapProps) => {
                     });
                   }}
                 >
-                  <RoundedImage src={place.image.src} size={"small"} />
+                  <RoundedImage
+                    src={place.image.src}
+                    size={"rectangle-small"}
+                  />
                   <div>{place.name}</div>
                 </Popup>
               </Marker>

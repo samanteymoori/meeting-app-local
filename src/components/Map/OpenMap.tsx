@@ -83,7 +83,6 @@ const Map: React.FC = (Map: MapProps) => {
               <Marker position={person.location} draggable={false}>
                 <Popup
                   onClick={() => {
-                    debugger;
                     dispatch?.({
                       type: homepageActions.setProfile,
                       payload: person,
