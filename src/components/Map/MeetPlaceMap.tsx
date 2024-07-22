@@ -59,7 +59,15 @@ const MeetPlaceMap: React.FC = (Map: MapProps) => {
 
         {editableProfiles?.places &&
           editableProfiles?.places?.map((place) => (
-            <div>
+            <div
+              key={place.id}
+              onClick={() => {
+                dispatch?.({
+                  type: homepageActions.setPlace,
+                  payload: place,
+                });
+              }}
+            >
               <Marker position={place.location} draggable={false}>
                 <Popup
                   onClick={() => {

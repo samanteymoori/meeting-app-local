@@ -7,20 +7,43 @@ import { HomePageContextType } from "../contexts/HomePageContextType";
 
 const Default = () => {
   const { editableProfiles } = useContext<HomePageContextType>(HomePageContext);
-  if (
-    editableProfiles?.step !== undefined &&
-    editableProfiles.step === meetingStep.book
-  ) {
-    return null;
+
+  if (editableProfiles && editableProfiles?.step === meetingStep.find) {
+    return (
+      <div className="h-[25rem] ">
+        <RoundedImage
+          backdrop={"backdrop"}
+          src={editableProfiles?.currentProfile.image.src || ""}
+          size={"large"}
+        />
+      </div>
+    );
   }
-  return (
-    <div className="h-[25rem] ">
-      <RoundedImage
-        backdrop={"backdrop"}
-        src={editableProfiles?.currentProfile.image.src || ""}
-        size={"large"}
-      />
-    </div>
-  );
+  if (editableProfiles && editableProfiles?.step === meetingStep.book) {
+    return (
+      <div className="h-[25rem] ">
+        <RoundedImage
+          backdrop={"backdrop"}
+          src={editableProfiles?.currentPlace.image.src || ""}
+          size={"large"}
+        />
+      </div>
+    );
+  }
+  if (
+    editableProfiles &&
+    editableProfiles?.step &&
+    editableProfiles?.step === meetingStep.meet
+  ) {
+    return (
+      <div className="h-[25rem] ">
+        <RoundedImage
+          backdrop={"backdrop"}
+          src={editableProfiles?.currentProfile.image.src || ""}
+          size={"large"}
+        />
+      </div>
+    );
+  }
 };
 export default Default;
