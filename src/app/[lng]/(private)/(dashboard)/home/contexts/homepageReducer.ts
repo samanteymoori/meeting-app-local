@@ -1,3 +1,4 @@
+import { rootCertificates } from "tls";
 import homepageActions, { meetingStep } from "./homepageActions";
 
 const homepageReducer = (state: any, action: any) => {
@@ -26,7 +27,12 @@ const homepageReducer = (state: any, action: any) => {
         currentProfile: action.payload.currentProfile,
       };
     }
-
+    case homepageActions.setPlace: {
+      return {
+        ...state,
+        currentPlace: action.payload,
+      };
+    }
     case homepageActions.setProfile: {
       return {
         ...state,

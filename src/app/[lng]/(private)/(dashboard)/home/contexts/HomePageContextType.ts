@@ -1,10 +1,14 @@
+import { PlaceType } from "@/types/PlaceType";
 import { ProfileType } from "@/types/ProfileType";
 import homepageActions, { meetingStep } from "./homepageActions";
 
 export type ProfileState = {
   listOfProfiles: ProfileType[];
   currentProfile: ProfileType;
+  currentPlace: PlaceType;
   authenticatedProfile: ProfileType;
+  places: PlaceType[];
+  meetingPlace: PlaceType | null | undefined;
   currentLocation: any;
   step: meetingStep;
 };

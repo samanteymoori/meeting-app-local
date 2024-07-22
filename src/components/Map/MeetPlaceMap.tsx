@@ -1,12 +1,16 @@
 "use client";
 
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { LatLngExpression, LatLngTuple } from "leaflet";
+import L from "leaflet";
+
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
 import { useContext, useEffect } from "react";
 import { HomePageContext } from "@/app/[lng]/(private)/(dashboard)/home/contexts/HomePageContext";
 import { HomePageContextType } from "@/app/[lng]/(private)/(dashboard)/home/contexts/HomePageContextType";
+import { posix } from "path";
 import RoundedImage from "../Profile/RoundedImage";
 import homepageActions from "@/app/[lng]/(private)/(dashboard)/home/contexts/homepageActions";
 
@@ -18,7 +22,7 @@ const defaults = {
   zoom: 12,
 };
 
-const Map: React.FC = (Map: MapProps) => {
+const MeetPlaceMap: React.FC = (Map: MapProps) => {
   const { zoom = defaults.zoom } = Map;
   const { editableProfiles, dispatch } =
     useContext<HomePageContextType>(HomePageContext);
@@ -36,7 +40,8 @@ const Map: React.FC = (Map: MapProps) => {
   }, []);
   if (!editableProfiles?.currentLocation) return <></>;
   return (
-    <div id="map">
+    <div id="mapMeet">
+      {"test"}
       <MapContainer
         center={
           editableProfiles?.currentProfile.location ||
@@ -52,45 +57,21 @@ const Map: React.FC = (Map: MapProps) => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {editableProfiles?.currentLocation && (
-          <Marker
-            onClick={() => {}}
-            position={editableProfiles?.currentLocation}
-            draggable={false}
-          >
-            <Popup>{"Me!"}</Popup>
-          </Marker>
-        )}
-        {editableProfiles?.currentProfile && (
-          <Marker
-            onClick={() => {}}
-            position={editableProfiles?.currentProfile.location}
-            draggable={false}
-          >
-            <Popup>{editableProfiles?.currentProfile.education}</Popup>
-          </Marker>
-        )}
-        {editableProfiles?.listOfProfiles &&
-          editableProfiles?.listOfProfiles.map((person) => (
-            <div
-              onClick={() => {
-                dispatch?.({
-                  type: homepageActions.setProfile,
-                  payload: person,
-                });
-              }}
-            >
-              <Marker position={person.location} draggable={false}>
+
+        {editableProfiles?.places &&
+          editableProfiles?.places?.map((place) => (
+            <div>
+              <Marker position={place.location} draggable={false}>
                 <Popup
                   onClick={() => {
-                    debugger;
                     dispatch?.({
-                      type: homepageActions.setProfile,
-                      payload: person,
+                      type: homepageActions.setPlace,
+                      payload: place,
                     });
                   }}
                 >
-                  <RoundedImage src={person.image.src} size={"small"} />
+                  <RoundedImage src={place.image.src} size={"small"} />
+                  <div>{place.name}</div>
                 </Popup>
               </Marker>
             </div>
@@ -100,4 +81,4 @@ const Map: React.FC = (Map: MapProps) => {
   );
 };
 
-export default Map;
+export default MeetPlaceMap;

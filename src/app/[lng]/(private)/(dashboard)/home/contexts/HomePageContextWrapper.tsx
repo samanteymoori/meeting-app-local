@@ -1,4 +1,5 @@
 "use client";
+import { placesList } from "@/mocks/place-list";
 import { profileList } from "@/mocks/profile-list";
 import { PropsWithChildren, useReducer } from "react";
 import { meetingStep } from "./homepageActions";
@@ -10,6 +11,9 @@ const HomePageContextWrapper: React.FC<PropsWithChildren> = ({ children }) => {
     listOfProfiles: profileList,
     currentProfile: profileList[0],
     authenticatedProfile: profileList[1],
+    places: placesList,
+    currentPlace: placesList[0],
+    meetingPlace: null,
     step: meetingStep.find,
   }) as any;
 

@@ -1,5 +1,11 @@
 import { LatLngExpression, LatLngTuple } from "leaflet";
-
+const classA = {
+  method: () => {
+    return {
+      m: () => {},
+    };
+  },
+};
 export type ProfileType = {
   weight: string;
   firstName: string;
