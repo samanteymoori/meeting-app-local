@@ -25,12 +25,13 @@ const PersonProfile: React.FC = () => {
       <div className="col-span-2 xl:col-span-4 flex">
         <div className="mx-auto">
           <input
-            onClick={() =>
+            onClick={() => {
+              debugger;
               dispatch?.({
                 type: homepageActions.pickPlaceToMeet,
                 payload: editableProfiles?.currentLocation,
-              })
-            }
+              });
+            }}
             type={"button"}
             className="bg-green-500 cursor-pointer text-white p-4   "
             value={"Meet at " + name}

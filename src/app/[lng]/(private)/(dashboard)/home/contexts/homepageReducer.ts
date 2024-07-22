@@ -1,3 +1,4 @@
+import { stat } from "fs";
 import { rootCertificates } from "tls";
 import homepageActions, { meetingStep } from "./homepageActions";
 
@@ -18,6 +19,13 @@ const homepageReducer = (state: any, action: any) => {
     }
     case homepageActions.setStep: {
       return { ...state, step: action.payload };
+    }
+    case homepageActions.pickPlaceToMeet: {
+      return {
+        ...state,
+        meetingPlace: action.payload,
+        step: meetingStep.meet,
+      };
     }
     case homepageActions.initProfiles: {
       return {
