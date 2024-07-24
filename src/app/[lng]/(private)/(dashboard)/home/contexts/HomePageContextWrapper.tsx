@@ -9,7 +9,7 @@ import homepageReducer from "./homepageReducer";
 const HomePageContextWrapper: React.FC<PropsWithChildren> = ({ children }) => {
   const [editableProfiles, dispatch] = useReducer(homepageReducer, {
     listOfProfiles: profileList,
-    currentProfile: profileList[0],
+    currentProfile: profileList[3],
     authenticatedProfile: profileList[1],
     places: placesList,
     currentPlace: placesList[0],

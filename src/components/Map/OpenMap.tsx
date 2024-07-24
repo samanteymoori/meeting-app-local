@@ -8,7 +8,9 @@ import { useContext, useEffect } from "react";
 import { HomePageContext } from "@/app/[lng]/(private)/(dashboard)/home/contexts/HomePageContext";
 import { HomePageContextType } from "@/app/[lng]/(private)/(dashboard)/home/contexts/HomePageContextType";
 import RoundedImage from "../Profile/RoundedImage";
-import homepageActions from "@/app/[lng]/(private)/(dashboard)/home/contexts/homepageActions";
+import homepageActions, {
+  meetingStep,
+} from "@/app/[lng]/(private)/(dashboard)/home/contexts/homepageActions";
 
 interface MapProps {
   zoom?: number;
@@ -34,6 +36,7 @@ const Map: React.FC = (Map: MapProps) => {
       });
     }
   }, []);
+  if (editableProfiles?.step === meetingStep.meet) return <></>;
   if (!editableProfiles?.currentLocation) return <></>;
   return (
     <div id="map">

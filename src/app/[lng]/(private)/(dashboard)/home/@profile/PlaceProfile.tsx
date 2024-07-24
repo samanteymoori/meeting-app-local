@@ -4,7 +4,10 @@ import homepageActions from "../contexts/homepageActions";
 import { HomePageContext } from "../contexts/HomePageContext";
 import { HomePageContextType } from "../contexts/HomePageContextType";
 
-const PersonProfile: React.FC = () => {
+type Props = {
+  showButton: boolean;
+};
+const PersonProfile: React.FC<Props> = ({ showButton }) => {
   const { editableProfiles, dispatch } =
     useContext<HomePageContextType>(HomePageContext);
   const { name, workingHours, address, phone }: any =
@@ -22,22 +25,23 @@ const PersonProfile: React.FC = () => {
       <fieldset>{address}</fieldset>
       <fieldset className="font-bold">Phone</fieldset>
       <fieldset>{phone}</fieldset>
-      <div className="col-span-2 xl:col-span-4 flex">
-        <div className="mx-auto">
-          <input
-            onClick={() => {
-              debugger;
-              dispatch?.({
-                type: homepageActions.pickPlaceToMeet,
-                payload: editableProfiles?.currentLocation,
-              });
-            }}
-            type={"button"}
-            className="bg-green-500 cursor-pointer text-white p-4   "
-            value={"Meet at " + name}
-          />
+      {showButton && (
+        <div className="col-span-2 xl:col-span-4 flex">
+          <div className="mx-auto">
+            <input
+              onClick={() => {
+                dispatch?.({
+                  type: homepageActions.pickPlaceToMeet,
+                  payload: editableProfiles?.currentLocation,
+                });
+              }}
+              type={"button"}
+              className="bg-green-500 cursor-pointer text-white p-4   "
+              value={"Meet at " + name}
+            />
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

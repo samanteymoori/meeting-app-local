@@ -11,9 +11,17 @@ const Default = () => {
     useContext<HomePageContextType>(HomePageContext);
 
   if (editableProfiles && editableProfiles.step === meetingStep.find) {
-    return <PersonProfile />;
+    return <PersonProfile showButton={true} />;
+  }
+  if (editableProfiles && editableProfiles.step === meetingStep.meet) {
+    return (
+      <>
+        <PersonProfile showButton={false} />
+        <PlaceProfile showButton={false} />
+      </>
+    );
   }
 
-  return <PlaceProfile />;
+  return <PlaceProfile showButton={true} />;
 };
 export default Default;
