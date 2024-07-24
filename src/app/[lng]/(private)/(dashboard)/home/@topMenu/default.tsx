@@ -12,8 +12,8 @@ const Default = () => {
     useContext<HomePageContextType>(HomePageContext);
   return (
     <>
-      <div className="flex gap-4 ml-4">
-        <div className="shadow-xl  h-10 self-center rounded-full pr-4 flex flex-none  bg-white text-neutral-500 ">
+      <div className="flex gap-4 ">
+        {/* <div className="shadow-xl  h-10 self-center rounded-full pr-4 flex flex-none  bg-white text-neutral-500 ">
           <div className="ml-4   self-center">
             <Image
               className="bg-transparent  h-10"
@@ -33,7 +33,7 @@ const Default = () => {
           <div className="self-center uppercase mx-auto">
             <h2 className="text-xl italic my-4"> Meet</h2>
           </div>
-        </div>
+        </div> */}
       </div>
       <div className="flex-auto mx-auto">
         <div className=" h-full  flex mx-auto self-center">

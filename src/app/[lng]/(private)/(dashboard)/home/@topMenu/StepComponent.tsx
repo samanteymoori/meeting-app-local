@@ -31,8 +31,8 @@ const StepComponent: React.FC = () => {
     },
   ];
   return (
-    <div className="flex mx-auto">
-      <div className="h-10  [&>*]:uppercase  cursor-pointer [&>*]:self-center mt-2 mx-auto [&>*]:h-10 [&>*]:py-4 [&>*]:w-44 [&>*]:text-center rounded-lg [&>*]:mx-auto [&>*]:px-8 ml-8 [&>*]:border  shadow-xl rounded-lg bg-white flex">
+    <div className="h-full flex mx-auto">
+      <div className="self-center  [&>*]:uppercase  cursor-pointer [&>*]:self-center mx-auto [&>*]:h-10 [&>*]:py-4 [&>*]:w-44 [&>*]:text-center rounded-lg [&>*]:mx-auto [&>*]:px-8 ml-8 [&>*]:border  shadow-xl rounded-lg bg-white flex">
         {steps.map((step) => (
           <div
             key={step.title}
