@@ -36,12 +36,19 @@ const Default = () => {
     editableProfiles?.step === meetingStep.meet
   ) {
     return (
-      <div className="h-[25rem] ">
-        <RoundedImage
-          backdrop={"backdrop"}
-          src={editableProfiles?.currentProfile.image.src || ""}
-          size={"large"}
-        />
+      <div className="h-[25rem]  cols-span-2">
+        <div className="grid grid-cols-2 w-full">
+          <RoundedImage
+            backdrop={"backdrop"}
+            src={editableProfiles?.currentProfile.image.src || ""}
+            size={"large-rounded"}
+          />
+          <RoundedImage
+            backdrop={"backdrop"}
+            src={editableProfiles?.currentPlace.image.src || ""}
+            size={"large-rounded"}
+          />
+        </div>
       </div>
     );
   }

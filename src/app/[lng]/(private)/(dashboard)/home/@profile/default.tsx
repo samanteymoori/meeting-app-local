@@ -14,12 +14,7 @@ const Default = () => {
     return <PersonProfile showButton={true} />;
   }
   if (editableProfiles && editableProfiles.step === meetingStep.meet) {
-    return (
-      <>
-        <PersonProfile showButton={false} />
-        <PlaceProfile showButton={false} />
-      </>
-    );
+    return <></>;
   }
 
   return <PlaceProfile showButton={true} />;

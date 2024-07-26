@@ -41,6 +41,13 @@ const RoundedImage: React.FC<{
     },
 
     {
+      key: "large-rounded",
+      w: "w-full object-cover p-8 rounded-full",
+      h: "h-[25rem]",
+      hrem: "25rem",
+      wrapper: " rounded-lg  rounded-full self-end ",
+    },
+    {
       key: "large",
       w: "w-full object-scale-down p-8 rounded-lg",
       h: "h-[25rem]",
