@@ -35,7 +35,7 @@ const Map: React.FC = () => {
     <div className="rounded-lg">
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
-        zoom={10}
+        zoom={15}
         center={center}
         options={options}
       >
