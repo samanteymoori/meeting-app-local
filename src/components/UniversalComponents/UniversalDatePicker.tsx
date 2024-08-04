@@ -8,7 +8,7 @@ const UniversalDatePicker: React.FC = () => {
   return (
     <div className="border flex border-gray-500  w-full px-8 border-4 rounded-lg text-xl h1 text-bold">
       <DatePicker
-        className={"h-full h-[4rem] outline-none"}
+        className={" h-[4rem] outline-none"}
         selected={startDate}
         onChange={(date: any) => setStartDate(date)}
       />

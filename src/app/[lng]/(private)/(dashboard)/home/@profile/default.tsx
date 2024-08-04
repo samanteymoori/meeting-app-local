@@ -1,5 +1,6 @@
 "use client";
 import UniversalDatePicker from "@/components/UniversalComponents/UniversalDatePicker";
+import { LatLng } from "leaflet";
 import { useContext } from "react";
 import homepageActions, { meetingStep } from "../contexts/homepageActions";
 import { HomePageContext } from "../contexts/HomePageContext";
@@ -16,14 +17,26 @@ const Default = () => {
   }
   if (editableProfiles && editableProfiles.step === meetingStep.meet) {
     return (
-      <div className="flex h-full">
+      <div className="flex h-full p-8">
         <div className="self-center">
           <h1 className="self-center text-xl">Meet At:</h1>
           <div className="self-center mt-4">
             <UniversalDatePicker />
           </div>
           <h1 className="self-center mt-8 text-xl">Location:</h1>
-          <div>{JSON.stringify(editableProfiles?.meetingPlace)}</div>
+          <div className="mt-4 text-lg text-green-500">
+            {editableProfiles.currentPlace.name}
+          </div>
+          <div className="mt-4">{editableProfiles.currentPlace.address}</div>
+          <div className="mt-4">{editableProfiles.currentPlace.phone}</div>
+          <div className="flex mt-8">
+            <input
+              onClick={() => {}}
+              type={"button"}
+              className="bg-green-500 px-8 mx-auto cursor-pointer  text-white p-4   "
+              value={"Send"}
+            />
+          </div>
         </div>
       </div>
     );
