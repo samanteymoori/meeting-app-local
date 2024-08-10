@@ -11,10 +11,12 @@ const Page = ({ params: { lng } }: any) => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setLoading(true);
+    setError(null);
     try {
       const response = await fetch("/api/auth/user/login", {
         method: "POST",
@@ -29,8 +31,10 @@ const Page = ({ params: { lng } }: any) => {
           navigation_items.private.home,
           new URL(window.location.href)
         );
-
         router.push(route);
+      } else {
+        const responseMessage = await response.json();
+        setError(responseMessage.error);
       }
     } finally {
       setLoading(false);
@@ -67,6 +71,7 @@ const Page = ({ params: { lng } }: any) => {
           value={"Login"}
           type={"submit"}
         />
+        {error && <h1>{error}</h1>}
       </UniversalForm>
     </div>
   );

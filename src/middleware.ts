@@ -23,7 +23,6 @@ export async function middleware(req: NextRequest) {
     try {
       return NextResponse.next();
     } catch (e) {
-      console.log("test2");
       return NextResponse.redirect(login_path);
     }
   } else {
