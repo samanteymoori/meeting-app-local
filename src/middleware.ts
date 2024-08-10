@@ -1,11 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-
-import { lngRedirect } from "@/middlewareSteps/lngRedirect";
-import { onboardingRedirect } from "@/middlewareSteps/onboardingRedirect";
-import { setLngCookie } from "@/middlewareSteps/setLngCookie";
-import { verifyTokenAndEmailRedirect } from "@/middlewareSteps/verifyTokenAndEmailRedirect";
-import { IntermediateResponse, MiddlewareStep } from "@/types/MiddlewareStep";
-import { resolveIntermediateResponse } from "@/utils/resolveIntermediateResponse";
+import jwt from "jsonwebtoken";
 
 export const config = {
   matcher: [
@@ -13,4 +7,25 @@ export const config = {
   ],
 };
 
-export async function middleware(req: NextRequest) {}
+export async function middleware(req: NextRequest) {
+  let response = NextResponse.next();
+  const url = req.nextUrl;
+  console.log({ url });
+  const token = req.cookies.get("token");
+
+  if (token) {
+    try {
+      console.log("test");
+      jwt.verify(token, "your-secret-key"); // Replace with your secret key
+      return NextResponse.next();
+    } catch (e) {
+      console.log("test2");
+      return NextResponse.redirect(url.href + "/login/email/1");
+    }
+  } else {
+    if (!url.pathname.includes("en/login/email"))
+      return NextResponse.redirect(url.href + "en/login/email");
+  }
+
+  return response;
+}
