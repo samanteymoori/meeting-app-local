@@ -1,7 +1,7 @@
 import React from "react";
 
 const Page = async () => {
-  return <>page for email</>;
+  return null;
 };
 
 export default Page;
