@@ -1,5 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
+import {
+  containsPath,
+  createNavigationLink,
+  navigation_items,
+} from "./navigation/index";
 
 export const config = {
   matcher: [
@@ -10,9 +15,10 @@ export const config = {
 export async function middleware(req: NextRequest) {
   let response = NextResponse.next();
   const url = req.nextUrl;
-  console.log({ url });
-  const token = req.cookies.get("token");
 
+  const token = req.cookies.get("token");
+  const login_path = createNavigationLink(navigation_items.auth.login, url);
+  console.log({ url });
   if (token) {
     try {
       console.log("test");
@@ -20,11 +26,11 @@ export async function middleware(req: NextRequest) {
       return NextResponse.next();
     } catch (e) {
       console.log("test2");
-      return NextResponse.redirect(url.href + "/login/email/1");
+      return NextResponse.redirect(login_path);
     }
   } else {
-    if (!url.pathname.includes("en/login/email"))
-      return NextResponse.redirect(url.href + "en/login/email");
+    if (!containsPath(url, navigation_items.auth.login))
+      return NextResponse.redirect(login_path);
   }
 
   return response;

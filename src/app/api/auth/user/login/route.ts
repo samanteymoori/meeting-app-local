@@ -13,7 +13,7 @@ export default async function POST(req: NextRequest, res: NextResponse) {
     // Create JWT token
     const token = jwt.sign(
       { username },
-      SECRET_KEY,
+      SECRET_KEY,33
       { expiresIn: "1h" } // Token expiration
     );
 
