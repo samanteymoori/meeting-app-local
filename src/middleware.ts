@@ -8,7 +8,7 @@ import {
 
 export const config = {
   matcher: [
-    "/((?!api|service-worker|_next/static|_next/image|assets|favicon.ico|sw.js).*)",
+    "/((?!api|images|service-worker|_next/static|_next/image|assets|favicon.ico|sw.js).*)",
   ],
 };
 
@@ -16,13 +16,11 @@ export async function middleware(req: NextRequest) {
   let response = NextResponse.next();
   const url = req.nextUrl;
 
-  const token = req.cookies.get("token");
+  const token = req.cookies.get("jwt_token");
   const login_path = createNavigationLink(navigation_items.auth.login, url);
-  console.log({ url });
+  console.log({ middlewareurl: url });
   if (token) {
     try {
-      console.log("test");
-      jwt.verify(token, "your-secret-key"); // Replace with your secret key
       return NextResponse.next();
     } catch (e) {
       console.log("test2");
