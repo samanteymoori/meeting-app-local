@@ -6,25 +6,38 @@ import UniversalTextBox from "@/components/UniversalComponents/UniversalTextBox"
 import React, { useState } from "react";
 
 const Page = ({ params: { lng } }: any) => {
-  const [email, setEmail] = useState<string>("");
+  const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const login = () => {
-    debugger;
+  const [loading, setLoading] = useState<boolean>(false);
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const response = await fetch("/api/auth/user/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }),
+      });
+    } finally {
+      setLoading(false);
+    }
   };
   return (
     <div className="flex w-screen h-full">
       <UniversalForm
+        onSubmit={handleSubmit}
         action={""}
         className={
           "border roundend-xl p-16 border-gray-100  mx-auto m-4 self-center"
         }
-        onSubmit={undefined}
       >
         <UniversalTextBox
           className="w-full"
           label={"Email"}
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
           name={"email"}
           first
         />
@@ -37,10 +50,10 @@ const Page = ({ params: { lng } }: any) => {
           name={"password"}
         />
         <UniversalButton
+          loading={loading}
           className="mt-4"
           value={"Login"}
-          type={"button"}
-          onClick={() => login()}
+          type={"submit"}
         />
       </UniversalForm>
     </div>

@@ -1,36 +1,42 @@
 import jwt from "jsonwebtoken";
-import cookie from "cookie";
+import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
 const SECRET_KEY = "your-secret-key"; // Use a secure and private key
 
-export default async function POST(req: NextRequest, res: NextResponse) {
-  const { username, password } = req.body;
-
+export async function POST(req: NextRequest, res: NextResponse) {
+  const requestBody = await req.json();
+  console.log({ requestBody });
   // Authenticate user
   // You should replace this with real authentication logic
-  if (username === "saman.teymoori@hotmail.com" && password === "Test123!") {
-    // Create JWT token
-    const token = jwt.sign(
-      { username },
-      SECRET_KEY,33
-      { expiresIn: "1h" } // Token expiration
-    );
+  // if (
+  //   requestBody.username === "saman.teymoori@hotmail.com" &&
+  //   requestBody.password === "Test123!"
+  // ) {
+  // Create JWT token
+  const token = jwt.sign(
+    {
+      username: requestBody.username,
+    },
+    SECRET_KEY
+  );
+  cookies().set({
+    name: "jwt_token",
+    value: JSON.stringify(token),
+    httpOnly: true,
+    path: "/",
+    secure: true,
+  });
 
-    // Set cookie with token
-    res.setHeader(
-      "Set-Cookie",
-      cookie.serialize("token", token, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "Strict",
-        maxAge: 3600, // 1 hour
-        path: "/",
-      })
-    );
+  return NextResponse.json({ token }, { status: 200 });
 
-    return res.status(200).json({ message: "Login successful" });
-  } else {
-    return res.status(401).json({ message: "Invalid credentials" });
-  }
+  // // Set cookie with token
+
+  // return NextResponse.json({ message: "Login successful" }, 200);
+  // } else {
+  //   return NextResponse.json(
+  //     { error: "Internal Server Error2 " },
+  //     { status: 500 }
+  //   );
+  // }
 }
