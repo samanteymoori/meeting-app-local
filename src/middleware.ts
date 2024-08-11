@@ -18,9 +18,15 @@ export async function middleware(req: NextRequest) {
 
   const token = req.cookies.get("jwt_token");
   const login_path = createNavigationLink(navigation_items.auth.login, url);
+  const home_path = createNavigationLink(navigation_items.private.home, url);
+
   console.log({ middlewareurl: url });
+
   if (token) {
     try {
+      if (req.nextUrl.pathname === "/") {
+        return NextResponse.redirect(home_path);
+      }
       return NextResponse.next();
     } catch (e) {
       return NextResponse.redirect(login_path);
