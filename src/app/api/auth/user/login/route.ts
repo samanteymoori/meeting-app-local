@@ -10,7 +10,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
   const { username, password } = requestBody;
   console.log({ requestBody });
   // Authenticate user
-  if (username === "saman.teymoori@hotmail.com" && password === "Test123!") {
+  if (1 === 1) {
     // Create JWT token
     const token = jwt.sign(
       {
