@@ -1,6 +1,6 @@
 "use client";
-import { placesList } from "@/mocks/place-list";
-import { profileList } from "@/mocks/profile-list";
+import { placesList } from "@/fixures/place-list";
+import { profileList } from "@/fixures/profile-list";
 import { PropsWithChildren, useReducer } from "react";
 import { meetingStep } from "./homepageActions";
 import { HomePageContext } from "./HomePageContext";

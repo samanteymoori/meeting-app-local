@@ -1,4 +1,4 @@
-import { profileList } from "@/mocks/profile-list";
+import { profileList } from "@/fixures/profile-list";
 import React, { useContext } from "react";
 import { meetingStep } from "./contexts/homepageActions";
 import { HomePageContext } from "./contexts/HomePageContext";

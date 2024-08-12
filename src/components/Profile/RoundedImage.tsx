@@ -5,10 +5,12 @@ const RoundedImage: React.FC<{
   src: string;
   backdrop?: "backdrop" | null | undefined;
   size: string;
+  onClick: any;
 }> = ({
   src,
   size,
   backdrop,
+  onClick,
 }: {
   backdrop?: "backdrop" | null | undefined;
   src: string;
@@ -57,7 +59,7 @@ const RoundedImage: React.FC<{
   ];
   const item = items.find((p) => p.key === size);
   return (
-    <div className={`${item?.wrapper} `}>
+    <div className={`${item?.wrapper} `} onClick={onClick}>
       <div
         className={`bg-transparent  absolute grid z-20 relative  p-1 ${item?.wrapper} bg-slate-200 cursor-pointer`}
       >

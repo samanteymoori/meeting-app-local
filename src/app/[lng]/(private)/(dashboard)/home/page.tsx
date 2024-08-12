@@ -1,5 +1,5 @@
 "use client";
-import { profileList } from "@/mocks/profile-list";
+import { profileList } from "@/fixures/profile-list";
 import { HomePageContext } from "./contexts/HomePageContext";
 
 const Page = () => {
