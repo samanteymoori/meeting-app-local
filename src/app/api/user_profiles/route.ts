@@ -6,7 +6,9 @@ export async function GET(request: NextRequest) {
   const pool = getPool();
   try {
     const res = await pool.query(`select * from users u
-    join user_profiles up on u.id=up.user_id ORDER BY first_name`);
+    join user_profiles up on u.id=up.user_id 
+    join user_profile_pictures upp on up.user_id=upp.user_id
+    ORDER BY first_name`);
     return NextResponse.json({ rows: res.rows }, { status: 200 });
   } catch (error) {
     return NextResponse.json(
