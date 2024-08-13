@@ -11,7 +11,7 @@ export class UserService {
     return await this.routeApiClient.get<{
       rows: ProfileType[];
       status: number;
-    }>(`/api/users`, {});
+    }>(`/api/user_profiles`, {});
   };
 }
 

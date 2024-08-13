@@ -21,6 +21,7 @@ const HomePageContextWrapper: React.FC<PropsWithChildren> = ({ children }) => {
   const getUsers = async () => {
     const userService = getUserService();
     const users = await userService.getUsers();
+
     dispatch?.({
       type: homepageActions.setProfiles,
       payload: users.rows,

@@ -15,7 +15,6 @@ const UniversalContextMenu: React.FC<Props> = ({ open, setOpen }) => {
             <div
               className="flex mx-auto [&>*]:self-center gap-2"
               onClick={() => {
-                debugger;
                 setOpen(!open);
                 if (menuItem.key === "signout") {
                 }

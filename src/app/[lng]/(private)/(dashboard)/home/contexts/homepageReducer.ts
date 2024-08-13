@@ -18,11 +18,12 @@ const homepageReducer = (state: any, action: any) => {
           const profile: ProfileType = {
             ...p,
             location: {
-              lat: 123,
-              lng: 432,
+              lat: p.location.x,
+              lng: p.location.y,
             },
             image: {
               src: "/images/profile.jpg",
+              size: "small",
             },
           };
           return profile;
