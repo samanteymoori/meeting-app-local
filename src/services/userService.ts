@@ -13,6 +13,9 @@ export class UserService {
       status: number;
     }>(`/api/user_profiles`, {});
   };
+  signout = async () => {
+    return await this.routeApiClient.post<{}>(`/api/auth/user/signout`, {});
+  };
 }
 
 export const getUserService = (url?: string): UserService => {
