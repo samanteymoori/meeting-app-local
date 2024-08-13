@@ -13,10 +13,10 @@ const UniversalContextMenu: React.FC<Props> = ({ open, setOpen }) => {
   return (
     <>
       {open && (
-        <div className="absolute p-4 transform gap-4 w-40 text-center -translate-x-16 bg-white rounded-lg flex">
+        <div className="absolute p-4 transform gap-4 w-48 text-center -translate-x-40 text-left bg-white rounded-lg grid ">
           {topMenu.map((menuItem: MenuItem) => (
             <div
-              className="flex mx-auto [&>*]:self-center gap-2"
+              className="flex mr-auto [&>*]:self-center gap-2"
               onClick={async () => {
                 setOpen(!open);
                 if (menuItem.key === "signout") {
