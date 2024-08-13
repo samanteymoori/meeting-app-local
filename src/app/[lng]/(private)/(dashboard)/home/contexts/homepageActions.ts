@@ -1,6 +1,7 @@
 enum homepageActions {
   setPlace,
   setProfile,
+  setProfiles,
   initProfiles,
   setGeoLocation,
   setStep,

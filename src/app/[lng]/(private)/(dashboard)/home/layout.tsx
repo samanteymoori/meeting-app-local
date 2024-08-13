@@ -1,8 +1,4 @@
-import { profileList } from "@/fixures/profile-list";
-import React, { useContext } from "react";
-import { meetingStep } from "./contexts/homepageActions";
-import { HomePageContext } from "./contexts/HomePageContext";
-import { HomePageContextType } from "./contexts/HomePageContextType";
+import React from "react";
 import HomePageContextWrapper from "./contexts/HomePageContextWrapper";
 
 const Layout = async ({ topMenu, swiper, map, profile, picture }: any) => {

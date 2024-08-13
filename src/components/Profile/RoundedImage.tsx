@@ -5,7 +5,7 @@ const RoundedImage: React.FC<{
   src: string;
   backdrop?: "backdrop" | null | undefined;
   size: string;
-  onClick: any;
+  onClick?: any;
 }> = ({
   src,
   size,
@@ -15,6 +15,7 @@ const RoundedImage: React.FC<{
   backdrop?: "backdrop" | null | undefined;
   src: string;
   size: string;
+  onClick?: any;
 }) => {
   const items = [
     {

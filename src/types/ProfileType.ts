@@ -8,8 +8,8 @@ const classA = {
 };
 export type ProfileType = {
   weight: string;
-  firstName: string;
-  lastName: string;
+  first_name: string;
+  last_name: string;
   height: string;
   location: LatLngExpression | LatLngTuple;
   hobbies: string;

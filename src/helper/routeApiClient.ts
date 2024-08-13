@@ -8,46 +8,6 @@ class RouteApiClient {
   baseUrl: string;
 
   get = cache(
-    async <T>(
-      url: string,
-      params?: Record<string, any>,
-      //TODO: we need to remove calls with noCache=true from the whole app they're not optimized
-      noCache?: boolean,
-      addNoCacheQuery?: boolean
-    ): Promise<T> => {
-      try {
-        if (addNoCacheQuery) {
-          if (!params) params = {};
-          (params as any)["no-cache"] = new Date().getTime();
-        }
-        const u = `${url}${utils.convertToQueryParams(
-          (params as object) || {}
-        )}`;
-        const requestUrl = new URL(u, this.baseUrl).toString();
-        const response = await fetch(requestUrl, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          referrerPolicy: "no-referrer",
-          ...(noCache ? { cache: "no-store" } : { next: { revalidate: 10 } }),
-        });
-
-        if (response.status !== 200) {
-          const responseMessage = (await response.json()) as T;
-          return {
-            statusCode: response.status,
-            error: new Error(responseMessage.message),
-          };
-        }
-        const responseBody = (await response.json()) as T;
-        return { response: responseBody, statusCode: response.status };
-      } catch (e) {
-        return { error: e as Error };
-      }
-    }
-  );
-  getWithDefaultCache = cache(
     async <T>(url: string, params?: Record<string, any>): Promise<T> => {
       try {
         const u = `${url}${utils.convertToQueryParams(
@@ -60,23 +20,20 @@ class RouteApiClient {
             "Content-Type": "application/json",
           },
           referrerPolicy: "no-referrer",
-          ...{ next: { revalidate: 3600 } },
         });
 
         if (response.status !== 200) {
           const responseMessage = (await response.json()) as T;
-          return {
-            statusCode: response.status,
-            error: new Error(responseMessage.message),
-          };
+          throw new Error("Unknown Error");
         }
         const responseBody = (await response.json()) as T;
-        return { response: responseBody, statusCode: response.status };
+        return responseBody;
       } catch (e) {
-        return { error: e as Error };
+        throw new Error("Unknown Error");
       }
     }
   );
+
   post = async <T>(url: string, body?: Record<string, any>): Promise<T> => {
     try {
       const requestUrl = new URL(url, this.baseUrl).toString();

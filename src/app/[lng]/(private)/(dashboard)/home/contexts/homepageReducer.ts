@@ -1,6 +1,7 @@
 import { stat } from "fs";
 import { rootCertificates } from "tls";
 import homepageActions, { meetingStep } from "./homepageActions";
+import { ProfileType } from "@/types/ProfileType";
 
 const homepageReducer = (state: any, action: any) => {
   switch (action.type) {
@@ -8,6 +9,24 @@ const homepageReducer = (state: any, action: any) => {
       return {
         ...state,
         currentLocation: action.payload,
+      };
+    }
+    case homepageActions.setProfiles: {
+      return {
+        ...state,
+        listOfProfiles: action.payload.map((p: any) => {
+          const profile: ProfileType = {
+            ...p,
+            location: {
+              lat: 123,
+              lng: 432,
+            },
+            image: {
+              src: "/images/profile.jpg",
+            },
+          };
+          return profile;
+        }),
       };
     }
     case homepageActions.pickPersonToMeet: {

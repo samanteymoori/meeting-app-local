@@ -42,7 +42,7 @@ const Map: React.FC = (Map: MapProps) => {
     <div id="map">
       <MapContainer
         center={
-          editableProfiles?.currentProfile.location ||
+          editableProfiles?.currentProfile?.location ||
           editableProfiles?.currentLocation || [49.2609, -123.1139]
         }
         zoom={zoom}

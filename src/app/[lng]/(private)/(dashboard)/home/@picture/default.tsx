@@ -13,7 +13,7 @@ const Default = () => {
       <div className="h-[25rem] ">
         <RoundedImage
           backdrop={"backdrop"}
-          src={editableProfiles?.currentProfile.image.src || ""}
+          src={editableProfiles?.currentProfile?.image?.src || ""}
           size={"large"}
         />
       </div>
