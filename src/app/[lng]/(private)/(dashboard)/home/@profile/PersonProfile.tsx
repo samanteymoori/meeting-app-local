@@ -48,7 +48,7 @@ const PersonProfile: React.FC<Props> = ({ showButton }) => {
                 }
                 type={"button"}
                 className="bg-green-500 cursor-pointer text-white p-4   "
-                value={"Meet " + editableProfiles?.currentProfile.firstName}
+                value={"Meet " + editableProfiles?.currentProfile.first_name}
               />
             </div>
           </div>

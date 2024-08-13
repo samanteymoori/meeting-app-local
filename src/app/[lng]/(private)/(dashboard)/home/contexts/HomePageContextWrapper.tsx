@@ -26,6 +26,10 @@ const HomePageContextWrapper: React.FC<PropsWithChildren> = ({ children }) => {
       type: homepageActions.setProfiles,
       payload: users.rows,
     });
+    dispatch?.({
+      type: homepageActions.setProfile,
+      payload: users.rows?.[0],
+    });
   };
   useEffect(() => {
     getUsers();

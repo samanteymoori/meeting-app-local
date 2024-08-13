@@ -9,7 +9,7 @@ const Page = async ({ params: { lng } }: any) => {
         <UniversalTextBox
           label={"First name"}
           value={""}
-          name={"firstName"}
+          name={"first_name"}
           first
         />
         <UniversalTextBox label={"Last name"} value={""} name={"lastName"} />

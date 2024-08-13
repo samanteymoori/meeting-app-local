@@ -64,7 +64,17 @@ const homepageReducer = (state: any, action: any) => {
     case homepageActions.setProfile: {
       return {
         ...state,
-        currentProfile: action.payload,
+        currentProfile: {
+          ...action.payload,
+          location: {
+            lat: action.payload.location.lat || action.payload.location.x,
+            lng: action.payload.location.lng || action.payload.location.y,
+          },
+          image: {
+            src: "/images/profile.jpg",
+            size: "small",
+          },
+        },
       };
     }
 
