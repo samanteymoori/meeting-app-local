@@ -71,7 +71,7 @@ const homepageReducer = (state: any, action: any) => {
             lng: action.payload.location.lng || action.payload.location.y,
           },
           image: {
-            src: "/images/profile.jpg",
+            src: action.payload.url,
             size: "small",
           },
         },
