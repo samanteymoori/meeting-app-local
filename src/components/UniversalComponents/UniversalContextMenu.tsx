@@ -13,7 +13,7 @@ const UniversalContextMenu: React.FC<Props> = ({ open, setOpen }) => {
   return (
     <>
       {open && (
-        <div className="absolute p-4 transform gap-4 w-48 text-center -translate-x-40 text-left bg-white rounded-lg grid ">
+        <div className="absolute p-4 transform gap-4 w-[14rem] text-center -translate-x-40 text-left bg-white rounded-lg grid ">
           {topMenu.map((menuItem: MenuItem) => (
             <div
               className="flex mr-auto [&>*]:self-center gap-2"
