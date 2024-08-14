@@ -23,6 +23,8 @@ const UniversalContextMenu: React.FC<Props> = ({ open, setOpen }) => {
                   const userService = getUserService(window.location.href);
                   await userService.signout();
                   router.push("/");
+                } else if (menuItem.key === "set-profile-picture") {
+                  router.push(`/en/profile`);
                 }
               }}
             >
