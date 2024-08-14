@@ -1,6 +1,7 @@
 "use client";
 import UniversalDatePicker from "@/components/UniversalComponents/UniversalDatePicker";
 import { LatLng } from "leaflet";
+import { useRouter } from "next/navigation";
 import { useContext } from "react";
 import homepageActions, { meetingStep } from "../contexts/homepageActions";
 import { HomePageContext } from "../contexts/HomePageContext";
@@ -11,7 +12,7 @@ import PlaceProfile from "./PlaceProfile";
 const Default = () => {
   const { editableProfiles, dispatch } =
     useContext<HomePageContextType>(HomePageContext);
-
+  const router = useRouter();
   if (editableProfiles && editableProfiles.step === meetingStep.find) {
     return <PersonProfile showButton={true} />;
   }
@@ -31,9 +32,11 @@ const Default = () => {
           <div className="mt-4">{editableProfiles.currentPlace.phone}</div>
           <div className="flex mt-8">
             <input
-              onClick={() => {}}
+              onClick={() => {
+                router.push("/en/meetings/123");
+              }}
               type={"button"}
-              className="bg-green-500 px-8 mx-auto cursor-pointer  text-white p-4   "
+              className="bg-green-500 px-8 mx-auto cursor-pointer  text-white p-4"
               value={"Send"}
             />
           </div>
