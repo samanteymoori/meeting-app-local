@@ -19,6 +19,7 @@ const Default = () => {
   if (editableProfiles && editableProfiles.step === meetingStep.meet) {
     return (
       <div className="flex h-full p-8">
+        {JSON.stringify(editableProfiles)}
         <div className="self-center">
           <h1 className="self-center text-xl">Meet At:</h1>
           <div className="self-center mt-4">
