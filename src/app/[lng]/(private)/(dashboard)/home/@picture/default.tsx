@@ -24,7 +24,7 @@ const Default = () => {
       <div className="h-[25rem] ">
         <RoundedImage
           backdrop={"backdrop"}
-          src={editableProfiles?.currentPlace.image.src || ""}
+          src={editableProfiles?.currentPlace?.image?.src || ""}
           size={"large"}
         />
       </div>
@@ -40,12 +40,12 @@ const Default = () => {
         <div className="grid grid-cols-2 w-full">
           <RoundedImage
             backdrop={"backdrop"}
-            src={editableProfiles?.currentProfile.image.src || ""}
+            src={editableProfiles?.currentProfile?.image?.src || ""}
             size={"large-rounded"}
           />
           <RoundedImage
             backdrop={"backdrop"}
-            src={editableProfiles?.currentPlace.image.src || ""}
+            src={editableProfiles?.currentPlace?.image?.src || ""}
             size={"large-rounded"}
           />
         </div>

@@ -27,7 +27,7 @@ const Default = () => {
                     onClick={() => {
                       setOpen(true);
                     }}
-                    src={editableProfiles.authenticatedProfile.image.src}
+                    src={editableProfiles?.authenticatedProfile?.image?.src}
                     size={"profile"}
                   />
                   <UniversalContextMenu open={open} setOpen={setOpen} />

@@ -2,6 +2,7 @@ import { stat } from "fs";
 import { rootCertificates } from "tls";
 import homepageActions, { meetingStep } from "./homepageActions";
 import { ProfileType } from "@/types/ProfileType";
+import { PlaceType } from "@/types/PlaceType";
 
 const homepageReducer = (state: any, action: any) => {
   switch (action.type) {
@@ -58,7 +59,36 @@ const homepageReducer = (state: any, action: any) => {
     case homepageActions.setPlace: {
       return {
         ...state,
-        currentPlace: action.payload,
+        currentPlace: {
+          ...action.payload,
+          location: {
+            lat: action.payload.location.lat || action.payload.location.x,
+            lng: action.payload.location.lng || action.payload.location.y,
+          },
+          image: {
+            src: action.payload.url,
+            size: "small",
+          },
+        },
+      };
+    }
+    case homepageActions.setPlaces: {
+      return {
+        ...state,
+        places: action.payload.map((p: any) => {
+          const profile: PlaceType = {
+            ...p,
+            location: {
+              lat: p?.location?.x || p?.location?.lat || null,
+              lng: p?.location?.y || p?.location?.lng || null,
+            },
+            image: {
+              src: p.url,
+              size: "small",
+            },
+          };
+          return profile;
+        }),
       };
     }
     case homepageActions.setProfile: {

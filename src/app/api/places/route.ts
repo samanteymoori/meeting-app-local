@@ -5,7 +5,9 @@ import { ProfileType } from "@/types/ProfileType";
 export async function GET(request: NextRequest) {
   const pool = getPool();
   try {
-    const res = await pool.query("SELECT * FROM places ORDER BY name");
+    const res = await pool.query(`SELECT * FROM places pl
+     join place_pictures plp on pl.id=plp.place_id
+     ORDER BY name`);
     return NextResponse.json({ rows: res.rows }, { status: 200 });
   } catch (error) {
     return NextResponse.json(

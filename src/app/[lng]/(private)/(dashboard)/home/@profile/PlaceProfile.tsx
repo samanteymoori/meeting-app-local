@@ -10,7 +10,8 @@ type Props = {
 const PersonProfile: React.FC<Props> = ({ showButton }) => {
   const { editableProfiles, dispatch } =
     useContext<HomePageContextType>(HomePageContext);
-  const { name, workingHours, address, phone }: any =
+  if (!editableProfiles?.currentPlace) return null;
+  const { name, working_hours_start, working_hours_end, address, phone }: any =
     editableProfiles?.currentPlace;
   return (
     <div className="  h-full  rounded-lg grid gap-x-4 gap-y-2 [&>*]:p-4 [&>*]:flex-auto flex">
@@ -19,7 +20,7 @@ const PersonProfile: React.FC<Props> = ({ showButton }) => {
       </h1>
       <fieldset className="font-bold">Hours:</fieldset>
       <fieldset className="">
-        {workingHours.start} - {workingHours.end}
+        {working_hours_start} - {working_hours_end}
       </fieldset>
       <fieldset className="font-bold">Address</fieldset>
       <fieldset>{address}</fieldset>

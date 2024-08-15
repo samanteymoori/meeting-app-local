@@ -1,6 +1,7 @@
 "use client";
 import { placesList } from "@/fixures/place-list";
 import { profileList } from "@/fixures/profile-list";
+import { getPlaceService } from "@/services/placeService";
 import { getUserService } from "@/services/userService";
 import { ProfileType } from "@/types/ProfileType";
 import { PropsWithChildren, useEffect, useReducer, useState } from "react";
@@ -12,9 +13,9 @@ const HomePageContextWrapper: React.FC<PropsWithChildren> = ({ children }) => {
   const [editableProfiles, dispatch] = useReducer(homepageReducer, {
     listOfProfiles: [],
     currentProfile: null,
-    authenticatedProfile: profileList[1],
-    places: placesList,
-    currentPlace: placesList[0],
+    authenticatedProfile: [],
+    places: null,
+    currentPlace: null,
     meetingPlace: null,
     step: meetingStep.find,
   }) as any;
@@ -31,8 +32,22 @@ const HomePageContextWrapper: React.FC<PropsWithChildren> = ({ children }) => {
       payload: users.rows?.[0],
     });
   };
+  const getPlaces = async () => {
+    const placeService = getPlaceService();
+    const places = await placeService.getPlaces();
+
+    dispatch?.({
+      type: homepageActions.setPlaces,
+      payload: places.rows,
+    });
+    dispatch?.({
+      type: homepageActions.setPlace,
+      payload: places.rows?.[0],
+    });
+  };
   useEffect(() => {
     getUsers();
+    getPlaces();
   }, []);
 
   return (
