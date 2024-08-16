@@ -1,6 +1,7 @@
 "use client";
 import { placesList } from "@/fixures/place-list";
 import { profileList } from "@/fixures/profile-list";
+import { getAuthService } from "@/services/authService";
 import { getPlaceService } from "@/services/placeService";
 import { getUserService } from "@/services/userService";
 import { ProfileType } from "@/types/ProfileType";
@@ -45,7 +46,16 @@ const HomePageContextWrapper: React.FC<PropsWithChildren> = ({ children }) => {
       payload: places.rows?.[0],
     });
   };
+  const getAuthenticatedUser = async () => {
+    const authService = getAuthService();
+    const authenticatedUser = await authService.getAuthenticatedUser();
+    dispatch?.({
+      type: homepageActions.setAuthenticatedUser,
+      payload: authenticatedUser?.item,
+    });
+  };
   useEffect(() => {
+    getAuthenticatedUser();
     getUsers();
     getPlaces();
   }, []);

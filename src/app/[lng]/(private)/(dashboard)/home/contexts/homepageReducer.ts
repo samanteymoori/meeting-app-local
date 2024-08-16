@@ -56,6 +56,9 @@ const homepageReducer = (state: any, action: any) => {
         currentProfile: action.payload.currentProfile,
       };
     }
+    case homepageActions.setAuthenticatedUser: {
+      return { ...state, authenticatedProfile: action.payload };
+    }
     case homepageActions.setPlace: {
       return {
         ...state,

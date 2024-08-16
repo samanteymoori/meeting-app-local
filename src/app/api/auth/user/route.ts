@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
     const tokenToVerify = jwt_token?.value.replaceAll(`\"`, ``) as any;
     const verified = jwt.verify(tokenToVerify, SECRET_KEY);
 
-    return NextResponse.json({ id: (verified as any)?.id }, { status: 200 });
+    return NextResponse.json({ item: verified }, { status: 200 });
   } catch {
     return NextResponse.json(
       { error: "Unauthorized access." },
