@@ -10,6 +10,8 @@ enum homepageActions {
   pickPlaceToMeet,
   setMeetLocation,
   setAuthenticatedUser,
+  setMeetingDate,
+  setMeetingTime,
 }
 export enum meetingStep {
   find = 0,

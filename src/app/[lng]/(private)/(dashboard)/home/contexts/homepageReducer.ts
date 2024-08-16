@@ -36,6 +36,7 @@ const homepageReducer = (state: any, action: any) => {
         ...state,
         step: meetingStep.book,
         personToMeet: action.payload,
+        meetingDate: new Date(),
       };
     }
     case homepageActions.setStep: {
@@ -54,6 +55,18 @@ const homepageReducer = (state: any, action: any) => {
         authenticatedProfile: action.payload.authenticatedProfile,
         listOfProfiles: action.payload.listOfProfiles,
         currentProfile: action.payload.currentProfile,
+      };
+    }
+    case homepageActions.setMeetingTime: {
+      return {
+        ...state,
+        meetingTime: action.payload,
+      };
+    }
+    case homepageActions.setMeetingDate: {
+      return {
+        ...state,
+        meetingDate: action.payload,
       };
     }
     case homepageActions.setAuthenticatedUser: {

@@ -9,6 +9,8 @@ export type ProfileState = {
   authenticatedProfile: ProfileType;
   places: PlaceType[];
   meetingPlace: PlaceType | null | undefined;
+  meetingDate: any;
+  meetingTime: any;
   currentLocation: any;
   step: meetingStep;
 };
