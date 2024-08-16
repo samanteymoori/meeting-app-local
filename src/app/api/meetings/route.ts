@@ -1,14 +1,31 @@
 import { getPool } from "@/helper/dbConnection";
 import { NextRequest, NextResponse } from "next/server";
-import { ProfileType } from "@/types/ProfileType";
 
 export async function POST(request: NextRequest) {
   const pool = getPool();
+  const requestBody = await request.json();
+  const {
+    person_to_meet_id,
+    owner_person_id,
+    place_id,
+    meeting_date,
+    meeting_time,
+  } = requestBody;
+  const values = [
+    owner_person_id,
+    place_id,
+    new Date(meeting_date.substring(0, 10) + " " + meeting_time).toISOString(),
+  ];
+
   try {
-    await pool.query(`SELECT * FROM places pl
-     join place_pictures plp on pl.id=plp.place_id
-     ORDER BY name`);
-    return NextResponse.json({ rows: res.rows }, { status: 200 });
+    const result = await pool.query(
+      `INSERT INTO public.meetings(
+         creator_user_id, place_id, meeting_date)
+        VALUES ($1, $2, $3)
+        RETURNING id;`,
+      values
+    );
+    return NextResponse.json({ inserted: result.rows?.[0] }, { status: 200 });
   } catch (error) {
     return NextResponse.json(
       {

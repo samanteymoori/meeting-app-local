@@ -1,5 +1,6 @@
 "use client";
 import UniversalDatePicker from "@/components/UniversalComponents/UniversalDatePicker";
+import { getMeetingService } from "@/services/meetingService";
 import { LatLng } from "leaflet";
 import { useRouter } from "next/navigation";
 import { useContext } from "react";
@@ -18,8 +19,24 @@ const Default = () => {
   }
   if (editableProfiles && editableProfiles.step === meetingStep.meet) {
     const ep = editableProfiles as any;
+    const submitMeeting = async () => {
+      const meetingService = getMeetingService();
+      const {
+        response: {
+          inserted: { id },
+        },
+      } = await meetingService.submitMeeting({
+        person_to_meet_id: ep?.personToMeet?.id,
+        owner_person_id: ep.authenticatedProfile?.id,
+        place_id: ep.currentPlace?.id,
+        meeting_date: ep.meetingDate,
+        meeting_time: ep.meetingTime,
+      });
+      router.push(`/en/meetings/${id}`);
+    };
     return (
       <>
+        <div></div>
         <div className="flex h-full p-8">
           <div className="self-center">
             <h1 className="self-center text-xl">Meet At:</h1>
@@ -35,7 +52,7 @@ const Default = () => {
             <div className="flex mt-8">
               <input
                 onClick={() => {
-                  router.push("/en/meetings/123");
+                  submitMeeting();
                 }}
                 type={"button"}
                 className="bg-green-500 px-8 mx-auto cursor-pointer  text-white p-4"
