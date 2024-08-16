@@ -17,9 +17,15 @@ const Default = () => {
     return <PersonProfile showButton={true} />;
   }
   if (editableProfiles && editableProfiles.step === meetingStep.meet) {
+    const ep = editableProfiles as any;
     return (
       <div className="flex h-full p-8">
-        {JSON.stringify(editableProfiles)}
+        {JSON.stringify({
+          person_to_meet_id: ep?.personToMeet?.id,
+          owner_person_id: ep.authenticatedProfile?.id,
+          place_id: ep.currentPlace?.id,
+        })}
+
         <div className="self-center">
           <h1 className="self-center text-xl">Meet At:</h1>
           <div className="self-center mt-4">
