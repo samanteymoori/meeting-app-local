@@ -113,6 +113,7 @@ const UniversalFileUpload: React.FC<Props> = (props) => {
       cancel();
       return;
     }
+
     // const mediaApiService = getMediaService(window.location.origin);
     // const mediaUploadService = getMediaUploadService(mediaApiService);
     // mediaUploadService
@@ -184,7 +185,7 @@ const UniversalFileUpload: React.FC<Props> = (props) => {
     return false;
   };
 
-  const imagesChange = (e: any, file = null, withDrop = false) => {
+  const imagesChange = async (e: any, file = null, withDrop = false) => {
     setImageChanged(true);
     let files: Array<any> = file || (withDrop ? e : e?.target.files);
     if (!withDrop && !files) {
@@ -211,12 +212,12 @@ const UniversalFileUpload: React.FC<Props> = (props) => {
         if (fileItem.size > imageSizeLimit * 1024) {
           cancel();
         }
-
-        // if (!verifyFileName(fileItem.name)) {
-        //   ToasterMessage.error(t(`general.toaster.wrong_file_name`));
-        //   cancel();
-        //   return;
-        // }
+        convertBase64(files[0]).then(async (res: any) => {
+          await fetch("/api/user_profiles/picture", {
+            method: "POST",
+            body: JSON.stringify({ file: res }),
+          });
+        });
       }
 
       setFilesLength(e?.target?.files?.length || 0);

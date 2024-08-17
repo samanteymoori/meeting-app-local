@@ -4,13 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(request: NextRequest) {
   const pool = getPool();
   const requestBody = await request.json();
-  const {
-    person_to_meet_id,
-    owner_person_id,
-    place_id,
-    meeting_date,
-    meeting_time,
-  } = requestBody;
+  const { owner_person_id, place_id, meeting_date, meeting_time } = requestBody;
   const values = [
     owner_person_id,
     place_id,
