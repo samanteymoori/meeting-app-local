@@ -33,7 +33,8 @@ const Default = () => {
   if (
     editableProfiles &&
     editableProfiles?.step &&
-    editableProfiles?.step === meetingStep.meet
+    (editableProfiles?.step === meetingStep.meet ||
+      editableProfiles?.step === meetingStep.detail)
   ) {
     return (
       <div className="h-[25rem]  cols-span-2">

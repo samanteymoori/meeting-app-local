@@ -39,6 +39,13 @@ const homepageReducer = (state: any, action: any) => {
         meetingDate: new Date(),
       };
     }
+    case homepageActions.setMeetingRecord: {
+      return {
+        ...state,
+        meetingRecord: action.payload,
+      };
+    }
+
     case homepageActions.setStep: {
       return { ...state, step: action.payload };
     }

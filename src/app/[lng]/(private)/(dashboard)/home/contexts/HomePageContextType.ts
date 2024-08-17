@@ -11,6 +11,7 @@ export type ProfileState = {
   meetingPlace: PlaceType | null | undefined;
   meetingDate: any;
   meetingTime: any;
+  meetingRecord: any;
   currentLocation: any;
   step: meetingStep;
 };
