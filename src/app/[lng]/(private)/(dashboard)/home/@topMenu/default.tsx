@@ -1,14 +1,27 @@
 "use client";
 import RoundedImage from "@/components/Profile/RoundedImage";
 import UniversalContextMenu from "@/components/UniversalComponents/UniversalContextMenu";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { HomePageContext } from "../contexts/HomePageContext";
 import { HomePageContextType } from "../contexts/HomePageContextType";
 import StepComponent from "./StepComponent";
 
 const Default = () => {
   const [open, setOpen] = useState<Boolean>(false);
+  const [img, setImage] = useState<any>(null);
   const { editableProfiles } = useContext<HomePageContextType>(HomePageContext);
+  const getImage = async () => {
+    const uri = `/api/user_profiles/${editableProfiles?.authenticatedProfile.id}/picture`;
+    fetch(uri, {
+      method: "GET",
+    }).then(async (result) => {
+      const res = await result.json();
+      setImage(res.url);
+    });
+  };
+  useEffect(() => {
+    if (editableProfiles?.authenticatedProfile?.id) getImage();
+  }, [editableProfiles?.authenticatedProfile.id]);
   return (
     <>
       <div className="flex gap-4 "></div>
@@ -27,9 +40,10 @@ const Default = () => {
                     onClick={() => {
                       setOpen(true);
                     }}
-                    src={editableProfiles?.authenticatedProfile?.image?.src}
+                    src={img || ""}
                     size={"profile"}
                   />
+
                   <UniversalContextMenu open={open} setOpen={setOpen} />
                 </div>
               </div>

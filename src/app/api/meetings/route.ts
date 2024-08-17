@@ -1,7 +1,7 @@
 import { getPool } from "@/helper/dbConnection";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(request: NextRequest) {
+export async function POST(request: NextRequest, { params }: any) {
   const pool = getPool();
   const requestBody = await request.json();
   const { owner_person_id, place_id, meeting_date, meeting_time } = requestBody;

@@ -29,6 +29,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
         {
           username: requestBody.username,
           ...result.rows?.[0],
+          url: null,
         },
         SECRET_KEY
       );
