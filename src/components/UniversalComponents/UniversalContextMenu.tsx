@@ -1,8 +1,10 @@
+import { HomePageContext } from "@/app/[lng]/(private)/(dashboard)/home/contexts/HomePageContext";
+import { HomePageContextType } from "@/app/[lng]/(private)/(dashboard)/home/contexts/HomePageContextType";
 import { topMenu } from "@/fixures/menu";
 import { getUserService, UserService } from "@/services/userService";
 import { MenuItem } from "@/types/Menu";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 type Props = {
   open: Boolean;
@@ -10,13 +12,21 @@ type Props = {
 };
 const UniversalContextMenu: React.FC<Props> = ({ open, setOpen }) => {
   const router = useRouter();
+  const { editableProfiles } = useContext<HomePageContextType>(HomePageContext);
+
   return (
     <>
       {open && (
-        <div className="absolute p-4 transform gap-4 w-[14rem] text-center -translate-x-40 text-left bg-white rounded-lg grid ">
+        <div className="absolute p-4 transform gap-4 w-[14rem] pb-8 shadow text-center -translate-x-40 text-left bg-white rounded-lg grid ">
+          {editableProfiles?.authenticatedProfile.first_name && (
+            <h1 className="capitalize text-xl text-green-400 p-2">
+              {editableProfiles?.authenticatedProfile.first_name}{" "}
+              {editableProfiles?.authenticatedProfile.last_name}
+            </h1>
+          )}
           {topMenu.map((menuItem: MenuItem) => (
             <div
-              className="flex mr-auto [&>*]:self-center gap-2"
+              className="flex mr-auto my-2 [&>*]:self-center gap-2"
               onClick={async () => {
                 setOpen(!open);
                 if (menuItem.key === "signout") {
@@ -28,7 +38,9 @@ const UniversalContextMenu: React.FC<Props> = ({ open, setOpen }) => {
                 }
               }}
             >
-              <div>{menuItem.Icon?.()}</div>
+              <div className="mx-2 text-blue-400">
+                {menuItem.Icon?.({ size: 32 })}
+              </div>
               <h4 className="flex-auto">{menuItem.title}</h4>
             </div>
           ))}
