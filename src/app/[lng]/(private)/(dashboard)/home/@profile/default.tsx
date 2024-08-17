@@ -25,6 +25,7 @@ const Default = () => {
     const ep = editableProfiles as any;
     const submitMeeting = async () => {
       const meetingService = getMeetingService();
+      if (!ep.meetingTime || !ep.meetingDate) return;
       const meeting = {
         person_to_meet_id: ep?.personToMeet?.id,
         owner_person_id: ep.authenticatedProfile?.id,
