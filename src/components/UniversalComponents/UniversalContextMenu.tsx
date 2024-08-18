@@ -4,7 +4,8 @@ import { topMenu } from "@/fixures/menu";
 import { getUserService, UserService } from "@/services/userService";
 import { MenuItem } from "@/types/Menu";
 import { useRouter } from "next/navigation";
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
+import { useClickOutside } from "primereact/hooks";
 
 type Props = {
   open: Boolean;
@@ -13,11 +14,19 @@ type Props = {
 const UniversalContextMenu: React.FC<Props> = ({ open, setOpen }) => {
   const router = useRouter();
   const { editableProfiles } = useContext<HomePageContextType>(HomePageContext);
+  const ctxRef = useRef(null);
+
+  useClickOutside(ctxRef, () => {
+    setOpen(false);
+  });
 
   return (
     <>
       {open && (
-        <div className="absolute p-4 transform gap-4 w-[14rem] pb-8 shadow text-center -translate-x-40 text-left bg-white rounded-lg grid ">
+        <div
+          ref={ctxRef}
+          className="absolute p-4 transform gap-4 w-[16rem] pb-8 shadow text-center -translate-x-40 text-left bg-white rounded-lg grid "
+        >
           {editableProfiles?.authenticatedProfile.first_name && (
             <h1 className="capitalize text-xl text-green-400 p-2">
               {editableProfiles?.authenticatedProfile.first_name}{" "}
