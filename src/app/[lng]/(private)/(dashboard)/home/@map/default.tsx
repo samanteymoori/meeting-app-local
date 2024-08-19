@@ -11,12 +11,14 @@ const Default = () => {
   const { editableProfiles, dispatch } =
     useContext<HomePageContextType>(HomePageContext);
   return (
-    <div className="col-span-6 p-2 h-full  gap-2 h-full bg-white  grid grid-cols-1">
-      <div className="p-2 bg-white rounded-lg">
+    <div className="col-span-6 h-full  h-full bg-white  grid grid-cols-1">
+      <div className="bg-white rounded-lg">
         {editableProfiles?.step === meetingStep.book ? (
           <MeetPlaceMap />
         ) : (
-          <Map />
+          <div className="">
+            <Map />
+          </div>
         )}
       </div>
     </div>

@@ -76,7 +76,7 @@ const RoundedImage: React.FC<{
       {backdrop && backdrop === "backdrop" && (
         <div
           style={{ backgroundImage: `url(${src})`, backgroundSize: "cover" }}
-          className={`relative transform -translate-y-[25rem] blur-xl z-10 ${item?.w} ${item?.h}`}
+          className={`absolute transform -translate-y-[25rem] blur-xl z-10 ${item?.w} ${item?.h}`}
         ></div>
       )}
     </div>

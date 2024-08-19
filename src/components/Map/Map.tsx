@@ -42,7 +42,7 @@ const Map: React.FC = () => {
   if (!isLoaded) return <div>{"Loading Maps"}</div>;
 
   return (
-    <div className="rounded-lg">
+    <div className="rounded-lg ">
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         zoom={15}

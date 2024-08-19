@@ -32,7 +32,7 @@ const StepComponent: React.FC = () => {
   ];
   return (
     <div className="h-full flex mx-auto">
-      <div className="self-center  [&>*]:uppercase  cursor-pointer [&>*]:self-center mx-auto [&>*]:h-10 [&>*]:py-4 [&>*]:w-44 [&>*]:text-center rounded-lg [&>*]:mx-auto [&>*]:px-8 ml-8 [&>*]:border  shadow-xl rounded-lg bg-white flex">
+      <div className="self-center  [&>*]:uppercase  cursor-pointer [&>*]:self-center mx-auto [&>*]:h-10 [&>*]:py-8  [&>*]:text-center [&>*]:md:w-44  rounded-lg [&>*]:mx-auto [&>*]:px-4  [&>*]:md:px-8 w-screen md:w-auto md:ml-8 [&>*]:border  shadow-xl rounded-lg flex">
         {steps.map((step) => (
           <div
             key={step.title}
@@ -47,12 +47,14 @@ const StepComponent: React.FC = () => {
                 });
               }
             }}
-            className={` flex ${
+            className={` flex mx-auto flex-auto gap-x-4 ${
               step.selected ? "bg-neutral-600" : "bg-neutral-400"
             } text-white [&>*]:self-center gap-4  flex`}
           >
-            <div>{step.icon}</div>
-            <div className="ml-2">{step.title}</div>
+            <div className="mx-auto [&>*]:self-center flex">
+              <div className="">{step.icon}</div>
+              <div className="ml-2">{step.title}</div>
+            </div>
           </div>
         ))}
       </div>
