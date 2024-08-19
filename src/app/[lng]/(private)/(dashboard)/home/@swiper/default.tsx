@@ -15,7 +15,7 @@ const Default = () => {
     return null;
   }
   return (
-    <div className="col-span-6 bg-gray-200  h-full flex self-start p-2">
+    <div className="col-span-6 bg-gray-200 w-screen overflow-x-scroll h-full flex self-start p-2">
       {editableProfiles?.listOfProfiles?.map((profile, index) => (
         <div
           key={index}

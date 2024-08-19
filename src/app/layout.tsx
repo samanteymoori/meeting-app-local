@@ -17,10 +17,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${inter.className} border grid shadow bg-gray-100 border-gray-200 m-2 bg-white  rounded-lg`}
-      >
-        <div className="bg-white h-[calc(100vh-4.2rem)]  flex rounded-lg">
+      <body className={``}>
+        <div className="bg-white h-screen w-screen md:h-[calc(100vh-4.2rem)]  flex rounded-lg">
           {children}
         </div>
       </body>

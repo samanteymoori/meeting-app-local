@@ -25,7 +25,7 @@ const UniversalContextMenu: React.FC<Props> = ({ open, setOpen }) => {
       {open && (
         <div
           ref={ctxRef}
-          className="absolute p-4 transform gap-4 w-[16rem] pb-8 shadow text-center -translate-x-40 text-left bg-white rounded-lg grid "
+          className="absolute p-4 transform gap-4 z-100 w-[16rem] pb-8 shadow text-center -translate-x-40 text-left bg-white rounded-lg grid "
         >
           {editableProfiles?.authenticatedProfile.first_name && (
             <h1 className="capitalize text-xl text-green-400 p-2">

@@ -1,9 +1,17 @@
 "use client";
-import { useLoadScript, GoogleMap, Marker } from "@react-google-maps/api";
-import React from "react";
+import homepageActions from "@/app/[lng]/(private)/(dashboard)/home/contexts/homepageActions";
+import { HomePageContext } from "@/app/[lng]/(private)/(dashboard)/home/contexts/HomePageContext";
+import { HomePageContextType } from "@/app/[lng]/(private)/(dashboard)/home/contexts/HomePageContextType";
+import {
+  useLoadScript,
+  GoogleMap,
+  Marker,
+  InfoWindow,
+} from "@react-google-maps/api";
+import React, { useContext } from "react";
 
 const mapContainerStyle = {
-  width: "calc(100vw - 4rem)",
+  width: "md:calc(100vw - 4rem)",
   height: "100vh",
 };
 
@@ -28,6 +36,8 @@ const Map: React.FC = () => {
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY, // Add your API key here
   });
 
+  const { editableProfiles, dispatch } =
+    useContext<HomePageContextType>(HomePageContext);
   if (loadError) return <div>{"Error loading maps"}</div>;
   if (!isLoaded) return <div>{"Loading Maps"}</div>;
 
@@ -39,12 +49,61 @@ const Map: React.FC = () => {
         center={center}
         options={options}
       >
-        {locations.map((location, index) => (
-          <Marker
-            key={index}
-            position={{ lat: location.lat, lng: location.lng }}
-          />
-        ))}
+        <>
+          {editableProfiles?.currentLocation && (
+            <Marker
+              onClick={() => {}}
+              position={editableProfiles?.currentLocation}
+              draggable={false}
+            >
+              <InfoWindow>{"Me!"}</InfoWindow>
+            </Marker>
+          )}
+          {/* {editableProfiles?.currentProfile && (
+            <Marker
+              onClick={() => {}}
+              position={{
+                lat: editableProfiles?.currentProfile?.location?.lat,
+                lng: editableProfiles?.currentProfile?.location?.lng,
+              }}
+              draggable={false}
+            >
+              <InfoWindow>{"test"}</InfoWindow>
+            </Marker>
+          )} */}
+          {/* {editableProfiles?.listOfProfiles &&
+            editableProfiles?.listOfProfiles.map((person) => (
+              <>
+                <div
+                  onClick={() => {
+                    dispatch?.({
+                      type: homepageActions.setProfile,
+                      payload: person,
+                    });
+                  }}
+                >
+                  <Marker
+                    position={{
+                      lat: person.location?.lat,
+                      lng: person.location?.lng,
+                    }}
+                    draggable={false}
+                  >
+                    <InfoWindow
+                    // onClick={() => {
+                    //   dispatch?.({
+                    //     type: homepageActions.setProfile,
+                    //     payload: person,
+                    //   });
+                    // }}
+                    >
+                      <RoundedImage src={person.image.src} size={"small"} />
+                    </InfoWindow>
+                  </Marker>
+                </div>
+              </>
+            ))} */}
+        </>
       </GoogleMap>
     </div>
   );

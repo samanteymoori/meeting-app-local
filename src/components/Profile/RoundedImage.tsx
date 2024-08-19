@@ -55,15 +55,14 @@ const RoundedImage: React.FC<{
       w: "w-full object-scale-down p-8 rounded-lg",
       h: "h-[25rem]",
       hrem: "25rem",
-      wrapper: " rounded-lg   self-end ",
+      wrapper:
+        " rounded-lg   self-end bg-transparent  absolute   z-20 relative  ",
     },
   ];
   const item = items.find((p) => p.key === size);
   return (
     <div className={`${item?.wrapper} `} onClick={onClick}>
-      <div
-        className={`bg-transparent  absolute grid z-20 relative  p-1 ${item?.wrapper} bg-slate-200 cursor-pointer`}
-      >
+      <div className={`grid  p-1 ${item?.wrapper} bg-slate-200 cursor-pointer`}>
         <div className="rounded-lg">
           <Image
             className={` mx-auto self-center object-top  mx-auto self-center ${item?.w} ${item?.h} `}

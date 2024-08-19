@@ -16,7 +16,7 @@ const Default = () => {
         {editableProfiles?.step === meetingStep.book ? (
           <MeetPlaceMap />
         ) : (
-          <OpenMap />
+          <Map />
         )}
       </div>
     </div>
