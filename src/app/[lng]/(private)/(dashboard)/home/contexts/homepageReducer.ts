@@ -16,7 +16,7 @@ const homepageReducer = (state: any, action: any) => {
       return {
         ...state,
         listOfProfiles: action.payload
-          .filter((p: any) => p.id !== state.currentProfile?.id)
+          .filter((p: any) => p.id !== state.authenticatedProfile?.id)
           .map((p: any) => {
             const profile: ProfileType = {
               ...p,
@@ -79,7 +79,10 @@ const homepageReducer = (state: any, action: any) => {
       };
     }
     case homepageActions.setAuthenticatedUser: {
-      return { ...state, authenticatedProfile: action.payload };
+      const listOfProfiles = state.listOfProfiles.filter(
+        (p: any) => p.id !== action.payload?.id
+      );
+      return { ...state, authenticatedProfile: action.payload, listOfProfiles };
     }
     case homepageActions.setPlace: {
       return {
@@ -117,12 +120,8 @@ const homepageReducer = (state: any, action: any) => {
       };
     }
     case homepageActions.setProfile: {
-      const listOfProfiles = state.listOfProfiles.filter(
-        (p: any) => p.id !== action.payload?.id
-      );
       return {
         ...state,
-        listOfProfiles,
         currentProfile: {
           ...action.payload,
           location: {
