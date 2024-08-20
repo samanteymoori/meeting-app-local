@@ -15,20 +15,22 @@ const homepageReducer = (state: any, action: any) => {
     case homepageActions.setProfiles: {
       return {
         ...state,
-        listOfProfiles: action.payload.map((p: any) => {
-          const profile: ProfileType = {
-            ...p,
-            location: {
-              lat: p?.location?.x || p?.location?.lat || null,
-              lng: p?.location?.y || p?.location?.lng || null,
-            },
-            image: {
-              src: p.url,
-              size: "small",
-            },
-          };
-          return profile;
-        }),
+        listOfProfiles: action.payload
+          .filter((p: any) => p.id !== state.currentProfile?.id)
+          .map((p: any) => {
+            const profile: ProfileType = {
+              ...p,
+              location: {
+                lat: p?.location?.x || p?.location?.lat || null,
+                lng: p?.location?.y || p?.location?.lng || null,
+              },
+              image: {
+                src: p.url,
+                size: "small",
+              },
+            };
+            return profile;
+          }),
       };
     }
     case homepageActions.pickPersonToMeet: {
@@ -115,8 +117,12 @@ const homepageReducer = (state: any, action: any) => {
       };
     }
     case homepageActions.setProfile: {
+      const listOfProfiles = state.listOfProfiles.filter(
+        (p: any) => p.id !== action.payload?.id
+      );
       return {
         ...state,
+        listOfProfiles,
         currentProfile: {
           ...action.payload,
           location: {

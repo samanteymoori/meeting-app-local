@@ -8,7 +8,8 @@ import {
   Marker,
   InfoWindow,
 } from "@react-google-maps/api";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+import RoundedImage from "../Profile/RoundedImage";
 
 const mapContainerStyle = {
   width: "md:calc(100vw - 4rem)",
@@ -35,6 +36,7 @@ const Map: React.FC = () => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY, // Add your API key here
   });
+  const [selected, setSelected] = useState<any | null>(null);
 
   const { editableProfiles, dispatch } =
     useContext<HomePageContextType>(HomePageContext);
@@ -50,14 +52,55 @@ const Map: React.FC = () => {
         options={options}
       >
         <>
+          {editableProfiles?.currentProfile && (
+            <Marker
+              onClick={() => setSelected(editableProfiles?.currentProfile)}
+              position={{
+                lat: editableProfiles?.currentProfile?.location?.lat,
+                lng: editableProfiles?.currentProfile?.location?.lng,
+              }}
+              draggable={false}
+            ></Marker>
+          )}
           {editableProfiles?.currentLocation && (
             <Marker
               onClick={() => {}}
               position={editableProfiles?.currentLocation}
               draggable={false}
+            ></Marker>
+          )}
+          {editableProfiles?.listOfProfiles &&
+            editableProfiles?.listOfProfiles.map((person) => (
+              <Marker
+                onClick={() => setSelected(person)}
+                key={person.id}
+                position={{
+                  lat: person.location?.lat,
+                  lng: person.location?.lng,
+                }}
+                draggable={false}
+              ></Marker>
+            ))}
+          {selected && (
+            <InfoWindow
+              position={selected.location}
+              onCloseClick={() => setSelected(null)}
             >
-              <InfoWindow>{"Me!"}</InfoWindow>
-            </Marker>
+              <div
+                onClick={() => {
+                  dispatch?.({
+                    type: homepageActions.setProfile,
+                    payload: selected,
+                  });
+                }}
+                className=" text-center m-4 mt-0 "
+              >
+                <RoundedImage src={selected.image.src} size={"medium"} />
+                <h2 className="font-bold text-lg">
+                  {selected.first_name} {selected.last_name}
+                </h2>
+              </div>
+            </InfoWindow>
           )}
           {/* {editableProfiles?.currentProfile && (
             <Marker

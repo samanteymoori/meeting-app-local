@@ -13,13 +13,9 @@ const Default = () => {
   return (
     <div className="col-span-6 h-full  h-full bg-white  grid grid-cols-1">
       <div className="bg-white rounded-lg">
-        {editableProfiles?.step === meetingStep.book ? (
-          <MeetPlaceMap />
-        ) : (
-          <div className="">
-            <Map />
-          </div>
-        )}
+        <div className="">
+          <Map />
+        </div>
       </div>
     </div>
   );

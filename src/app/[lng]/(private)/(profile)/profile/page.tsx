@@ -18,6 +18,9 @@ export default function Page() {
         withoutMainImage={false}
         setCancel={() => {}}
       />
+      <div className="grid grid-cols-2">
+        <div></div>
+      </div>
     </div>
   );
 }

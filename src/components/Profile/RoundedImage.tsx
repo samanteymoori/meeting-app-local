@@ -62,7 +62,11 @@ const RoundedImage: React.FC<{
   const item = items.find((p) => p.key === size);
   return (
     <div className={`${item?.wrapper} `} onClick={onClick}>
-      <div className={`grid  p-1 ${item?.wrapper} bg-slate-200 cursor-pointer`}>
+      <div
+        className={`grid  p-1 ${item?.wrapper} ${
+          backdrop && backdrop === "backdrop" ? "bg-slate-200" : ""
+        } cursor-pointer`}
+      >
         <div className="rounded-lg">
           <Image
             className={` mx-auto self-center object-top  mx-auto self-center ${item?.w} ${item?.h} `}
