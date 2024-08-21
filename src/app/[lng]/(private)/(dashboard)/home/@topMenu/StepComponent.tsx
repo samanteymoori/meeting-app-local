@@ -26,7 +26,9 @@ const StepComponent: React.FC = () => {
       title: "Meet",
       step: meetingStep.meet,
 
-      selected: editableProfiles?.step === meetingStep.meet,
+      selected:
+        editableProfiles?.step === meetingStep.meet ||
+        editableProfiles?.step === meetingStep.detail,
       icon: <FaWalking />,
     },
   ];
