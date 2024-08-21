@@ -1,8 +1,28 @@
 "use client";
+import RoundedImage from "@/components/Profile/RoundedImage";
 import UniversalFileUpload from "@/components/UniversalComponents/UniversalFileUpload";
 import UniversalTextBox from "@/components/UniversalComponents/UniversalTextBox";
+import { getAuthService } from "@/services/authService";
+import { useEffect, useState } from "react";
 
 export default function Page() {
+  const [img, setImage] = useState<any>(null);
+
+  const getImage = async () => {
+    const authService = getAuthService();
+    const authenticatedUser = await authService.getAuthenticatedUser();
+    const uri = `/api/user_profiles/${authenticatedUser?.item?.id}/picture`;
+    fetch(uri, {
+      method: "GET",
+    }).then(async (result) => {
+      const res = await result.json();
+
+      setImage(res.url);
+    });
+  };
+  useEffect(() => {
+    getImage();
+  }, []);
   return (
     <div className="grid grid-cols-6 flex w-full  h-20 bg-neutral-500 ">
       <h1 className="col-span-6 m-4 text-xl text-white flex self-top h-20">
@@ -62,10 +82,15 @@ export default function Page() {
                   isMultiline={false}
                   withoutMainImage={false}
                   setCancel={() => {}}
+                  fileUploaded={async (result: any) => {
+                    const res = await result.json();
+                    setImage(res.file);
+                  }}
                 />
               </div>
             </div>
           </div>
+          <div>{img && <RoundedImage src={img} size={"large"} />}</div>
         </div>
       </div>
     </div>

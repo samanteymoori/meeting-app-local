@@ -12,6 +12,7 @@ type Props = {
   uploadPosition?: Position;
   readonly?: boolean;
   onKeyDown?: () => void;
+  fileUploaded: any;
   value?: any;
   isFile: boolean;
   data: any;
@@ -213,9 +214,11 @@ const UniversalFileUpload: React.FC<Props> = (props) => {
           cancel();
         }
         convertBase64(files[0]).then(async (res: any) => {
-          await fetch("/api/user_profiles/picture", {
+          fetch("/api/user_profiles/picture", {
             method: "POST",
             body: JSON.stringify({ file: res }),
+          }).then((result) => {
+            props.fileUploaded(result);
           });
         });
       }
