@@ -21,7 +21,7 @@ const UniversalTextBox: React.FC<Props> = ({
   return (
     <fieldset className={`my-2 ${className}`}>
       <label htmlFor={name}>{label}</label>
-      <div className="mt-1">
+      <div className="mt-1 grid">
         <input
           defaultValue={defaultValue}
           onChange={onChange}
