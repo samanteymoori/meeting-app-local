@@ -3,14 +3,17 @@ import RoundedImage from "@/components/Profile/RoundedImage";
 import UniversalFileUpload from "@/components/UniversalComponents/UniversalFileUpload";
 import UniversalTextBox from "@/components/UniversalComponents/UniversalTextBox";
 import { getAuthService } from "@/services/authService";
+import { ProfileType } from "@/types/ProfileType";
 import { useEffect, useState } from "react";
 
 export default function Page() {
   const [img, setImage] = useState<any>(null);
-
+  const [authenticatedUser, setAuthenticatedUser] =
+    useState<ProfileType | null>();
   const getImage = async () => {
     const authService = getAuthService();
     const authenticatedUser = await authService.getAuthenticatedUser();
+    setAuthenticatedUser(authenticatedUser.item);
     const uri = `/api/user_profiles/${authenticatedUser?.item?.id}/picture`;
     fetch(uri, {
       method: "GET",
@@ -36,39 +39,51 @@ export default function Page() {
               <div>
                 <UniversalTextBox
                   label={"First name"}
-                  value={""}
+                  value={authenticatedUser?.first_name || ""}
                   name={"first_name"}
                 />
               </div>
               <div>
                 <UniversalTextBox
                   label={"Last name"}
-                  value={""}
+                  value={authenticatedUser?.last_name || ""}
                   name={"last_name"}
                 />
               </div>
               <div>
-                <UniversalTextBox label={"Weight"} value={""} name={"weight"} />
+                <UniversalTextBox
+                  label={"Weight"}
+                  value={authenticatedUser?.weight || ""}
+                  name={"weight"}
+                />
               </div>
               <div>
-                <UniversalTextBox label={"Height"} value={""} name={"height"} />
+                <UniversalTextBox
+                  label={"Height"}
+                  value={authenticatedUser?.height || ""}
+                  name={"height"}
+                />
               </div>
               <div>
                 <UniversalTextBox
                   label={"Hobbies"}
-                  value={""}
+                  value={authenticatedUser?.hobbies || ""}
                   name={"hobbies"}
                 />
               </div>
               <div>
                 <UniversalTextBox
                   label={"Education"}
-                  value={""}
+                  value={authenticatedUser?.education || ""}
                   name={"education"}
                 />
               </div>
               <div>
-                <UniversalTextBox label={"Job"} value={""} name={"job"} />
+                <UniversalTextBox
+                  label={"Job"}
+                  value={authenticatedUser?.job || ""}
+                  name={"job"}
+                />
               </div>
               <div>
                 <UniversalFileUpload
