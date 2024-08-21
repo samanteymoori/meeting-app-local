@@ -13,6 +13,12 @@ export class UserService {
       status: number;
     }>(`/api/user_profiles`, {});
   };
+  getUser = async () => {
+    return await this.routeApiClient.get<{
+      item: ProfileType;
+      status: number;
+    }>(`/api/user_profiles`, {});
+  };
   signout = async () => {
     return await this.routeApiClient.post<{}>(`/api/auth/user/signout`, {});
   };
