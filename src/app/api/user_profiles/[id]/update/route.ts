@@ -12,7 +12,7 @@ export async function POST(request: NextRequest, { params: { id } }: any) {
   const basic = [first_name, last_name, id];
 
   try {
-    const result = await pool.query(
+    await pool.query(
       `UPDATE user_profiles set weight = $1, height =$2,hobbies=$3,education=$4,job=$5
       WHERE user_id= $6`,
       values
