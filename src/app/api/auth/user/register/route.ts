@@ -28,8 +28,8 @@ export async function POST(req: NextRequest, res: NextResponse) {
       [id]
     );
     await pool.query(
-      `insert into user_profile_pictures (user_id)        
-           VALUES ($1)`,
+      `insert into user_profile_pictures (user_id,is_primary)        
+           VALUES ($1,true)`,
       [id]
     );
     // Authenticate user
