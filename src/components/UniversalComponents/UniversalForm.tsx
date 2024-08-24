@@ -14,7 +14,10 @@ const UniversalForm: React.FC<PropsWithChildren<Props>> = ({
   return (
     <form
       action={action}
-      onSubmit={onSubmit}
+      onSubmit={(e) => {
+        e.preventDefault();
+        // onSubmit(e);
+      }}
       className={`p-4 bg-white rounded-lg grid ${className}`}
     >
       {children}

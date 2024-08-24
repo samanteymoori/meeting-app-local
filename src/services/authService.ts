@@ -14,6 +14,9 @@ export class AuthService {
       status: number;
     }>(`/api/auth/user`, {});
   };
+  registerUser = async (profile: ProfileType) => {
+    return await this.routeApiClient.post(`/api/auth/user/register`, profile);
+  };
 }
 
 export const getAuthService = (url?: string): AuthService => {
