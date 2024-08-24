@@ -2,12 +2,15 @@
 import UniversalButton from "@/components/UniversalComponents/UniversalButton";
 import UniversalForm from "@/components/UniversalComponents/UniversalForm";
 import UniversalTextBox from "@/components/UniversalComponents/UniversalTextBox";
+import { createNavigationLink, navigation_items } from "@/navigation";
 import { getAuthService } from "@/services/authService";
 import { ProfileType } from "@/types/ProfileType";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { Puff } from "react-loading-icons";
 
 const Page = ({ params: { lng } }: any) => {
+  const router = useRouter();
   const [img, setImage] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [profile, setProfile] = useState<any | null>({
@@ -23,7 +26,22 @@ const Page = ({ params: { lng } }: any) => {
       setLoading(true);
       if (!profile) return;
       const authService = getAuthService(window.location.href);
-      await authService.registerUser(profile);
+      const response: any = await authService.registerUser(profile);
+      debugger;
+      try {
+        if (response.statusCode === 200) {
+          const route = createNavigationLink(
+            navigation_items.auth.login,
+            new URL(window.location.href)
+          );
+          router.push(route);
+        } else {
+          const responseMessage = await response.json();
+          alert("error");
+        }
+      } finally {
+        setLoading(false);
+      }
       alert("Your profile is created.");
     } catch (e) {
       console.log(e);

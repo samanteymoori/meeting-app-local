@@ -66,7 +66,6 @@ export const profileList: Array<ProfileType> = [
     education: "BEng. Civil Engineering",
     first_name: "Eve",
     last_name: "Brown",
-
     location: [49.2606, -123.246],
     job: "Civil Engineer",
     image: {
