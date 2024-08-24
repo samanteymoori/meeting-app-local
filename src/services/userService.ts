@@ -13,6 +13,12 @@ export class UserService {
       status: number;
     }>(`/api/user_profiles`, {});
   };
+  updateUserDetail = async (userDetail: ProfileType) => {
+    return await this.routeApiClient.post(
+      `/api/user_profiles/${userDetail.id}/update`,
+      userDetail
+    );
+  };
   getUser = async () => {
     return await this.routeApiClient.get<{
       item: ProfileType;

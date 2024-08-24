@@ -1,14 +1,23 @@
 "use client";
 import RoundedImage from "@/components/Profile/RoundedImage";
+import UniversalButton from "@/components/UniversalComponents/UniversalButton";
 import UniversalFileUpload from "@/components/UniversalComponents/UniversalFileUpload";
 import UniversalTextBox from "@/components/UniversalComponents/UniversalTextBox";
 import { getAuthService } from "@/services/authService";
+import { getUserService } from "@/services/userService";
 import { ProfileType } from "@/types/ProfileType";
 import { useEffect, useState } from "react";
 
 export default function Page() {
   const [img, setImage] = useState<any>(null);
-
+  const [loading, setLoading] = useState<boolean>(false);
+  const saveProfileDetail = async () => {
+    if (!authenticatedUser) return;
+    const UserService = getUserService(window.location.href);
+    await UserService.updateUserDetail(authenticatedUser);
+    alert("Profile is updated");
+    getImage();
+  };
   const [authenticatedUser, setAuthenticatedUser] =
     useState<ProfileType | null>();
   const getImage = async () => {
@@ -20,7 +29,6 @@ export default function Page() {
       method: "GET",
     }).then(async (result) => {
       const res = await result.json();
-
       setImage(res.url);
     });
   };
@@ -144,6 +152,14 @@ export default function Page() {
                     const res = await result.json();
                     setImage(res.file);
                   }}
+                />
+              </div>
+              <div>
+                <UniversalButton
+                  onClick={() => saveProfileDetail()}
+                  value={"Save"}
+                  type={"button"}
+                  loading={loading}
                 />
               </div>
             </div>
