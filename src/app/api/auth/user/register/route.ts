@@ -21,6 +21,17 @@ export async function POST(req: NextRequest, res: NextResponse) {
        RETURNING id;`,
       values
     );
+    const id = result.rows?.[0]?.id;
+    await pool.query(
+      `insert into user_profiles (user_id)        
+         VALUES ($1)`,
+      [id]
+    );
+    await pool.query(
+      `insert into user_profile_pictures (user_id)        
+           VALUES ($1)`,
+      [id]
+    );
     // Authenticate user
     if (result.rows.length) {
       // Create JWT token
@@ -47,7 +58,8 @@ export async function POST(req: NextRequest, res: NextResponse) {
         { status: 403 }
       );
     }
-  } catch {
+  } catch (e) {
+    console.log(e.message);
     return NextResponse.json(
       { error: "Internal Server Error" },
       { status: 500 }
