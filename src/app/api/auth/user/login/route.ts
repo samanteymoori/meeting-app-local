@@ -16,8 +16,8 @@ export async function POST(req: NextRequest, res: NextResponse) {
   try {
     const result = await pool.query(
       `SELECT * FROM users u
-      join user_profiles up on u.id=up.user_id 
-      join user_profile_pictures upp on up.user_id=upp.user_id
+       join user_profiles up on u.id=up.user_id 
+       join user_profile_pictures upp on up.user_id=upp.user_id
       WHERE email=$1 
       ORDER BY first_name`,
       values

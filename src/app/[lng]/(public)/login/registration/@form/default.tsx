@@ -27,7 +27,7 @@ const Page = ({ params: { lng } }: any) => {
       if (!profile) return;
       const authService = getAuthService(window.location.href);
       const response: any = await authService.registerUser(profile);
-      debugger;
+
       try {
         if (response.statusCode === 200) {
           const route = createNavigationLink(
