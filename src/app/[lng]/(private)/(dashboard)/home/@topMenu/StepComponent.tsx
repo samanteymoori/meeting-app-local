@@ -41,7 +41,8 @@ const StepComponent: React.FC = () => {
             onClick={() => {
               if (
                 editableProfiles?.step &&
-                editableProfiles?.step > step.step
+                editableProfiles?.step > step.step &&
+                editableProfiles.step !== meetingStep.detail
               ) {
                 dispatch?.({
                   type: homepageActions.setStep,
