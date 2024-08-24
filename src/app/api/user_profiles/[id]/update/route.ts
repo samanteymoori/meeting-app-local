@@ -8,10 +8,8 @@ export async function POST(request: NextRequest, { params: { id } }: any) {
   const profile_detail: ProfileType = requestBody;
   const { first_name, last_name, job, weight, height, hobbies, education } =
     profile_detail;
-  console.log("test");
   const values = [weight, height, hobbies, education, job, id];
   const basic = [first_name, last_name, id];
-  console.log("test2");
 
   try {
     const result = await pool.query(
@@ -19,13 +17,11 @@ export async function POST(request: NextRequest, { params: { id } }: any) {
       WHERE user_id= $6`,
       values
     );
-    console.log("test3");
     await pool.query(
       `UPDATE users set first_name=$1,last_name=$2
         WHERE id= $3`,
       basic
     );
-    console.log("test4");
     return NextResponse.json({ result: "success" }, { status: 200 });
   } catch (error) {
     console.log(error.message);
