@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 
 export default function Page() {
   const [img, setImage] = useState<any>(null);
+
   const [authenticatedUser, setAuthenticatedUser] =
     useState<ProfileType | null>();
   const getImage = async () => {
@@ -39,6 +40,12 @@ export default function Page() {
               <div>
                 <UniversalTextBox
                   label={"First name"}
+                  onChange={(e: any) =>
+                    setAuthenticatedUser({
+                      ...(authenticatedUser as any),
+                      first_name: e.target.value || "",
+                    })
+                  }
                   value={authenticatedUser?.first_name || ""}
                   name={"first_name"}
                 />
@@ -46,6 +53,12 @@ export default function Page() {
               <div>
                 <UniversalTextBox
                   label={"Last name"}
+                  onChange={(e: any) =>
+                    setAuthenticatedUser({
+                      ...(authenticatedUser as any),
+                      last_name: e.target.value || "",
+                    })
+                  }
                   value={authenticatedUser?.last_name || ""}
                   name={"last_name"}
                 />
@@ -53,6 +66,12 @@ export default function Page() {
               <div>
                 <UniversalTextBox
                   label={"Weight"}
+                  onChange={(e: any) =>
+                    setAuthenticatedUser({
+                      ...(authenticatedUser as any),
+                      weight: e.target.value || "",
+                    })
+                  }
                   value={authenticatedUser?.weight || ""}
                   name={"weight"}
                 />
@@ -60,6 +79,12 @@ export default function Page() {
               <div>
                 <UniversalTextBox
                   label={"Height"}
+                  onChange={(e: any) =>
+                    setAuthenticatedUser({
+                      ...(authenticatedUser as any),
+                      height: e.target.value || "",
+                    })
+                  }
                   value={authenticatedUser?.height || ""}
                   name={"height"}
                 />
@@ -67,6 +92,12 @@ export default function Page() {
               <div>
                 <UniversalTextBox
                   label={"Hobbies"}
+                  onChange={(e: any) =>
+                    setAuthenticatedUser({
+                      ...(authenticatedUser as any),
+                      hobbies: e.target.value || "",
+                    })
+                  }
                   value={authenticatedUser?.hobbies || ""}
                   name={"hobbies"}
                 />
@@ -74,6 +105,12 @@ export default function Page() {
               <div>
                 <UniversalTextBox
                   label={"Education"}
+                  onChange={(e: any) =>
+                    setAuthenticatedUser({
+                      ...(authenticatedUser as any),
+                      education: e.target.value || "",
+                    })
+                  }
                   value={authenticatedUser?.education || ""}
                   name={"education"}
                 />
@@ -81,6 +118,12 @@ export default function Page() {
               <div>
                 <UniversalTextBox
                   label={"Job"}
+                  onChange={(e: any) =>
+                    setAuthenticatedUser({
+                      ...(authenticatedUser as any),
+                      job: e.target.value || "",
+                    })
+                  }
                   value={authenticatedUser?.job || ""}
                   name={"job"}
                 />
