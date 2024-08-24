@@ -27,7 +27,7 @@ export default function Page() {
     getImage();
   }, []);
   return (
-    <div className="grid grid-cols-6 flex w-full  h-20 bg-neutral-500 ">
+    <form className="grid grid-cols-6 flex w-full  h-20 bg-neutral-500 ">
       <h1 className="col-span-6 m-4 text-xl text-white flex self-top h-20">
         {"My Profile"}
       </h1>
@@ -108,6 +108,6 @@ export default function Page() {
           <div>{img && <RoundedImage src={img} size={"large"} />}</div>
         </div>
       </div>
-    </div>
+    </form>
   );
 }
