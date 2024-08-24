@@ -100,6 +100,17 @@ const homepageReducer = (state: any, action: any) => {
         },
       };
     }
+    case homepageActions.cancelMeeting: {
+      return {
+        step: meetingStep.find,
+        places: state.places,
+        currentProfile: state.currentProfile,
+        authenticatedProfile: state.authenticatedProfile,
+        listOfProfiles: state.listOfProfiles,
+        currentLocation: state.currentLocation,
+        currentPlace: state.currentPlace,
+      };
+    }
     case homepageActions.setPlaces: {
       return {
         ...state,

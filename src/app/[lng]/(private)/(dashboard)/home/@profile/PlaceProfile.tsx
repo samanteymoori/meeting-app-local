@@ -1,6 +1,6 @@
 import { PlaceType } from "@/types/PlaceType";
 import { useContext } from "react";
-import homepageActions from "../contexts/homepageActions";
+import homepageActions, { meetingStep } from "../contexts/homepageActions";
 import { HomePageContext } from "../contexts/HomePageContext";
 import { HomePageContextType } from "../contexts/HomePageContextType";
 

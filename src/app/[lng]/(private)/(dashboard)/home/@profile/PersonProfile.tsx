@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import homepageActions from "../contexts/homepageActions";
+import homepageActions, { meetingStep } from "../contexts/homepageActions";
 import { HomePageContext } from "../contexts/HomePageContext";
 import { HomePageContextType } from "../contexts/HomePageContextType";
 
@@ -23,7 +23,7 @@ const PersonProfile: React.FC<Props> = ({ showButton }) => {
   return (
     <>
       <div className="  h-full  rounded-lg grid gap-x-4 gap-y-2 [&>*]:p-4 [&>*]:flex-auto flex">
-        <h1 className="col-span-2 xl:col-span-4 text-2xl text-green-500 ">
+        <h1 className="col-span-2 capitalize xl:col-span-4 text-2xl text-green-500 ">
           {first_name} {last_name}
         </h1>
         <fieldset className="font-bold">Weight</fieldset>
