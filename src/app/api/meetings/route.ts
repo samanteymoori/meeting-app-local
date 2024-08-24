@@ -32,7 +32,6 @@ export async function POST(request: NextRequest, { params }: any) {
         VALUES ($1, $2, $3)`,
       [person_to_meet_id, meeting_id, owner_person_id]
     );
-    console.log({});
     return NextResponse.json({ inserted: result.rows?.[0] }, { status: 200 });
   } catch (error) {
     return NextResponse.json(
