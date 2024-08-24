@@ -32,7 +32,7 @@ export async function middleware(req: NextRequest) {
       return NextResponse.redirect(login_path);
     }
   } else {
-    if (!containsPath(url, navigation_items.auth.login))
+    if (!containsPath(url, navigation_items.auth.login_area))
       return NextResponse.redirect(login_path);
   }
 

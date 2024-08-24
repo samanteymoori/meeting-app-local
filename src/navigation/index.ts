@@ -3,6 +3,7 @@ import { URL } from "url";
 export const navigation_items = {
   auth: {
     login: "login/email",
+    login_area: "login",
     signup: "signup",
   },
   private: {
