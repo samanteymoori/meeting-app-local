@@ -7,16 +7,24 @@ import { getAuthService } from "@/services/authService";
 import { getUserService } from "@/services/userService";
 import { ProfileType } from "@/types/ProfileType";
 import { useEffect, useState } from "react";
+import { Bars, Puff } from "react-loading-icons";
 
 export default function Page() {
   const [img, setImage] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const saveProfileDetail = async () => {
-    if (!authenticatedUser) return;
-    const UserService = getUserService(window.location.href);
-    await UserService.updateUserDetail(authenticatedUser);
-    alert("Profile is updated");
-    getImage();
+    try {
+      setLoading(true);
+      if (!authenticatedUser) return;
+      const UserService = getUserService(window.location.href);
+      await UserService.updateUserDetail(authenticatedUser);
+      getImage();
+      alert("Your profile is updated.");
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setLoading(false);
+    }
   };
   const [authenticatedUser, setAuthenticatedUser] =
     useState<ProfileType | null>();
@@ -155,12 +163,16 @@ export default function Page() {
                 />
               </div>
               <div>
-                <UniversalButton
-                  onClick={() => saveProfileDetail()}
-                  value={"Save"}
-                  type={"button"}
-                  loading={loading}
-                />
+                {loading ? (
+                  <Puff stroke="#98ff98" />
+                ) : (
+                  <UniversalButton
+                    onClick={() => saveProfileDetail()}
+                    value={"Save"}
+                    type={"button"}
+                    loading={loading}
+                  />
+                )}
               </div>
             </div>
           </div>

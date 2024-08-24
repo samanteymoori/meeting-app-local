@@ -1,4 +1,5 @@
 import { PropsWithChildren } from "react";
+import { Bars } from "react-loading-icons";
 
 type Props = {
   value: string;
