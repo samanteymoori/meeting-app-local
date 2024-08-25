@@ -49,7 +49,7 @@ export default function Page() {
     <form className="grid grid-cols-6 flex w-full  h-20 bg-neutral-500 ">
       <div className="flex h-20">
         <div className="self-center text-white ml-4 cursor-pointer">
-          <Link href={"/"}>
+          <Link href={"/en/home"}>
             <FaChevronCircleLeft />
           </Link>
         </div>
