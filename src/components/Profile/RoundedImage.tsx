@@ -25,6 +25,12 @@ const RoundedImage: React.FC<{
       wrapper: "rounded-full",
     },
     {
+      key: "smaller",
+      w: "w-[4rem] rounded-full object-cover",
+      h: "h-[4rem]",
+      wrapper: "rounded-full",
+    },
+    {
       key: "small",
       w: "w-[5rem] rounded-full object-cover",
       h: "h-[5rem]",

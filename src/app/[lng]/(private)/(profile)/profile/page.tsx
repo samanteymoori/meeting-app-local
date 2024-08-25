@@ -6,7 +6,9 @@ import UniversalTextBox from "@/components/UniversalComponents/UniversalTextBox"
 import { getAuthService } from "@/services/authService";
 import { getUserService } from "@/services/userService";
 import { ProfileType } from "@/types/ProfileType";
+import Link from "next/link";
 import { useEffect, useState } from "react";
+import { FaChevronCircleLeft } from "react-icons/fa";
 import { Bars, Puff } from "react-loading-icons";
 
 export default function Page() {
@@ -45,9 +47,17 @@ export default function Page() {
   }, []);
   return (
     <form className="grid grid-cols-6 flex w-full  h-20 bg-neutral-500 ">
-      <h1 className="col-span-6 m-4 text-xl text-white flex self-top h-20">
-        {"My Profile"}
-      </h1>
+      <div className="flex h-20">
+        <div className="self-center text-white ml-4 cursor-pointer">
+          <Link href={"/"}>
+            <FaChevronCircleLeft />
+          </Link>
+        </div>
+
+        <h1 className="col-span-6 self-center m-4 text-xl text-white flex ">
+          {"My Profile"}
+        </h1>
+      </div>
       <div className="col-span-6 grid grid-cols-6 flex-auto h-full">
         <div className="col-span-6 p-2  gap-2 h-full bg-white  grid md:grid-cols-2">
           <div className="grid ">
