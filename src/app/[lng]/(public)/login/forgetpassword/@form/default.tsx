@@ -10,7 +10,6 @@ import React, { useState } from "react";
 
 const Page = ({ params: { lng } }: any) => {
   const [username, setUsername] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
@@ -19,12 +18,12 @@ const Page = ({ params: { lng } }: any) => {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch("/api/auth/user/login", {
+      const response = await fetch("/api/auth/user/forgetpassword", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ username }),
       });
 
       if (response.status === 200) {
@@ -59,14 +58,7 @@ const Page = ({ params: { lng } }: any) => {
             name={"email"}
             first
           />
-          <UniversalTextBox
-            className="w-full"
-            label={"Password"}
-            value={password}
-            type={"password"}
-            onChange={(e) => setPassword(e.target.value)}
-            name={"password"}
-          />
+
           <UniversalButton
             loading={loading}
             className="mt-4 mx-auto px-8"
@@ -80,15 +72,15 @@ const Page = ({ params: { lng } }: any) => {
                 className="text-blue-500 underline"
                 href={"/en/login/registration"}
               >
-                Register
+                Login
               </Link>
             </div>
             <div className="flex">
               <Link
                 className="text-blue-500 ml-auto underline"
-                href={"/en/login/forgetpassword"}
+                href={"/en/login/registration"}
               >
-                Forgot Password
+                Register
               </Link>
             </div>
           </div>
