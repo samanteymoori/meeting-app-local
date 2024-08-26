@@ -6,6 +6,12 @@ export class MeetingService {
   constructor(baseUrl: string) {
     this.routeApiClient = new RouteApiClient(baseUrl);
   }
+  getActiveMeeting = async ({ email }: { email: string }) => {
+    return await this.routeApiClient.post<any>(
+      `/api/meetings/${email}/participants`,
+      {}
+    );
+  };
   submitMeeting = async ({
     person_to_meet_id,
     owner_person_id,
