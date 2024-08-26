@@ -64,9 +64,23 @@ const Default = () => {
                 <h1 className="self-center text-green-400 text-xl">
                   Meeting is set:
                 </h1>
+
                 <h1 className="font-bold mt-4">
                   {editableProfiles.meetingRecord.id}
                 </h1>
+                <h2 className="self-center mt-4 text-green-400 text-xl">
+                  Participants:
+                </h2>
+                <div className="mt-4">
+                  <ul>
+                    {
+                      <li>
+                        {editableProfiles.currentProfile.first_name}{" "}
+                        {editableProfiles.currentProfile.last_name}
+                      </li>
+                    }
+                  </ul>
+                </div>
                 <h1 className="font-bold text-green-400 mt-4">
                   {editableProfiles.meetingRecord.meeting_date
                     .toString()
