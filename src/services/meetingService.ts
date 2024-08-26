@@ -21,6 +21,18 @@ export class MeetingService {
       meeting_time,
     });
   };
+  actionMeeting = async ({
+    meeting_id,
+    action,
+  }: {
+    meeting_id: string;
+    action: string;
+  }) => {
+    return await this.routeApiClient.post<any>(
+      `/api/meetings/${meeting_id}/action/${action}`,
+      {}
+    );
+  };
 }
 
 export const getMeetingService = (url?: string): MeetingService => {

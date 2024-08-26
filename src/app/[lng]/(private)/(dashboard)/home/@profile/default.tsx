@@ -1,6 +1,6 @@
 "use client";
 import UniversalDatePicker from "@/components/UniversalComponents/UniversalDatePicker";
-import { getMeetingService } from "@/services/meetingService";
+import { getMeetingService, MeetingService } from "@/services/meetingService";
 import { LatLng } from "leaflet";
 import { useRouter } from "next/navigation";
 import { useContext } from "react";
@@ -112,7 +112,15 @@ const Default = () => {
               <div className="col-span-2 mt-8 xl:col-span-4 flex">
                 <div className="mx-auto">
                   <input
-                    onClick={() => {
+                    onClick={async () => {
+                      const meetingService = getMeetingService(
+                        window.location.href
+                      );
+
+                      await meetingService.actionMeeting({
+                        meeting_id: editableProfiles.meetingRecord.id,
+                        action: "cancel",
+                      });
                       dispatch?.({
                         type: homepageActions.cancelMeeting,
                         payload: editableProfiles.authenticatedProfile.id,
@@ -120,7 +128,7 @@ const Default = () => {
                     }}
                     type={"button"}
                     className="bg-red-500 cursor-pointer text-white p-4   "
-                    value={"Cancel "}
+                    value={"Cancel"}
                   />
                 </div>
               </div>
