@@ -9,6 +9,7 @@ const classA = {
 export type ProfileType = {
   weight: string;
   first_name: string;
+  status?: "pending" | "accepted" | "rejected";
   last_name: string;
   height: string;
   location: LatLngExpression | LatLngTuple;

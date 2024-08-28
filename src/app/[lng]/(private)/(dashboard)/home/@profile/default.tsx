@@ -4,11 +4,13 @@ import { getMeetingService, MeetingService } from "@/services/meetingService";
 import { LatLng } from "leaflet";
 import { useRouter } from "next/navigation";
 import { useContext } from "react";
+import { FaCheckCircle, FaRegQuestionCircle } from "react-icons/fa";
 import homepageActions, { meetingStep } from "../contexts/homepageActions";
 import { HomePageContext } from "../contexts/HomePageContext";
 import { HomePageContextType } from "../contexts/HomePageContextType";
 import PersonProfile from "./PersonProfile";
 import PlaceProfile from "./PlaceProfile";
+import { ImCancelCircle } from "react-icons/im";
 
 const Default = () => {
   const { editableProfiles, dispatch } =
@@ -74,9 +76,30 @@ const Default = () => {
                 <div className="mt-4">
                   <ul>
                     {
-                      <li>
-                        {editableProfiles.currentProfile.first_name}{" "}
-                        {editableProfiles.currentProfile.last_name}
+                      <li className="flex">
+                        <div className="self-center">
+                          {editableProfiles.currentProfile.first_name}{" "}
+                          {editableProfiles.currentProfile.last_name}
+                        </div>
+                        {(!editableProfiles.currentProfile?.status ||
+                          editableProfiles.currentProfile?.status ===
+                            "pending") && (
+                          <div className="self-center mr-auto ml-2">
+                            <FaRegQuestionCircle />
+                          </div>
+                        )}
+                        {editableProfiles.currentProfile?.status ===
+                          "accepted" && (
+                          <div className="self-center text-green-500 ml-2 mr-auto">
+                            <FaCheckCircle />
+                          </div>
+                        )}
+                        {editableProfiles.currentProfile?.status ===
+                          "rejected" && (
+                          <div className="self-center text-red-500 ml-2 mr-auto">
+                            <ImCancelCircle />
+                          </div>
+                        )}
                       </li>
                     }
                   </ul>
