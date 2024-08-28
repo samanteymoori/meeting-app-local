@@ -37,8 +37,18 @@ const Default = () => {
       editableProfiles?.step === meetingStep.detail)
   ) {
     return (
-      <div className="h-[25rem]  cols-span-2">
-        <div className="grid grid-cols-2 w-full">
+      <div className="md:h-[25rem]  cols-span-2">
+        <div className="my-4 flex  md:hidden w-full">
+          <RoundedImage
+            src={editableProfiles?.currentProfile?.image?.src || ""}
+            size={"medium"}
+          />
+          <RoundedImage
+            src={editableProfiles?.currentPlace?.image?.src || ""}
+            size={"medium"}
+          />
+        </div>
+        <div className="grid hidden md:block md:grid-cols-2 w-full">
           <RoundedImage
             src={editableProfiles?.currentProfile?.image?.src || ""}
             size={"large-rounded"}
