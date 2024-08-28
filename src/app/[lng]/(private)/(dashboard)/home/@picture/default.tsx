@@ -48,7 +48,7 @@ const Default = () => {
             size={"medium"}
           />
         </div>
-        <div className="grid hidden md:block md:grid-cols-2 w-full">
+        <div className=" hidden md:grid grid-cols-2 w-full">
           <RoundedImage
             src={editableProfiles?.currentProfile?.image?.src || ""}
             size={"large-rounded"}
