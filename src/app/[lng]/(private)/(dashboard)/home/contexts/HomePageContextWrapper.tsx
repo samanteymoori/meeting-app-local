@@ -2,6 +2,7 @@
 import { placesList } from "@/fixures/place-list";
 import { profileList } from "@/fixures/profile-list";
 import { getAuthService } from "@/services/authService";
+import { getMeetingService } from "@/services/meetingService";
 import { getPlaceService } from "@/services/placeService";
 import { getUserService } from "@/services/userService";
 import { ProfileType } from "@/types/ProfileType";
@@ -52,6 +53,23 @@ const HomePageContextWrapper: React.FC<PropsWithChildren> = ({ children }) => {
     dispatch?.({
       type: homepageActions.setAuthenticatedUser,
       payload: authenticatedUser?.item,
+    });
+
+    await getActiveMeetings(authenticatedUser.item?.username);
+  };
+  const getActiveMeetings = async (email: string) => {
+    const meetingService = getMeetingService();
+    meetingService.getActiveMeeting({ email }).then((response) => {
+      if (response.rows.length) {
+        dispatch?.({
+          type: homepageActions.setMeetingRecord,
+          payload: response.rows[0],
+        });
+        dispatch?.({
+          type: homepageActions.setStep,
+          payload: meetingStep.detail,
+        });
+      }
     });
   };
   useEffect(() => {
