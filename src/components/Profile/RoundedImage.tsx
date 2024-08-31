@@ -80,6 +80,9 @@ const RoundedImage: React.FC<{
             width={512}
             height={512}
             alt={""}
+            onError={(e: any) => {
+              e.target.src = "/images/user.png";
+            }}
           />
         </div>
       </div>
