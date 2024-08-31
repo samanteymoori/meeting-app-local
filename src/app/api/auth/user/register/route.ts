@@ -10,14 +10,17 @@ export async function POST(req: NextRequest, res: NextResponse) {
   const requestBody = await req.json();
   const { first_name, last_name, email, confirm_password, password } =
     requestBody;
-  const values = [email, first_name, last_name];
+  if (password !== confirm_password) {
+    throw new Error("password is incorrect");
+  }
+  const values = [email, first_name, last_name, password];
   const pool = getPool();
   const client = await pool.connect();
   try {
     const result = await pool.query(
       `INSERT INTO public.users(
-        email, first_name, last_name)
-       VALUES ($1, $2, $3)
+        email, first_name, last_name,password_hash)
+       VALUES ($1, $2, $3,crypt($4, gen_salt('bf')))
        RETURNING id;`,
       values
     );

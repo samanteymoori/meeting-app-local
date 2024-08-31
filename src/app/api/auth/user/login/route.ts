@@ -9,8 +9,7 @@ const SECRET_KEY =
 export async function POST(req: NextRequest, res: NextResponse) {
   const requestBody = await req.json();
   const { username, password } = requestBody;
-  console.log({ requestBody });
-  const values = [username];
+  const values = [username, password];
   const pool = getPool();
   const client = await pool.connect();
   try {
@@ -18,7 +17,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
       `SELECT * FROM users u
       left join user_profiles up on u.id=up.user_id 
       left join user_profile_pictures upp on up.user_id=upp.user_id
-      WHERE email=$1 
+      WHERE email=$1 AND password_hash = crypt($2, password_hash)
       ORDER BY first_name`,
       values
     );
