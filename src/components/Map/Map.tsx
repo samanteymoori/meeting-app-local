@@ -130,6 +130,18 @@ const Map: React.FC = () => {
                   <h2 className="font-bold text-lg">
                     {selected.first_name} {selected.last_name}
                   </h2>
+                  <input
+                    onClick={() => {
+                      dispatch?.({
+                        type: homepageActions.pickPersonToMeet,
+                        payload: editableProfiles?.currentProfile,
+                      });
+                      setSelected(null);
+                    }}
+                    type={"button"}
+                    className="bg-green-500 mt-4 cursor-pointer text-white p-4   "
+                    value={"Meet " + selected.first_name}
+                  />
                 </div>
               </InfoWindow>
             )}
@@ -165,6 +177,18 @@ const Map: React.FC = () => {
                 >
                   <RoundedImage src={selected.image.src} size={"medium"} />
                   <h2 className="font-bold text-lg">{selected.name}</h2>
+                  <input
+                    onClick={() => {
+                      dispatch?.({
+                        type: homepageActions.pickPlaceToMeet,
+                        payload: editableProfiles?.currentLocation,
+                      });
+                      setSelected(null);
+                    }}
+                    type={"button"}
+                    className="bg-green-500 cursor-pointer text-white p-4   "
+                    value={"Meet at " + selected.name}
+                  />
                 </div>
               </InfoWindow>
             )}

@@ -78,8 +78,8 @@ const Default = () => {
                     {
                       <li className="flex">
                         <div className="self-center">
-                          {editableProfiles.currentProfile.first_name}{" "}
-                          {editableProfiles.currentProfile.last_name}
+                          {editableProfiles?.currentProfile?.first_name}{" "}
+                          {editableProfiles?.currentProfile?.last_name}
                         </div>
                         {(!editableProfiles.currentProfile?.status ||
                           editableProfiles.currentProfile?.status ===
