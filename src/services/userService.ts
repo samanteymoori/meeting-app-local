@@ -19,6 +19,15 @@ export class UserService {
       userDetail
     );
   };
+  updateLocation = async ({ location, id }: { location: any; id: string }) => {
+    return await this.routeApiClient.post(
+      `/api/user_profiles/${id}/location/update`,
+      {
+        location: { x: location.lat, y: location.lng },
+        id,
+      }
+    );
+  };
   getUser = async () => {
     return await this.routeApiClient.get<{
       item: ProfileType;

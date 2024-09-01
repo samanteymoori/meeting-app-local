@@ -4,6 +4,7 @@ import homepageActions, {
 } from "@/app/[lng]/(private)/(dashboard)/home/contexts/homepageActions";
 import { HomePageContext } from "@/app/[lng]/(private)/(dashboard)/home/contexts/HomePageContext";
 import { HomePageContextType } from "@/app/[lng]/(private)/(dashboard)/home/contexts/HomePageContextType";
+import { getUserService, UserService } from "@/services/userService";
 import {
   useLoadScript,
   GoogleMap,
@@ -45,6 +46,12 @@ const Map: React.FC = () => {
       navigator.geolocation.getCurrentPosition((position) => {
         const { latitude, longitude, accuracy } = position.coords;
         setCenter({ lat: latitude, lng: longitude, accuracy });
+        const userService = getUserService();
+        if (!editableProfiles?.authenticatedProfile.id) return;
+        userService.updateLocation({
+          id: editableProfiles?.authenticatedProfile.id,
+          location: { lat: latitude, lng: longitude, accuracy },
+        });
         dispatch?.({
           type: homepageActions.setGeoLocation,
           payload: { lat: latitude, lng: longitude, accuracy },
