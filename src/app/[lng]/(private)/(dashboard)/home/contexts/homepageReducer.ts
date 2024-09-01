@@ -7,8 +7,13 @@ import { PlaceType } from "@/types/PlaceType";
 const homepageReducer = (state: any, action: any) => {
   switch (action.type) {
     case homepageActions.setGeoLocation: {
+      const location = action.payload;
       return {
         ...state,
+        authenticatedProfile: {
+          ...state.authenticatedProfile,
+          location,
+        },
         currentLocation: action.payload,
       };
     }

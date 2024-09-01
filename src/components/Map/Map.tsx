@@ -10,7 +10,7 @@ import {
   Marker,
   InfoWindow,
 } from "@react-google-maps/api";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import RoundedImage from "../Profile/RoundedImage";
 
 const mapContainerStyle = {
@@ -28,12 +28,6 @@ const options = {
   zoomControl: true,
 };
 
-const locations = [
-  { lat: 49.2827, lng: -123.1207 },
-  { lat: 49.29, lng: -123.13 },
-  // Add more locations as needed
-];
-
 const Map: React.FC = () => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY, // Add your API key here
@@ -42,9 +36,21 @@ const Map: React.FC = () => {
 
   const { editableProfiles, dispatch } =
     useContext<HomePageContextType>(HomePageContext);
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const { latitude, longitude, accuracy } = position.coords;
+
+        dispatch?.({
+          type: homepageActions.setGeoLocation,
+          payload: { lat: latitude, lng: longitude, accuracy },
+        });
+      });
+    }
+  }, []);
   if (loadError) return <div>{"Error loading maps"}</div>;
   if (!isLoaded) return <div>{"Loading Maps"}</div>;
-
   return (
     <div className="rounded-lg ">
       <GoogleMap
@@ -57,7 +63,9 @@ const Map: React.FC = () => {
           <>
             {editableProfiles?.currentProfile && (
               <Marker
-                onClick={() => setSelected(editableProfiles?.currentProfile)}
+                onClick={() => {
+                  setSelected(editableProfiles?.currentProfile);
+                }}
                 position={{
                   lat: editableProfiles?.currentProfile?.location?.lat,
                   lng: editableProfiles?.currentProfile?.location?.lng,
@@ -65,17 +73,24 @@ const Map: React.FC = () => {
                 draggable={false}
               ></Marker>
             )}
-            {editableProfiles?.currentLocation && (
+            {editableProfiles?.authenticatedProfile?.location && (
               <Marker
-                onClick={() => {}}
-                position={editableProfiles?.currentLocation}
+                onClick={() => {
+                  setSelected(editableProfiles.authenticatedProfile);
+                }}
+                position={{
+                  lat: editableProfiles?.authenticatedProfile.location?.lat,
+                  lng: editableProfiles?.authenticatedProfile.location?.lng,
+                }}
                 draggable={false}
               ></Marker>
             )}
             {editableProfiles?.listOfProfiles &&
               editableProfiles?.listOfProfiles.map((person) => (
                 <Marker
-                  onClick={() => setSelected(person)}
+                  onClick={() => {
+                    setSelected(person);
+                  }}
                   key={person.id}
                   position={{
                     lat: person.location?.lat,
@@ -98,57 +113,15 @@ const Map: React.FC = () => {
                   }}
                   className=" text-center m-4 mt-0 "
                 >
-                  <RoundedImage src={selected.image.src} size={"medium"} />
+                  {selected?.image?.src && (
+                    <RoundedImage src={selected.image.src} size={"medium"} />
+                  )}
                   <h2 className="font-bold text-lg">
                     {selected.first_name} {selected.last_name}
                   </h2>
                 </div>
               </InfoWindow>
             )}
-            {/* {editableProfiles?.currentProfile && (
-            <Marker
-              onClick={() => {}}
-              position={{
-                lat: editableProfiles?.currentProfile?.location?.lat,
-                lng: editableProfiles?.currentProfile?.location?.lng,
-              }}
-              draggable={false}
-            >
-              <InfoWindow>{"test"}</InfoWindow>
-            </Marker>
-          )} */}
-            {/* {editableProfiles?.listOfProfiles &&
-            editableProfiles?.listOfProfiles.map((person) => (
-              <>
-                <div
-                  onClick={() => {
-                    dispatch?.({
-                      type: homepageActions.setProfile,
-                      payload: person,
-                    });
-                  }}
-                >
-                  <Marker
-                    position={{
-                      lat: person.location?.lat,
-                      lng: person.location?.lng,
-                    }}
-                    draggable={false}
-                  >
-                    <InfoWindow
-                    // onClick={() => {
-                    //   dispatch?.({
-                    //     type: homepageActions.setProfile,
-                    //     payload: person,
-                    //   });
-                    // }}
-                    >
-                      <RoundedImage src={person.image.src} size={"small"} />
-                    </InfoWindow>
-                  </Marker>
-                </div>
-              </>
-            ))} */}
           </>
         )}
         {editableProfiles?.step === meetingStep.book && (
