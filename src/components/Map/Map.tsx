@@ -18,13 +18,9 @@ const mapContainerStyle = {
   height: "100vh",
 };
 
-const center = {
-  lat: 49.2827, // Vancouver latitude
-  lng: -123.1207, // Vancouver longitude
-};
-
 const options = {
   disableDefaultUI: true,
+
   zoomControl: true,
 };
 
@@ -32,23 +28,31 @@ const Map: React.FC = () => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY, // Add your API key here
   });
+  const [center, setCenter] = useState<any>({
+    lat: 49.2827, // Vancouver latitude
+    lng: -123.1207, // Vancouver longitude
+  });
   const [selected, setSelected] = useState<any | null>(null);
 
   const { editableProfiles, dispatch } =
     useContext<HomePageContextType>(HomePageContext);
 
   useEffect(() => {
-    if (navigator.geolocation) {
+    if (
+      navigator.geolocation &&
+      !editableProfiles?.authenticatedProfile.location
+    ) {
       navigator.geolocation.getCurrentPosition((position) => {
         const { latitude, longitude, accuracy } = position.coords;
-
+        setCenter({ lat: latitude, lng: longitude, accuracy });
         dispatch?.({
           type: homepageActions.setGeoLocation,
           payload: { lat: latitude, lng: longitude, accuracy },
         });
       });
     }
-  }, []);
+  }, [editableProfiles?.authenticatedProfile]);
+
   if (loadError) return <div>{"Error loading maps"}</div>;
   if (!isLoaded) return <div>{"Loading Maps"}</div>;
   return (
