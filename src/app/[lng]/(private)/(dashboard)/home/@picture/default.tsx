@@ -50,7 +50,11 @@ const Default = () => {
         </div>
         <div className=" hidden md:grid grid-cols-2 w-full">
           <RoundedImage
-            src={editableProfiles?.currentProfile?.image?.src || ""}
+            src={
+              editableProfiles.meetingRecord?.url ||
+              editableProfiles?.currentProfile?.image?.src ||
+              ""
+            }
             size={"large-rounded"}
           />
           <RoundedImage

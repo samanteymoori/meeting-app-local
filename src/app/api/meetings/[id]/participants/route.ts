@@ -8,12 +8,12 @@ export async function GET(request: NextRequest, { params: { id } }: any) {
   try {
     const res = await pool.query(
       `
-      select m.*,u.*,up.location,p.address,u2.*,mp.meeting_id from meetings as m 
+      select m.*,u.*,up.location,p.address,u2.*,mp.meeting_id,upp.url from meetings as m 
       join places p on m.place_id=p.id
       join meeting_participants as  mp on m.id=mp.meeting_id 
       join users u on u.id=mp.user_id 
       join user_profiles up on u.id=up.user_id
-      join user_profile_pictures as upp on u.id=upp.user_id
+      join user_profile_pictures as upp on mp.meeting_participant_id=upp.user_id
       join users u2 on u2.id=mp.meeting_participant_id
       join users u3 on u3.id=mp.user_id
       and end_date is null and ( action is null or action !='cancel')
