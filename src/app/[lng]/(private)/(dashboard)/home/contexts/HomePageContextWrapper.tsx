@@ -1,4 +1,5 @@
 "use client";
+import useMeetings from "@/app/hooks/useMeetings";
 import { placesList } from "@/fixures/place-list";
 import { profileList } from "@/fixures/profile-list";
 import { getAuthService } from "@/services/authService";
@@ -21,6 +22,7 @@ const HomePageContextWrapper: React.FC<PropsWithChildren> = ({ children }) => {
     meetingPlace: null,
     step: meetingStep.find,
   }) as any;
+  useMeetings();
   const getUsers = async () => {
     const userService = getUserService();
     const users = await userService.getUsers();
@@ -47,33 +49,33 @@ const HomePageContextWrapper: React.FC<PropsWithChildren> = ({ children }) => {
       payload: places.rows?.[0],
     });
   };
-  const getAuthenticatedUser = async () => {
-    const authService = getAuthService();
-    const authenticatedUser = await authService.getAuthenticatedUser();
-    dispatch?.({
-      type: homepageActions.setAuthenticatedUser,
-      payload: authenticatedUser?.item,
-    });
+  // const getAuthenticatedUser = async () => {
+  //   const authService = getAuthService();
+  //   const authenticatedUser = await authService.getAuthenticatedUser();
+  //   dispatch?.({
+  //     type: homepageActions.setAuthenticatedUser,
+  //     payload: authenticatedUser?.item,
+  //   });
 
-    await getActiveMeetings(authenticatedUser.item?.username);
-  };
-  const getActiveMeetings = async (email: string) => {
-    const meetingService = getMeetingService();
-    meetingService.getActiveMeeting({ email }).then((response) => {
-      if (response.rows.length) {
-        dispatch?.({
-          type: homepageActions.setMeetingRecord,
-          payload: response.rows[0],
-        });
-        dispatch?.({
-          type: homepageActions.setStep,
-          payload: meetingStep.detail,
-        });
-      }
-    });
-  };
+  //   await getActiveMeetings(authenticatedUser.item?.username);
+  // };
+  // const getActiveMeetings = async (email: string) => {
+  //   const meetingService = getMeetingService();
+  //   meetingService.getActiveMeeting({ email }).then((response) => {
+  //     if (response.rows.length) {
+  //       dispatch?.({
+  //         type: homepageActions.setMeetingRecord,
+  //         payload: response.rows[0],
+  //       });
+  //       dispatch?.({
+  //         type: homepageActions.setStep,
+  //         payload: meetingStep.detail,
+  //       });
+  //     }
+  //   });
+  // };
   useEffect(() => {
-    getAuthenticatedUser();
+    // getAuthenticatedUser();
     getUsers();
     getPlaces();
   }, []);

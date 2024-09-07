@@ -2,8 +2,10 @@
 import UniversalDatePicker from "@/components/UniversalComponents/UniversalDatePicker";
 import { getMeetingService, MeetingService } from "@/services/meetingService";
 import { LatLng } from "leaflet";
+import moment from "moment";
+
 import { useRouter } from "next/navigation";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { FaCheckCircle, FaRegQuestionCircle } from "react-icons/fa";
 import homepageActions, { meetingStep } from "../contexts/homepageActions";
 import { HomePageContext } from "../contexts/HomePageContext";
@@ -11,10 +13,13 @@ import { HomePageContextType } from "../contexts/HomePageContextType";
 import PersonProfile from "./PersonProfile";
 import PlaceProfile from "./PlaceProfile";
 import { ImCancelCircle } from "react-icons/im";
+import { getAuthService } from "@/services/authService";
+import useMeetings from "@/app/hooks/useMeetings";
 
 const Default = () => {
   const { editableProfiles, dispatch } =
     useContext<HomePageContextType>(HomePageContext);
+  useMeetings();
   const router = useRouter();
   if (editableProfiles && editableProfiles.step === meetingStep.find) {
     return <PersonProfile showButton={true} />;
@@ -49,6 +54,7 @@ const Default = () => {
         payload: meetingStep.detail,
       });
     };
+
     return (
       <>
         <div></div>
@@ -68,7 +74,7 @@ const Default = () => {
                 </h1>
 
                 <h1 className="font-bold mt-4">
-                  {editableProfiles.meetingRecord.id}
+                  {editableProfiles.meetingRecord.meeting_id}
                 </h1>
                 <h2 className="self-center mt-4 text-green-400 text-xl">
                   Participants:
@@ -78,8 +84,22 @@ const Default = () => {
                     {
                       <li className="flex">
                         <div className="self-center">
-                          {editableProfiles?.currentProfile?.first_name}{" "}
-                          {editableProfiles?.currentProfile?.last_name}
+                          <>
+                            {editableProfiles.meetingRecord ? (
+                              <>
+                                {" "}
+                                {
+                                  editableProfiles.meetingRecord?.first_name
+                                }{" "}
+                                {editableProfiles.meetingRecord?.last_name}
+                              </>
+                            ) : (
+                              <>
+                                {editableProfiles?.currentProfile?.first_name}{" "}
+                                {editableProfiles?.currentProfile?.last_name}
+                              </>
+                            )}
+                          </>
                         </div>
                         {(!editableProfiles.currentProfile?.status ||
                           editableProfiles.currentProfile?.status ===
@@ -105,20 +125,26 @@ const Default = () => {
                   </ul>
                 </div>
                 <h1 className="font-bold text-green-400 mt-4">
-                  {editableProfiles.meetingRecord.meeting_date
-                    .toString()
-                    .substring(0, 10) +
-                    " " +
-                    editableProfiles.meetingRecord.meeting_time}
+                  {editableProfiles?.meetingRecord?.meeting_date &&
+                    moment(editableProfiles.meetingRecord.meeting_date).format(
+                      "yyyy-MM-DD hh:mm A"
+                    )}
                 </h1>
               </div>
             )}
             <h1 className="self-center mt-8 text-xl">Location:</h1>
             <div className="mt-4 text-lg text-green-500">
-              {editableProfiles.currentPlace.name}
+              {editableProfiles?.meetingRecord?.name ||
+                editableProfiles.currentPlace.name}
             </div>
-            <div className="mt-4">{editableProfiles.currentPlace.address}</div>
-            <div className="mt-4">{editableProfiles.currentPlace.phone}</div>
+            <div className="mt-4">
+              {editableProfiles?.meetingRecord?.address ||
+                editableProfiles.currentPlace.address}
+            </div>
+            <div className="mt-4">
+              {editableProfiles?.meetingRecord?.phone ||
+                editableProfiles.currentPlace.phone}
+            </div>
             {editableProfiles.step === meetingStep.meet && (
               <div className="flex mt-8">
                 <input
@@ -141,7 +167,7 @@ const Default = () => {
                       );
 
                       await meetingService.actionMeeting({
-                        meeting_id: editableProfiles.meetingRecord.id,
+                        meeting_id: editableProfiles.meetingRecord.meeting_id,
                         action: "cancel",
                       });
                       dispatch?.({

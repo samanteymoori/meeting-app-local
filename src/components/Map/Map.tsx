@@ -160,7 +160,7 @@ const Map: React.FC = () => {
                   draggable={false}
                 ></Marker>
               ))}
-            {selected && (
+            {selected && selected.location && (
               <div className="-mt-4">
                 <InfoWindow
                   position={selected.location}
@@ -213,7 +213,7 @@ const Map: React.FC = () => {
                   draggable={false}
                 ></Marker>
               ))}
-            {selected && (
+            {selected && selected.location && (
               <InfoWindow
                 position={selected.location}
                 onCloseClick={() => setSelected(null)}

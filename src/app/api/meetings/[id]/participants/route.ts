@@ -15,8 +15,9 @@ export async function GET(request: NextRequest, { params: { id } }: any) {
       join user_profiles up on u.id=up.user_id
       join user_profile_pictures as upp on u.id=upp.user_id
       join users u2 on u2.id=mp.meeting_participant_id
+      join users u3 on u3.id=mp.user_id
       and end_date is null and ( action is null or action !='cancel')
-      and u2.email=$1
+      and (u2.email=$1 or u3.email=$1)
 `,
       [id]
     );
