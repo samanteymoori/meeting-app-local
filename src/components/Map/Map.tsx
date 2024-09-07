@@ -52,6 +52,26 @@ const Map: React.FC = () => {
           id: editableProfiles?.authenticatedProfile.id,
           location: { lat: latitude, lng: longitude, accuracy },
         });
+        const service = new window.google.maps.places.PlacesService(
+          document.createElement("div")
+        );
+
+        const request: any = {
+          location: { lat: latitude, lng: longitude },
+          radius: "50", // Search within 50 meters
+        };
+
+        service.nearbySearch(request, (results: any, status: any) => {
+          if (
+            status === window.google.maps.places.PlacesServiceStatus.OK &&
+            results.length > 0
+          ) {
+            // setPlaceInfo(results[0]); // Get the first place's info
+          } else {
+            // setPlaceInfo(null);
+          }
+        });
+
         dispatch?.({
           type: homepageActions.setGeoLocation,
           payload: { lat: latitude, lng: longitude, accuracy },
