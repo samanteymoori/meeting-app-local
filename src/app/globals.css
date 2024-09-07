@@ -4,7 +4,9 @@
 
 :root {
 }
-
+.gm-style-iw-a {
+  margin-top: -2.5rem;
+}
 @media (prefers-color-scheme: dark) {
   :root {
   }
