@@ -37,7 +37,12 @@ const Map: React.FC = () => {
 
   const { editableProfiles, dispatch } =
     useContext<HomePageContextType>(HomePageContext);
+  useEffect(() => {
+    if (editableProfiles?.currentProfile.location)
+      setCenter(editableProfiles?.currentProfile.location);
 
+    setSelected(editableProfiles?.currentProfile);
+  }, [editableProfiles?.currentProfile]);
   useEffect(() => {
     if (
       navigator.geolocation &&
@@ -131,39 +136,41 @@ const Map: React.FC = () => {
                 ></Marker>
               ))}
             {selected && (
-              <InfoWindow
-                position={selected.location}
-                onCloseClick={() => setSelected(null)}
-              >
-                <div
-                  onClick={() => {
-                    dispatch?.({
-                      type: homepageActions.setProfile,
-                      payload: selected,
-                    });
-                  }}
-                  className=" text-center m-4 mt-0 "
+              <div className="-mt-4">
+                <InfoWindow
+                  position={selected.location}
+                  onCloseClick={() => setSelected(null)}
                 >
-                  {selected?.image?.src && (
-                    <RoundedImage src={selected.image.src} size={"medium"} />
-                  )}
-                  <h2 className="font-bold text-lg">
-                    {selected.first_name} {selected.last_name}
-                  </h2>
-                  <input
+                  <div
                     onClick={() => {
                       dispatch?.({
-                        type: homepageActions.pickPersonToMeet,
-                        payload: editableProfiles?.currentProfile,
+                        type: homepageActions.setProfile,
+                        payload: selected,
                       });
-                      setSelected(null);
                     }}
-                    type={"button"}
-                    className="bg-green-500 mt-4 cursor-pointer text-white p-4   "
-                    value={"Meet " + selected.first_name}
-                  />
-                </div>
-              </InfoWindow>
+                    className=" text-center m-4 mt-0 "
+                  >
+                    {selected?.image?.src && (
+                      <RoundedImage src={selected.image.src} size={"medium"} />
+                    )}
+                    <h2 className="font-bold text-lg">
+                      {selected.first_name} {selected.last_name}
+                    </h2>
+                    <input
+                      onClick={() => {
+                        dispatch?.({
+                          type: homepageActions.pickPersonToMeet,
+                          payload: editableProfiles?.currentProfile,
+                        });
+                        setSelected(null);
+                      }}
+                      type={"button"}
+                      className="bg-green-500 mt-4 cursor-pointer text-white p-4   "
+                      value={"Meet " + selected.first_name}
+                    />
+                  </div>
+                </InfoWindow>
+              </div>
             )}
           </>
         )}
