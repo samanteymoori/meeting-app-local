@@ -44,6 +44,13 @@ const Map: React.FC = () => {
     ) {
       setCenter(editableProfiles?.currentProfile.location);
       setSelected(editableProfiles?.currentProfile);
+    } else if (
+      editableProfiles?.step === meetingStep.book &&
+      editableProfiles?.currentPlace.location
+    ) {
+      if (editableProfiles?.currentPlace?.location) {
+        setCenter(editableProfiles?.currentPlace.location);
+      }
     }
   }, [
     editableProfiles?.currentProfile,
@@ -54,7 +61,8 @@ const Map: React.FC = () => {
     setSelected(null);
   }, [editableProfiles?.step]);
   useEffect(() => {
-    if (!selected) return;
+    if (!selected?.location || !selected.name) return;
+
     dispatch?.({
       type: homepageActions.setPlace,
       payload: selected,
