@@ -14,8 +14,8 @@ const Default = () => {
     <div className="col-span-6 h-full  h-full bg-white  grid grid-cols-1">
       <div className="bg-white rounded-lg">
         <div className="">
-          {editableProfiles?.step &&
-            editableProfiles?.step < meetingStep.meet && <Map />}
+          {(editableProfiles?.step === meetingStep.find ||
+            editableProfiles?.step === meetingStep.book) && <Map />}
         </div>
       </div>
     </div>
