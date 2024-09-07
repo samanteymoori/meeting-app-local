@@ -1,5 +1,5 @@
 import { PlaceType } from "@/types/PlaceType";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import homepageActions, { meetingStep } from "../contexts/homepageActions";
 import { HomePageContext } from "../contexts/HomePageContext";
 import { HomePageContextType } from "../contexts/HomePageContextType";

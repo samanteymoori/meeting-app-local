@@ -38,11 +38,28 @@ const Map: React.FC = () => {
   const { editableProfiles, dispatch } =
     useContext<HomePageContextType>(HomePageContext);
   useEffect(() => {
-    if (editableProfiles?.currentProfile.location)
+    if (
+      editableProfiles?.step === meetingStep.find &&
+      editableProfiles?.currentProfile?.location
+    ) {
       setCenter(editableProfiles?.currentProfile.location);
-
-    setSelected(editableProfiles?.currentProfile);
-  }, [editableProfiles?.currentProfile]);
+      setSelected(editableProfiles?.currentProfile);
+    }
+  }, [
+    editableProfiles?.currentProfile,
+    editableProfiles?.currentPlace,
+    editableProfiles?.step,
+  ]);
+  useEffect(() => {
+    setSelected(null);
+  }, [editableProfiles?.step]);
+  useEffect(() => {
+    if (!selected) return;
+    dispatch?.({
+      type: homepageActions.setPlace,
+      payload: selected,
+    });
+  }, [selected]);
   useEffect(() => {
     if (
       navigator.geolocation &&
@@ -57,25 +74,25 @@ const Map: React.FC = () => {
           id: editableProfiles?.authenticatedProfile.id,
           location: { lat: latitude, lng: longitude, accuracy },
         });
-        const service = new window.google.maps.places.PlacesService(
-          document.createElement("div")
-        );
+        // const service = new window.google.maps.places.PlacesService(
+        //   document.createElement("div")
+        // );
 
         const request: any = {
           location: { lat: latitude, lng: longitude },
           radius: "50", // Search within 50 meters
         };
 
-        service.nearbySearch(request, (results: any, status: any) => {
-          if (
-            status === window.google.maps.places.PlacesServiceStatus.OK &&
-            results.length > 0
-          ) {
-            // setPlaceInfo(results[0]); // Get the first place's info
-          } else {
-            // setPlaceInfo(null);
-          }
-        });
+        // service.nearbySearch(request, (results: any, status: any) => {
+        //   if (
+        //     status === window.google.maps.places.PlacesServiceStatus.OK &&
+        //     results.length > 0
+        //   ) {
+        //     // setPlaceInfo(results[0]); // Get the first place's info
+        //   } else {
+        //     // setPlaceInfo(null);
+        //   }
+        // });
 
         dispatch?.({
           type: homepageActions.setGeoLocation,
@@ -193,15 +210,7 @@ const Map: React.FC = () => {
                 position={selected.location}
                 onCloseClick={() => setSelected(null)}
               >
-                <div
-                  onClick={() => {
-                    dispatch?.({
-                      type: homepageActions.setPlace,
-                      payload: selected,
-                    });
-                  }}
-                  className=" text-center m-4 mt-0 "
-                >
+                <div className=" text-center m-4 mt-0 ">
                   <RoundedImage src={selected.image.src} size={"medium"} />
                   <h2 className="font-bold text-lg">{selected.name}</h2>
                   <input
