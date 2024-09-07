@@ -40,11 +40,19 @@ const Default = () => {
       <div className="md:h-[25rem]  cols-span-2">
         <div className="my-4 flex  md:hidden w-full">
           <RoundedImage
-            src={editableProfiles?.currentProfile?.image?.src || ""}
+            src={
+              editableProfiles.meetingRecord?.url ||
+              editableProfiles?.currentProfile?.image?.src ||
+              ""
+            }
             size={"medium"}
           />
           <RoundedImage
-            src={editableProfiles?.currentPlace?.image?.src || ""}
+            src={
+              editableProfiles.meetingRecord?.place_url ||
+              editableProfiles?.currentPlace?.image?.src ||
+              ""
+            }
             size={"medium"}
           />
         </div>
@@ -58,7 +66,11 @@ const Default = () => {
             size={"large-rounded"}
           />
           <RoundedImage
-            src={editableProfiles?.currentPlace?.image?.src || ""}
+            src={
+              editableProfiles.meetingRecord?.place_url ||
+              editableProfiles?.currentPlace?.image?.src ||
+              ""
+            }
             size={"large-rounded"}
           />
         </div>
