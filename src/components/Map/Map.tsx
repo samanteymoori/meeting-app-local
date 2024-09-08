@@ -59,7 +59,7 @@ const Map: React.FC = () => {
       editableProfiles?.step === meetingStep.detail &&
       editableProfiles?.meetingRecord?.place_location
     ) {
-      // setZoom(17);
+      setZoom(17);
       setSelected(
         editableProfiles.places.find(
           (p) => p.id === editableProfiles.meetingRecord.place_id
