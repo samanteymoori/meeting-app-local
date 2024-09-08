@@ -1,6 +1,5 @@
 import { getPool } from "@/helper/dbConnection";
 import { NextRequest, NextResponse } from "next/server";
-import { ProfileType } from "@/types/ProfileType";
 
 export async function GET(request: NextRequest, { params: { id } }: any) {
   const pool = getPool();
