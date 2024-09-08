@@ -1,5 +1,7 @@
 enum homepageActions {
   setPlace,
+  setDirections,
+  removeDirections,
   cancelMeeting,
   setPlaces,
   setProfile,

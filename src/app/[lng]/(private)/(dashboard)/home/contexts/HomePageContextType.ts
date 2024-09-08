@@ -3,6 +3,7 @@ import { ProfileType } from "@/types/ProfileType";
 import homepageActions, { meetingStep } from "./homepageActions";
 
 export type ProfileState = {
+  directions: any;
   listOfProfiles: ProfileType[];
   currentProfile: ProfileType;
   currentPlace: PlaceType;

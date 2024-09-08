@@ -10,6 +10,7 @@ import {
   GoogleMap,
   Marker,
   InfoWindow,
+  DirectionsRenderer,
 } from "@react-google-maps/api";
 import React, { useContext, useEffect, useState } from "react";
 import RoundedImage from "../Profile/RoundedImage";
@@ -29,14 +30,17 @@ const Map: React.FC = () => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY, // Add your API key here
   });
+
   const [center, setCenter] = useState<any>({
     lat: 49.2827, // Vancouver latitude
     lng: -123.1207, // Vancouver longitude
   });
   const [selected, setSelected] = useState<any | null>(null);
+  const [zoom, setZoom] = useState<number>(15);
 
   const { editableProfiles, dispatch } =
     useContext<HomePageContextType>(HomePageContext);
+
   useEffect(() => {
     if (
       editableProfiles?.step === meetingStep.find &&
@@ -51,14 +55,39 @@ const Map: React.FC = () => {
       if (editableProfiles?.currentPlace?.location) {
         setCenter(editableProfiles?.currentPlace.location);
       }
+    } else if (
+      editableProfiles?.step === meetingStep.detail &&
+      editableProfiles?.meetingRecord?.place_location
+    ) {
+      // setZoom(17);
+      setSelected(
+        editableProfiles.places.find(
+          (p) => p.id === editableProfiles.meetingRecord.place_id
+        )
+      );
+      setCenter({
+        lat: editableProfiles.meetingRecord.place_location.x,
+        lng: editableProfiles.meetingRecord.place_location.y,
+      });
     }
   }, [
     editableProfiles?.currentProfile,
     editableProfiles?.currentPlace,
     editableProfiles?.step,
+    editableProfiles?.meetingRecord?.place_location,
   ]);
+
   useEffect(() => {
     setSelected(null);
+    if (
+      editableProfiles?.step === meetingStep.detail &&
+      editableProfiles?.meetingRecord?.location
+    ) {
+      // if (editableProfiles?.meetingRecord?.place_location) {
+      //   alert(JSON.stringify(editableProfiles?.meetingRecord?.place_location));
+      //   setCenter(editableProfiles?.meetingRecord?.place_location);
+      // }
+    }
   }, [editableProfiles?.step]);
   useEffect(() => {
     if (!selected?.location || !selected.name) return;
@@ -69,6 +98,7 @@ const Map: React.FC = () => {
     });
   }, [selected]);
   useEffect(() => {
+    if (editableProfiles?.step === meetingStep.detail) return;
     if (
       navigator.geolocation &&
       !editableProfiles?.authenticatedProfile.location
@@ -116,10 +146,13 @@ const Map: React.FC = () => {
     <div className="rounded-lg ">
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
-        zoom={15}
+        zoom={zoom}
         center={center}
         options={options}
       >
+        {editableProfiles?.directions && (
+          <DirectionsRenderer directions={editableProfiles?.directions} />
+        )}
         {editableProfiles?.step === meetingStep.find && (
           <>
             {editableProfiles?.currentProfile && (
@@ -199,20 +232,27 @@ const Map: React.FC = () => {
             )}
           </>
         )}
-        {editableProfiles?.step === meetingStep.book && (
+        {(editableProfiles?.step === meetingStep.book ||
+          editableProfiles?.step === meetingStep.detail) && (
           <>
             {editableProfiles?.places &&
-              editableProfiles?.places.map((place) => (
-                <Marker
-                  onClick={() => setSelected(place)}
-                  key={place.id}
-                  position={{
-                    lat: place.location?.lat,
-                    lng: place.location?.lng,
-                  }}
-                  draggable={false}
-                ></Marker>
-              ))}
+              editableProfiles?.places
+                ?.filter(
+                  (p) =>
+                    p.id === editableProfiles?.meetingRecord?.place_id ||
+                    editableProfiles.step !== meetingStep.detail
+                )
+                .map((place) => (
+                  <Marker
+                    onClick={() => setSelected(place)}
+                    key={place.id}
+                    position={{
+                      lat: place.location?.lat,
+                      lng: place.location?.lng,
+                    }}
+                    draggable={false}
+                  ></Marker>
+                ))}
             {selected && selected.location && (
               <InfoWindow
                 position={selected.location}
@@ -221,18 +261,20 @@ const Map: React.FC = () => {
                 <div className=" text-center m-4 mt-0 ">
                   <RoundedImage src={selected.image.src} size={"medium"} />
                   <h2 className="font-bold text-lg">{selected.name}</h2>
-                  <input
-                    onClick={() => {
-                      dispatch?.({
-                        type: homepageActions.pickPlaceToMeet,
-                        payload: editableProfiles?.currentLocation,
-                      });
-                      setSelected(null);
-                    }}
-                    type={"button"}
-                    className="bg-green-500 cursor-pointer text-white p-4   "
-                    value={"Meet at " + selected.name}
-                  />
+                  {editableProfiles.step !== meetingStep.detail && (
+                    <input
+                      onClick={() => {
+                        dispatch?.({
+                          type: homepageActions.pickPlaceToMeet,
+                          payload: editableProfiles?.currentLocation,
+                        });
+                        setSelected(null);
+                      }}
+                      type={"button"}
+                      className="bg-green-500 cursor-pointer text-white p-4   "
+                      value={"Meet at " + selected.name}
+                    />
+                  )}
                 </div>
               </InfoWindow>
             )}

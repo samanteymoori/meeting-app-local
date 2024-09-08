@@ -89,6 +89,12 @@ const homepageReducer = (state: any, action: any) => {
       );
       return { ...state, authenticatedProfile: action.payload, listOfProfiles };
     }
+    case homepageActions.setDirections: {
+      return { ...state, directions: action.payload };
+    }
+    case homepageActions.removeDirections: {
+      return { ...state, directions: null };
+    }
     case homepageActions.setPlace: {
       return {
         ...state,

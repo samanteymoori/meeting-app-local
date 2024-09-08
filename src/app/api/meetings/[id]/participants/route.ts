@@ -7,7 +7,7 @@ export async function GET(request: NextRequest, { params: { id } }: any) {
   try {
     const res = await pool.query(
       `
-      select m.*,u.first_name as owner_first_name,u.last_name as owner_last_name,
+      select p.location as place_location,m.*,u.first_name as owner_first_name,u.last_name as owner_last_name,
       u.*,up.location,p.address,u2.*,mp.meeting_id,upp.url,
       p.name,p.phone,pp.url as place_url,upp_owner.url as owner_url
       from meetings as m 

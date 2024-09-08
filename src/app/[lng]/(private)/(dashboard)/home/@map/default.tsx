@@ -15,7 +15,8 @@ const Default = () => {
       <div className="bg-white rounded-lg">
         <div className="">
           {(editableProfiles?.step === meetingStep.find ||
-            editableProfiles?.step === meetingStep.book) && <Map />}
+            editableProfiles?.step === meetingStep.book ||
+            editableProfiles?.step === meetingStep.detail) && <Map />}
         </div>
       </div>
     </div>
