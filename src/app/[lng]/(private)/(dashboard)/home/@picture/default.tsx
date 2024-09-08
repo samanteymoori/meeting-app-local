@@ -41,7 +41,10 @@ const Default = () => {
         <div className="my-4 flex  md:hidden w-full">
           <RoundedImage
             src={
-              editableProfiles.meetingRecord?.url ||
+              (editableProfiles.authenticatedProfile.id ===
+              editableProfiles.meetingRecord?.creator_user_id
+                ? editableProfiles.meetingRecord?.url
+                : editableProfiles.meetingRecord?.owner_url) ||
               editableProfiles?.currentProfile?.image?.src ||
               ""
             }
@@ -59,7 +62,10 @@ const Default = () => {
         <div className=" hidden md:grid grid-cols-2 w-full">
           <RoundedImage
             src={
-              editableProfiles.meetingRecord?.url ||
+              (editableProfiles.authenticatedProfile.id ===
+              editableProfiles.meetingRecord?.creator_user_id
+                ? editableProfiles.meetingRecord?.url
+                : editableProfiles.meetingRecord?.owner_url) ||
               editableProfiles?.currentProfile?.image?.src ||
               ""
             }

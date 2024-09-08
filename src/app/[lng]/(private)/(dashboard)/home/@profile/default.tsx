@@ -87,11 +87,29 @@ const Default = () => {
                           <>
                             {editableProfiles.meetingRecord ? (
                               <>
-                                {" "}
-                                {
-                                  editableProfiles.meetingRecord?.first_name
-                                }{" "}
-                                {editableProfiles.meetingRecord?.last_name}
+                                {editableProfiles.authenticatedProfile.id ===
+                                editableProfiles.meetingRecord
+                                  ?.creator_user_id ? (
+                                  <>
+                                    {" "}
+                                    {
+                                      editableProfiles.meetingRecord?.first_name
+                                    }{" "}
+                                    {editableProfiles.meetingRecord?.last_name}
+                                  </>
+                                ) : (
+                                  <>
+                                    {" "}
+                                    {
+                                      editableProfiles.meetingRecord
+                                        ?.owner_first_name
+                                    }{" "}
+                                    {
+                                      editableProfiles.meetingRecord
+                                        ?.owner_last_name
+                                    }
+                                  </>
+                                )}
                               </>
                             ) : (
                               <>
