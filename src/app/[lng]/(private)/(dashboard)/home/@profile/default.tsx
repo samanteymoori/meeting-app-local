@@ -15,6 +15,7 @@ import PlaceProfile from "./PlaceProfile";
 import { ImCancelCircle } from "react-icons/im";
 import { getAuthService } from "@/services/authService";
 import useMeetings from "@/app/hooks/useMeetings";
+import MeetingDecision from "@/components/Decision/MeetingDecision";
 
 const Default = () => {
   const { editableProfiles, dispatch } =
@@ -178,25 +179,30 @@ const Default = () => {
             {editableProfiles.step === meetingStep.detail && (
               <div className="col-span-2 mt-8 xl:col-span-4 flex">
                 <div className="mx-auto">
-                  <input
-                    onClick={async () => {
-                      const meetingService = getMeetingService(
-                        window.location.href
-                      );
+                  {editableProfiles.meetingRecord.creator_user_id ===
+                  editableProfiles.authenticatedProfile.id ? (
+                    <input
+                      onClick={async () => {
+                        const meetingService = getMeetingService(
+                          window.location.href
+                        );
 
-                      await meetingService.actionMeeting({
-                        meeting_id: editableProfiles.meetingRecord.meeting_id,
-                        action: "cancel",
-                      });
-                      dispatch?.({
-                        type: homepageActions.cancelMeeting,
-                        payload: editableProfiles.authenticatedProfile.id,
-                      });
-                    }}
-                    type={"button"}
-                    className="bg-red-500 cursor-pointer text-white p-4   "
-                    value={"Cancel"}
-                  />
+                        await meetingService.actionMeeting({
+                          meeting_id: editableProfiles.meetingRecord.meeting_id,
+                          action: "cancel",
+                        });
+                        dispatch?.({
+                          type: homepageActions.cancelMeeting,
+                          payload: editableProfiles.authenticatedProfile.id,
+                        });
+                      }}
+                      type={"button"}
+                      className="bg-red-500 cursor-pointer text-white p-4   "
+                      value={"Cancel"}
+                    />
+                  ) : (
+                    <MeetingDecision />
+                  )}
                 </div>
               </div>
             )}

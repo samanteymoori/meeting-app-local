@@ -26,16 +26,36 @@ const PersonProfile: React.FC<Props> = ({ showButton }) => {
         <h1 className="col-span-2 capitalize xl:col-span-4 text-2xl text-green-500 ">
           {first_name} {last_name}
         </h1>
-        <fieldset className="font-bold">Weight</fieldset>
-        <fieldset className="">{weight}</fieldset>
-        <fieldset className="font-bold">Height</fieldset>
-        <fieldset>{height}</fieldset>
-        <fieldset className="font-bold">Hobbies</fieldset>
-        <fieldset>{hobbies}</fieldset>
-        <fieldset className="font-bold">{"Education"}</fieldset>
-        <fieldset>{education}</fieldset>
-        <fieldset className="font-bold">{"Job"}</fieldset>
-        <fieldset>{job}</fieldset>
+        {weight && (
+          <>
+            <fieldset className="font-bold">Weight</fieldset>
+            <fieldset className="">{weight}</fieldset>
+          </>
+        )}
+        {height && (
+          <>
+            <fieldset className="font-bold">Height</fieldset>
+            <fieldset>{height}</fieldset>{" "}
+          </>
+        )}
+        {hobbies && (
+          <>
+            <fieldset className="font-bold">Hobbies</fieldset>
+            <fieldset>{hobbies}</fieldset>
+          </>
+        )}
+        {education && (
+          <>
+            <fieldset className="font-bold">{"Education"}</fieldset>
+            <fieldset>{education}</fieldset>
+          </>
+        )}
+        {education && (
+          <>
+            <fieldset className="font-bold">{"Job"}</fieldset>
+            <fieldset>{job}</fieldset>
+          </>
+        )}
         {showButton && (
           <div className="col-span-2 xl:col-span-4 flex">
             <div className="mx-auto">
