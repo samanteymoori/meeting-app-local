@@ -1,4 +1,8 @@
+import homepageActions from "@/app/[lng]/(private)/(dashboard)/home/contexts/homepageActions";
+import { HomePageContext } from "@/app/[lng]/(private)/(dashboard)/home/contexts/HomePageContext";
+import { HomePageContextType } from "@/app/[lng]/(private)/(dashboard)/home/contexts/HomePageContextType";
 import { getMeetingService } from "@/services/meetingService";
+import { useContext } from "react";
 import UniversalButton from "../UniversalComponents/UniversalButton";
 type Props = {
   meeting_id: string;
@@ -12,6 +16,8 @@ const MeetingDecision: React.FC<Props> = ({
   update,
   status,
 }: Props) => {
+  const { editableProfiles, dispatch } =
+    useContext<HomePageContextType>(HomePageContext);
   return (
     <div className="flex gap-4">
       <UniversalButton
@@ -33,11 +39,21 @@ const MeetingDecision: React.FC<Props> = ({
         className={` ${status !== "decline" && "opacity-50"} bg-red-400`}
         value={"Decline"}
         onClick={async () => {
+          if (!confirm("Are you sure?")) return;
           const meetingService = getMeetingService();
           await meetingService.actionMeetingParticipant({
             meeting_id,
             meeting_participant_id,
             action: "decline",
+          });
+
+          await meetingService.actionMeeting({
+            meeting_id,
+            action: "cancel",
+          });
+          dispatch?.({
+            type: homepageActions.cancelMeeting,
+            payload: editableProfiles?.authenticatedProfile.id,
           });
           update?.();
         }}
