@@ -8,6 +8,7 @@ export type ProfileState = {
   currentProfile: ProfileType;
   currentPlace: PlaceType;
   authenticatedProfile: ProfileType;
+  updateStatus: number | null;
   places: PlaceType[];
   meetingPlace: PlaceType | null | undefined;
   meetingDate: any;

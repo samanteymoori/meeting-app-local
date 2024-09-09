@@ -22,6 +22,12 @@ const Default = () => {
     useContext<HomePageContextType>(HomePageContext);
   useMeetings();
   const router = useRouter();
+  const updateStatus = () => {
+    dispatch?.({
+      type: homepageActions.updateStatus,
+      payload: new Date().getTime(),
+    });
+  };
   if (editableProfiles && editableProfiles.step === meetingStep.find) {
     return <PersonProfile showButton={true} />;
   }
@@ -201,7 +207,17 @@ const Default = () => {
                       value={"Cancel"}
                     />
                   ) : (
-                    <MeetingDecision />
+                    <MeetingDecision
+                      meeting_id={editableProfiles.meetingRecord.meeting_id}
+                      meeting_participant_id={
+                        editableProfiles.meetingRecord.meeting_participant_id
+                      }
+                      status={
+                        editableProfiles.meetingRecord
+                          .meeting_participant_status
+                      }
+                      update={updateStatus}
+                    />
                   )}
                 </div>
               </div>

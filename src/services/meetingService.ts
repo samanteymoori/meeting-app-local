@@ -39,8 +39,22 @@ export class MeetingService {
       {}
     );
   };
-}
 
+  actionMeetingParticipant = async ({
+    meeting_id,
+    meeting_participant_id,
+    action,
+  }: {
+    meeting_id: string;
+    meeting_participant_id: string;
+    action: string;
+  }) => {
+    return await this.routeApiClient.post<any>(
+      `/api/meeting_participants/meeting/${meeting_id}/${meeting_participant_id}/${action}`,
+      {}
+    );
+  };
+}
 export const getMeetingService = (url?: string): MeetingService => {
   const baseUrl = url || window?.location?.origin;
 

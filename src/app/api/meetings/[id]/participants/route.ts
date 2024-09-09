@@ -9,7 +9,7 @@ export async function GET(request: NextRequest, { params: { id } }: any) {
       `
       select p.location as place_location,m.*,u.first_name as owner_first_name,u.last_name as owner_last_name,
       u.*,up.location,p.address,u2.*,mp.meeting_id,upp.url,
-      p.name,p.phone,pp.url as place_url,upp_owner.url as owner_url
+      p.name,p.phone,pp.url as place_url,upp_owner.url as owner_url,mp.meeting_participant_id,mp.status as meeting_participant_status
       from meetings as m 
       join places p on m.place_id=p.id
       join place_pictures pp on  p.id=pp.place_id

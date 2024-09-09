@@ -63,6 +63,9 @@ const homepageReducer = (state: any, action: any) => {
         step: meetingStep.meet,
       };
     }
+    case homepageActions.updateStatus: {
+      return { ...state, updateStatus: action.payload };
+    }
     case homepageActions.initProfiles: {
       return {
         ...state,

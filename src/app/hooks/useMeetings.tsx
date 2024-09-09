@@ -40,7 +40,7 @@ const useMeetings = () => {
   };
   useEffect(() => {
     getAuthenticatedUser();
-  }, [editableProfiles?.step]);
+  }, [editableProfiles?.step, editableProfiles?.updateStatus]);
 
   const getAuthenticatedUser = async () => {
     const authService = getAuthService();

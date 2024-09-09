@@ -16,6 +16,7 @@ enum homepageActions {
   setMeetingDate,
   setMeetingTime,
   setMeetingRecord,
+  updateStatus,
 }
 export enum meetingStep {
   find = 0,
