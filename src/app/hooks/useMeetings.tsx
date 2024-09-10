@@ -1,5 +1,6 @@
 import { getAuthService } from "@/services/authService";
 import { getMeetingService } from "@/services/meetingService";
+import { getUserService } from "@/services/userService";
 import { useContext, useEffect, useState } from "react";
 import homepageActions, {
   meetingStep,
@@ -49,8 +50,22 @@ const useMeetings = () => {
       type: homepageActions.setAuthenticatedUser,
       payload: authenticatedUser?.item,
     });
-
+    if (authenticatedUser?.item?.id) {
+      await getUsers(authenticatedUser?.item?.id);
+    }
     await getActiveMeetings(authenticatedUser.item?.username);
+  };
+  const getUsers = async (authenticatedUserId: string) => {
+    const userService = getUserService();
+    const users = await userService.getUsers(authenticatedUserId);
+    dispatch?.({
+      type: homepageActions.setProfiles,
+      payload: users.rows,
+    });
+    dispatch?.({
+      type: homepageActions.setProfile,
+      payload: users.rows?.[0],
+    });
   };
   const getActiveMeetings = async (email: string) => {
     const meetingService = getMeetingService();

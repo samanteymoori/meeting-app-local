@@ -7,11 +7,11 @@ export class UserService {
   constructor(baseUrl: string) {
     this.routeApiClient = new RouteApiClient(baseUrl);
   }
-  getUsers = async () => {
+  getUsers = async (authenticateduserId: string) => {
     return await this.routeApiClient.get<{
       rows: ProfileType[];
       status: number;
-    }>(`/api/user_profiles`, {});
+    }>(`/api/user_profiles/nearby/${authenticateduserId}`, {});
   };
   updateUserDetail = async (userDetail: ProfileType) => {
     return await this.routeApiClient.post(

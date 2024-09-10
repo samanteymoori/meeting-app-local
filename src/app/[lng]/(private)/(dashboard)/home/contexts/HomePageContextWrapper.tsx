@@ -23,19 +23,7 @@ const HomePageContextWrapper: React.FC<PropsWithChildren> = ({ children }) => {
     step: meetingStep.find,
   }) as any;
   useMeetings();
-  const getUsers = async () => {
-    const userService = getUserService();
-    const users = await userService.getUsers();
 
-    dispatch?.({
-      type: homepageActions.setProfiles,
-      payload: users.rows,
-    });
-    dispatch?.({
-      type: homepageActions.setProfile,
-      payload: users.rows?.[0],
-    });
-  };
   const getPlaces = async () => {
     const placeService = getPlaceService();
     const places = await placeService.getPlaces();
@@ -76,7 +64,6 @@ const HomePageContextWrapper: React.FC<PropsWithChildren> = ({ children }) => {
   // };
   useEffect(() => {
     // getAuthenticatedUser();
-    getUsers();
     getPlaces();
   }, []);
 
