@@ -104,8 +104,8 @@ const homepageReducer = (state: any, action: any) => {
         currentPlace: {
           ...action.payload,
           location: {
-            lat: action.payload.location.lat || action.payload.location.x,
-            lng: action.payload.location.lng || action.payload.location.y,
+            lat: action?.payload?.location?.lat || action.payload.location.x,
+            lng: action?.payload?.location?.lng || action.payload.location.y,
           },
           image: {
             src: action.payload.url,
@@ -150,8 +150,14 @@ const homepageReducer = (state: any, action: any) => {
         currentProfile: {
           ...action.payload,
           location: {
-            lat: action.payload.location.lat || action.payload.location.x,
-            lng: action.payload.location.lng || action.payload.location.y,
+            lat:
+              action?.payload?.location?.lat ||
+              action?.payload?.location?.x ||
+              45,
+            lng:
+              action?.payload?.location?.lng ||
+              action?.payload?.location?.y ||
+              45,
           },
           image: {
             src: action.payload.url,
