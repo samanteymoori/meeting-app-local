@@ -13,31 +13,37 @@ const useMeetings = () => {
     useContext<HomePageContextType>(HomePageContext);
 
   const getDirection = (meeting: any) => {
-    const directionsService = new google.maps.DirectionsService();
-    let origin: any = {
-      lat: editableProfiles?.authenticatedProfile.location?.x,
-      lng: editableProfiles?.authenticatedProfile.location?.y,
-    };
-    let destination = {
-      lat: meeting.place_location?.x,
-      lng: meeting.place_location?.y,
-    };
+    try {
+      const dirServices = google?.maps?.DirectionsService;
+      if (!dirServices) return;
+      const directionsService = new dirServices();
+      let origin: any = {
+        lat: editableProfiles?.authenticatedProfile.location?.x,
+        lng: editableProfiles?.authenticatedProfile.location?.y,
+      };
+      let destination = {
+        lat: meeting.place_location?.x,
+        lng: meeting.place_location?.y,
+      };
 
-    directionsService.route(
-      {
-        origin: origin,
-        destination: destination,
-        travelMode: google.maps.TravelMode.DRIVING,
-      },
-      (result, status) => {
-        if (status === google.maps.DirectionsStatus.OK) {
-          dispatch?.({
-            type: homepageActions.setDirections,
-            payload: result,
-          });
+      directionsService.route(
+        {
+          origin: origin,
+          destination: destination,
+          travelMode: google.maps.TravelMode.DRIVING,
+        },
+        (result, status) => {
+          if (status === google.maps.DirectionsStatus.OK) {
+            dispatch?.({
+              type: homepageActions.setDirections,
+              payload: result,
+            });
+          }
         }
-      }
-    );
+      );
+    } catch {
+      return;
+    }
   };
   useEffect(() => {
     getAuthenticatedUser();

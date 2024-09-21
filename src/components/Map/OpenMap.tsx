@@ -27,7 +27,7 @@ const Map: React.FC = (Map: MapProps) => {
     lng: -123.1207, // Vancouver longitude
   });
   const [selected, setSelected] = useState<any | null>(null);
-  const [zoom, setZoom] = useState<number>(15);
+  const [zoom, setZoom] = useState<number>(25);
 
   const { editableProfiles, dispatch } =
     useContext<HomePageContextType>(HomePageContext);
@@ -70,6 +70,9 @@ const Map: React.FC = (Map: MapProps) => {
 
   useEffect(() => {
     setSelected(null);
+    if (editableProfiles?.step === meetingStep.book) {
+      setSelected(editableProfiles.places?.[0]);
+    }
     if (
       editableProfiles?.step === meetingStep.detail &&
       editableProfiles?.meetingRecord?.location
@@ -134,163 +137,178 @@ const Map: React.FC = (Map: MapProps) => {
   if (editableProfiles?.step === meetingStep.meet) return <></>;
 
   return (
-    <div id="map">
-      <MapContainer
-        center={
-          editableProfiles?.currentProfile?.location ||
-          editableProfiles?.currentLocation || [49.2609, -123.1139]
-        }
-        zoom={zoom}
-        scrollWheelZoom={true}
-        style={{ height: "100vh", width: "calc(100vw - 4rem)" }}
-      >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
+    <>
+      <div id="map">
+        <MapContainer
+          center={selected || center}
+          zoom={zoom}
+          touchZoom={true}
+          scrollWheelZoom={true}
+          zoomControl={false}
+          style={{ height: "100vh", width: "calc(100vw - 4rem)" }}
+        >
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
 
-        {editableProfiles?.directions && (
-          <></>
-          // <DirectionsRenderer directions={editableProfiles?.directions} />
-        )}
-        {editableProfiles?.step === meetingStep.find && (
-          <>
-            {editableProfiles?.currentProfile && (
-              <>
-                <Marker
-                  eventHandlers={{
-                    click: () => setSelected(editableProfiles?.currentProfile),
-                  }}
-                  position={{
-                    lat: editableProfiles?.currentProfile?.location?.lat,
-                    lng: editableProfiles?.currentProfile?.location?.lng,
-                  }}
-                  draggable={false}
-                ></Marker>
-              </>
-            )}
-            {editableProfiles?.authenticatedProfile?.location && (
-              <Marker
-                eventHandlers={{
-                  click: () =>
-                    setSelected(editableProfiles.authenticatedProfile),
-                }}
-                position={{
-                  lat:
-                    editableProfiles?.authenticatedProfile?.location?.lat || 0,
-                  lng:
-                    editableProfiles?.authenticatedProfile?.location?.lng || 0,
-                }}
-                draggable={false}
-              ></Marker>
-            )}
-            {editableProfiles?.listOfProfiles &&
-              editableProfiles?.listOfProfiles.map((person) => (
-                <Marker
-                  eventHandlers={{
-                    click: () => setSelected(person),
-                  }}
-                  key={person.id}
-                  position={{
-                    lat: person.location?.lat,
-                    lng: person.location?.lng,
-                  }}
-                  draggable={false}
-                ></Marker>
-              ))}
-            {selected && selected.location && (
-              <div className="-mt-4">
-                <Popup
-                  position={selected.location}
-                  eventHandlers={{
-                    click: () => setSelected(null),
-                  }}
-                >
-                  <div
-                    onClick={(e) => {
-                      dispatch?.({
-                        type: homepageActions.setProfile,
-                        payload: selected,
-                      });
-                      e.stopPropagation();
-                    }}
-                    className=" text-center m-4 mt-0 "
-                  >
-                    {selected?.image?.src && (
-                      <RoundedImage src={selected.image.src} size={"medium"} />
-                    )}
-                    <h2 className="font-bold text-lg">
-                      {selected.first_name} {selected.last_name}
-                    </h2>
-                    <input
-                      onClick={(e) => {
-                        dispatch?.({
-                          type: homepageActions.pickPersonToMeet,
-                          payload: editableProfiles?.currentProfile,
-                        });
-                        setSelected(null);
-                        e.stopPropagation();
-                      }}
-                      type={"button"}
-                      className="bg-green-500 mt-4 cursor-pointer text-white p-4   "
-                      value={"Meet " + selected.first_name}
-                    />
-                  </div>
-                </Popup>
-              </div>
-            )}
-          </>
-        )}
-        {(editableProfiles?.step === meetingStep.book ||
-          editableProfiles?.step === meetingStep.detail) && (
-          <>
-            {editableProfiles?.places &&
-              editableProfiles?.places
-                ?.filter(
-                  (p) =>
-                    p.id === editableProfiles?.meetingRecord?.place_id ||
-                    editableProfiles.step !== meetingStep.detail
-                )
-                .map((place) => (
+          {editableProfiles?.directions && (
+            <></>
+            // <DirectionsRenderer directions={editableProfiles?.directions} />
+          )}
+          {editableProfiles?.step === meetingStep.find && (
+            <>
+              {editableProfiles?.currentProfile && (
+                <>
                   <Marker
-                    onClick={() => setSelected(place)}
-                    key={place.id}
+                    eventHandlers={{
+                      click: () =>
+                        setSelected(editableProfiles?.currentProfile),
+                    }}
                     position={{
-                      lat: place.location?.lat,
-                      lng: place.location?.lng,
+                      lat: editableProfiles?.currentProfile?.location?.lat,
+                      lng: editableProfiles?.currentProfile?.location?.lng,
+                    }}
+                    draggable={false}
+                  ></Marker>
+                </>
+              )}
+              {editableProfiles?.authenticatedProfile?.location && (
+                <Marker
+                  eventHandlers={{
+                    click: () =>
+                      setSelected(editableProfiles.authenticatedProfile),
+                  }}
+                  position={{
+                    lat:
+                      editableProfiles?.authenticatedProfile?.location?.lat ||
+                      0,
+                    lng:
+                      editableProfiles?.authenticatedProfile?.location?.lng ||
+                      0,
+                  }}
+                  draggable={false}
+                ></Marker>
+              )}
+              {editableProfiles?.listOfProfiles &&
+                editableProfiles?.listOfProfiles.map((person) => (
+                  <Marker
+                    eventHandlers={{
+                      click: () => setSelected(person),
+                    }}
+                    key={person.id}
+                    position={{
+                      lat: person.location?.lat,
+                      lng: person.location?.lng,
                     }}
                     draggable={false}
                   ></Marker>
                 ))}
-            {selected && selected.location && (
-              <Popup
-                position={selected.location}
-                onCloseClick={() => setSelected(null)}
-              >
-                <div className=" text-center m-4 mt-0 ">
-                  <RoundedImage src={selected.image.src} size={"medium"} />
-                  <h2 className="font-bold text-lg">{selected.name}</h2>
-                  {editableProfiles.step !== meetingStep.detail && (
-                    <input
-                      onClick={() => {
+              {selected && selected.location && (
+                <div className="-mt-4">
+                  <Popup
+                    position={selected.location}
+                    // eventHandlers={{
+                    //   click: () => setSelected(null),
+                    // }}
+                  >
+                    <div
+                      onClick={(e) => {
                         dispatch?.({
-                          type: homepageActions.pickPlaceToMeet,
-                          payload: editableProfiles?.currentLocation,
+                          type: homepageActions.setProfile,
+                          payload: selected,
                         });
-                        setSelected(null);
+                        e.stopPropagation();
                       }}
-                      type={"button"}
-                      className="bg-green-500 cursor-pointer text-white p-4   "
-                      value={"Meet at " + selected.name}
-                    />
-                  )}
+                      className=" text-center m-4 mt-0 "
+                    >
+                      {selected?.image?.src && (
+                        <RoundedImage
+                          src={selected.image.src}
+                          size={"medium"}
+                        />
+                      )}
+                      <h2 className="font-bold text-lg">
+                        {selected.first_name} {selected.last_name}
+                      </h2>
+                      <input
+                        onClick={(e) => {
+                          dispatch?.({
+                            type: homepageActions.pickPersonToMeet,
+                            payload: editableProfiles?.currentProfile,
+                          });
+                          // setSelected(null);
+                          e.stopPropagation();
+                        }}
+                        type={"button"}
+                        className="bg-green-500 mt-4 cursor-pointer text-white p-4   "
+                        value={"Meet " + selected.first_name}
+                      />
+                    </div>
+                  </Popup>
                 </div>
-              </Popup>
-            )}
-          </>
-        )}
-      </MapContainer>
-    </div>
+              )}
+            </>
+          )}
+          {(editableProfiles?.step === meetingStep.book ||
+            editableProfiles?.step === meetingStep.detail) && (
+            <>
+              {editableProfiles?.places &&
+                editableProfiles?.places
+                  ?.filter(
+                    (p) =>
+                      p.id === editableProfiles?.meetingRecord?.place_id ||
+                      editableProfiles.step !== meetingStep.detail
+                  )
+                  .map((place) => (
+                    <Marker
+                      eventHandlers={{
+                        click: () => {
+                          setSelected(place);
+                        },
+                      }}
+                      key={place.id}
+                      position={{
+                        lat: place.location?.lat,
+                        lng: place.location?.lng,
+                      }}
+                      draggable={false}
+                    ></Marker>
+                  ))}
+              {selected && selected.location && (
+                <Popup
+                  closeOnClick={false}
+                  autoClose={false}
+                  position={selected.location}
+                  // eventHandlers={{
+                  //   click: () => setSelected(null),
+                  // }}
+                >
+                  <div className=" text-center m-4 mt-0 ">
+                    <RoundedImage src={selected.image.src} size={"medium"} />
+                    <h2 className="font-bold text-lg">{selected.name}</h2>
+                    {editableProfiles.step !== meetingStep.detail && (
+                      <input
+                        onClick={() => {
+                          dispatch?.({
+                            type: homepageActions.pickPlaceToMeet,
+                            payload: editableProfiles?.currentLocation,
+                          });
+                          // setSelected(null);
+                        }}
+                        type={"button"}
+                        className="bg-green-500 cursor-pointer text-white p-4   "
+                        value={"Meet at " + selected.name}
+                      />
+                    )}
+                  </div>
+                </Popup>
+              )}
+            </>
+          )}
+        </MapContainer>
+      </div>
+    </>
   );
 };
 
