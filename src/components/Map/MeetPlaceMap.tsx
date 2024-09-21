@@ -45,7 +45,7 @@ const MeetPlaceMap: React.FC = (Map: MapProps) => {
         }
         zoom={zoom}
         scrollWheelZoom={true}
-        style={{ height: "100vh", width: "calc(100vw - 4rem)" }}
+        style={{ height: "100vh" }}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

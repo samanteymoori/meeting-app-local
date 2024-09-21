@@ -1,6 +1,12 @@
 "use client";
 
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  useMapEvents,
+} from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
@@ -12,6 +18,7 @@ import homepageActions, {
   meetingStep,
 } from "@/app/[lng]/(private)/(dashboard)/home/contexts/homepageActions";
 import { getUserService } from "@/services/userService";
+import { LocationIQProvider } from "leaflet-geosearch";
 
 interface MapProps {
   zoom?: number;
@@ -140,12 +147,14 @@ const Map: React.FC = (Map: MapProps) => {
     <>
       <div id="map">
         <MapContainer
+          zoomAnimation={true}
+          boxZoom={true}
           center={selected || center}
           zoom={zoom}
           touchZoom={true}
           scrollWheelZoom={true}
           zoomControl={false}
-          style={{ height: "100vh", width: "calc(100vw - 4rem)" }}
+          style={{ height: "100vh" }}
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
