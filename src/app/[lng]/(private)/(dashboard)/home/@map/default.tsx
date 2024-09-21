@@ -16,7 +16,7 @@ const Default = () => {
         <div className="">
           {(editableProfiles?.step === meetingStep.find ||
             editableProfiles?.step === meetingStep.book ||
-            editableProfiles?.step === meetingStep.detail) && <Map />}
+            editableProfiles?.step === meetingStep.detail) && <OpenMap />}
         </div>
       </div>
     </div>
