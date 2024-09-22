@@ -28,13 +28,52 @@ const defaults = {
   zoom: 12,
 };
 
+const LocationMarker = () => {
+  const [position, setPosition] = useState(null);
+  const [label, setLabel] = useState("");
+
+  const { editableProfiles, dispatch } =
+    useContext<HomePageContextType>(HomePageContext);
+
+  // Hook to listen for map events like clicks
+  useMapEvents({
+    click(e) {
+      setPosition(e.latlng); // Set the position when the map is clicked
+    },
+  });
+
+  return position === null ? null : (
+    <Marker position={position}>
+      <Popup>
+        <input
+          onKeyDown={(e) => {
+            if (e.keyCode === 13) {
+              dispatch?.({
+                type: homepageActions.addPlace,
+                payload: {
+                  location: position,
+                  name: label,
+                  id: -1,
+                  image: { src: "" },
+                },
+              });
+            }
+          }}
+          onChange={(e) => setLabel(e.target.value)}
+          value={label}
+          placeholder={"create a new location"}
+        />
+      </Popup>
+    </Marker>
+  );
+};
 const Map: React.FC = (Map: MapProps) => {
   const [center, setCenter] = useState<any>({
     lat: 49.2827, // Vancouver latitude
     lng: -123.1207, // Vancouver longitude
   });
   const [selected, setSelected] = useState<any | null>(null);
-  const [zoom, setZoom] = useState<number>(25);
+  const [zoom, setZoom] = useState<number>(18);
 
   const { editableProfiles, dispatch } =
     useContext<HomePageContextType>(HomePageContext);
@@ -84,10 +123,6 @@ const Map: React.FC = (Map: MapProps) => {
       editableProfiles?.step === meetingStep.detail &&
       editableProfiles?.meetingRecord?.location
     ) {
-      // if (editableProfiles?.meetingRecord?.place_location) {
-      //   alert(JSON.stringify(editableProfiles?.meetingRecord?.place_location));
-      //   setCenter(editableProfiles?.meetingRecord?.place_location);
-      // }
     }
   }, [editableProfiles?.step]);
   useEffect(() => {
@@ -113,25 +148,11 @@ const Map: React.FC = (Map: MapProps) => {
           id: editableProfiles?.authenticatedProfile.id,
           location: { lat: latitude, lng: longitude, accuracy },
         });
-        // const service = new window.google.maps.places.PlacesService(
-        //   document.createElement("div")
-        // );
 
         const request: any = {
           location: { lat: latitude, lng: longitude },
           radius: "50", // Search within 50 meters
         };
-
-        // service.nearbySearch(request, (results: any, status: any) => {
-        //   if (
-        //     status === window.google.maps.places.PlacesServiceStatus.OK &&
-        //     results.length > 0
-        //   ) {
-        //     // setPlaceInfo(results[0]); // Get the first place's info
-        //   } else {
-        //     // setPlaceInfo(null);
-        //   }
-        // });
 
         dispatch?.({
           type: homepageActions.setGeoLocation,
@@ -157,6 +178,9 @@ const Map: React.FC = (Map: MapProps) => {
           style={{ height: "100vh" }}
         >
           <TileLayer
+            eventHandlers={{
+              click: () => {},
+            }}
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
@@ -315,6 +339,7 @@ const Map: React.FC = (Map: MapProps) => {
               )}
             </>
           )}
+          {editableProfiles?.step === meetingStep.book && <LocationMarker />}
         </MapContainer>
       </div>
     </>

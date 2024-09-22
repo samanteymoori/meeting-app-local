@@ -125,6 +125,14 @@ const homepageReducer = (state: any, action: any) => {
         currentPlace: state.currentPlace,
       };
     }
+    case homepageActions.addPlace: {
+      // const arr = Array.from(state.places);
+      // arr.push(action.payload);
+
+      return {
+        ...state,
+      };
+    }
     case homepageActions.setPlaces: {
       return {
         ...state,

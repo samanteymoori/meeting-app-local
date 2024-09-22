@@ -12,7 +12,7 @@ import { HomePageContext } from "../contexts/HomePageContext";
 import { HomePageContextType } from "../contexts/HomePageContextType";
 import PersonProfile from "./PersonProfile";
 import PlaceProfile from "./PlaceProfile";
-import { ImCancelCircle } from "react-icons/im";
+import { ImCancelCircle, ImBlocked, ImQuestion } from "react-icons/im";
 import { getAuthService } from "@/services/authService";
 import useMeetings from "@/app/hooks/useMeetings";
 import MeetingDecision from "@/components/Decision/MeetingDecision";
@@ -126,24 +126,52 @@ const Default = () => {
                             )}
                           </>
                         </div>
-                        {(!editableProfiles.currentProfile?.status ||
-                          editableProfiles.currentProfile?.status ===
-                            "pending") && (
-                          <div className="self-center mr-auto ml-2">
-                            <FaRegQuestionCircle />
-                          </div>
-                        )}
-                        {editableProfiles.currentProfile?.status ===
-                          "accepted" && (
+                        {editableProfiles.meetingRecord.owner_user_id !==
+                        editableProfiles.authenticatedProfile.id ? (
                           <div className="self-center text-green-500 ml-2 mr-auto">
                             <FaCheckCircle />
                           </div>
-                        )}
-                        {editableProfiles.currentProfile?.status ===
-                          "rejected" && (
-                          <div className="self-center text-red-500 ml-2 mr-auto">
-                            <ImCancelCircle />
-                          </div>
+                        ) : (
+                          <>
+                            {editableProfiles.meetingRecord ? (
+                              <>
+                                {(!editableProfiles.meetingRecord
+                                  ?.meeting_participant_status ||
+                                  editableProfiles.meetingRecord
+                                    ?.meeting_participant_status ===
+                                    "pending") && (
+                                  <div className="self-center mr-auto ml-2">
+                                    <FaRegQuestionCircle />
+                                  </div>
+                                )}
+                                {editableProfiles.meetingRecord
+                                  ?.meeting_participant_status === "accept" && (
+                                  <div className="self-center text-green-500 ml-2 mr-auto">
+                                    <FaCheckCircle />
+                                  </div>
+                                )}
+                                {editableProfiles.meetingRecord
+                                  ?.meeting_participant_status === "reject" && (
+                                  <div className="self-center text-red-500 ml-2 mr-auto">
+                                    <ImCancelCircle />
+                                  </div>
+                                )}
+                                {editableProfiles.meetingRecord
+                                  ?.meeting_participant_status === "maybe" && (
+                                  <div className="flex text-yellow-500">
+                                    <div className="self-center text-yellow-500 ml-2 mr-auto">
+                                      <ImQuestion />
+                                    </div>
+                                    <div className="self-center ml-2">
+                                      {"(maybe)"}
+                                    </div>
+                                  </div>
+                                )}
+                              </>
+                            ) : (
+                              <></>
+                            )}
+                          </>
                         )}
                       </li>
                     }
