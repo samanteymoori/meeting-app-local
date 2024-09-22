@@ -126,11 +126,12 @@ const homepageReducer = (state: any, action: any) => {
       };
     }
     case homepageActions.addPlace: {
-      // const arr = Array.from(state.places);
-      // arr.push(action.payload);
+      const arr = Array.from(state.places);
+      arr.push(action.payload);
 
       return {
         ...state,
+        places: arr,
       };
     }
     case homepageActions.setPlaces: {

@@ -7,6 +7,9 @@ export class PlaceService {
   constructor(baseUrl: string) {
     this.routeApiClient = new RouteApiClient(baseUrl);
   }
+  addPlace = async (place: PlaceType) => {
+    return await this.routeApiClient.post<PlaceType>(`/api/places/add`, place);
+  };
   getPlaces = async () => {
     return await this.routeApiClient.get<{
       rows: PlaceType[];

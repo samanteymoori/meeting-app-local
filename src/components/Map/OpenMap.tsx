@@ -19,6 +19,7 @@ import homepageActions, {
 } from "@/app/[lng]/(private)/(dashboard)/home/contexts/homepageActions";
 import { getUserService } from "@/services/userService";
 import { LocationIQProvider } from "leaflet-geosearch";
+import { getPlaceService } from "@/services/placeService";
 
 interface MapProps {
   zoom?: number;
@@ -48,15 +49,28 @@ const LocationMarker = () => {
         <input
           onKeyDown={(e) => {
             if (e.keyCode === 13) {
-              dispatch?.({
-                type: homepageActions.addPlace,
-                payload: {
-                  location: position,
+              const placeService = getPlaceService();
+              placeService
+                .addPlace({
                   name: label,
-                  id: -1,
-                  image: { src: "" },
-                },
-              });
+                  location: position,
+                } as any)
+                .then((result: any) => {
+                  const newPlace = {
+                    location: position,
+                    name: label,
+                    id: result.response.place_id,
+                    image: { src: "" },
+                  };
+                  dispatch?.({
+                    type: homepageActions.addPlace,
+                    payload: newPlace,
+                  });
+                  dispatch?.({
+                    type: homepageActions.setPlace,
+                    payload: newPlace,
+                  });
+                });
             }
           }}
           onChange={(e) => setLabel(e.target.value)}
