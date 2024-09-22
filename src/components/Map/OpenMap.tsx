@@ -166,7 +166,7 @@ const Map: React.FC = (Map: MapProps) => {
 
   return (
     <>
-      <div id="map">
+      <div id="map" className="w-[90vw] mx-auto rounded-lg">
         <MapContainer
           zoomAnimation={true}
           boxZoom={true}
