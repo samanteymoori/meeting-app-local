@@ -127,7 +127,10 @@ const Map: React.FC = (Map: MapProps) => {
     editableProfiles?.step,
     editableProfiles?.meetingRecord?.place_location,
   ]);
-
+  useEffect(() => {
+    setSelected(null);
+    setSelected(editableProfiles?.newPlace);
+  }, [editableProfiles?.newPlace]);
   useEffect(() => {
     setSelected(null);
     if (editableProfiles?.step === meetingStep.book) {

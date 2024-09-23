@@ -33,7 +33,12 @@ export async function POST(request: NextRequest) {
       values
     );
     const place_id = result.rows[0]?.id;
-
+    await pool.query(
+      `INSERT INTO place_pictures
+      (place_id,is_primary,data,url)
+      SELECT $1,true,NULL,'/images/default.png' `,
+      [place_id]
+    );
     return NextResponse.json({ place_id }, { status: 200 });
   } catch (error) {
     return NextResponse.json(

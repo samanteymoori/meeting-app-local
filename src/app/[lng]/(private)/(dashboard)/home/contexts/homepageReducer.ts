@@ -131,6 +131,7 @@ const homepageReducer = (state: any, action: any) => {
 
       return {
         ...state,
+        newPlace: action.payload,
         places: arr,
       };
     }

@@ -7,6 +7,7 @@ export type ProfileState = {
   listOfProfiles: ProfileType[];
   currentProfile: ProfileType;
   currentPlace: PlaceType;
+  newPlace?: PlaceType;
   authenticatedProfile: ProfileType;
   updateStatus: number | null;
   places: PlaceType[];
