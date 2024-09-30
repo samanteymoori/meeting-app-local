@@ -1,21 +1,30 @@
 import { ProfileType } from "@/types/ProfileType";
 import Image from "next/image";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { boolean } from "zod";
 
 const RoundedImage: React.FC<{
   src: string;
   backdrop?: "backdrop" | null | undefined;
   size: string;
   onClick?: any;
+  first_name?: string;
+  last_name?: string;
 }> = ({
   src,
   size,
   backdrop,
   onClick,
+  first_name,
+  last_name,
 }: {
   backdrop?: "backdrop" | null | undefined;
   src: string;
   size: string;
   onClick?: any;
+  first_name?: string;
+  last_name?: string;
 }) => {
   const items = [
     {
@@ -65,7 +74,56 @@ const RoundedImage: React.FC<{
         " rounded-lg   self-end bg-transparent  absolute   z-20 relative  ",
     },
   ];
+  function getRandomColor() {
+    const letters = "0123456789ABCDEF";
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+  const [color, setColor] = useState<string>("white");
+  useEffect(() => {
+    setColor(`${getRandomColor()}`);
+  }, []);
   const item = items.find((p) => p.key === size);
+  const [error, setError] = useState<boolean>(false);
+  if (!src && size === "small") {
+    return (
+      <>
+        <div className={`${item?.wrapper} `} onClick={onClick}>
+          <div
+            className={`grid  p-1 ${item?.wrapper} ${
+              backdrop && backdrop === "backdrop" ? "bg-slate-200" : ""
+            } cursor-pointer`}
+          >
+            <div className="rounded-lg">
+              <div
+                style={{ backgroundColor: color }}
+                className={` mx-auto flex self-center object-top  mx-auto self-center ${item?.w} ${item?.h} `}
+              >
+                <div className="mx-auto text-2xl font-bold text-white self-center">
+                  {first_name?.substring(0, 1)?.toUpperCase()}
+                  {last_name?.substring(0, 1)?.toUpperCase()}
+                </div>
+              </div>
+            </div>
+          </div>
+          {backdrop && backdrop === "backdrop" && (
+            <div
+              style={{
+                backgroundImage: `url(${src})`,
+                backgroundSize: "cover",
+              }}
+              className={`absolute transform -translate-y-[25rem] blur-xl z-10 ${item?.w} ${item?.h}`}
+            ></div>
+          )}
+        </div>
+      </>
+    );
+  } else {
+    if (!src) src = "/images/user.png";
+  }
   return (
     <div className={`${item?.wrapper} `} onClick={onClick}>
       <div
@@ -81,7 +139,7 @@ const RoundedImage: React.FC<{
             height={512}
             alt={""}
             onError={(e: any) => {
-              e.target.src = "/images/user.png";
+              // e.target.src = "/images/user.png";
             }}
           />
         </div>

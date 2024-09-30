@@ -12,6 +12,8 @@ const Default = () => {
     return (
       <div className="h-[25rem] ">
         <RoundedImage
+          first_name={editableProfiles?.currentProfile?.first_name}
+          last_name={editableProfiles?.currentProfile?.last_name}
           backdrop={"backdrop"}
           src={editableProfiles?.currentProfile?.image?.src || ""}
           size={"large"}
@@ -23,6 +25,8 @@ const Default = () => {
     return (
       <div className="h-[25rem] ">
         <RoundedImage
+          first_name={editableProfiles.currentPlace.name}
+          last_name={""}
           backdrop={"backdrop"}
           src={editableProfiles?.currentPlace?.image?.src || ""}
           size={"large"}

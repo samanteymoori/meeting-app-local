@@ -26,7 +26,12 @@ const Default = () => {
             })
           }
         >
-          <RoundedImage src={profile.image.src} size={profile.image.size} />
+          <RoundedImage
+            first_name={profile.first_name}
+            last_name={profile.last_name}
+            src={profile.image.src}
+            size={profile.image.size}
+          />
         </div>
       ))}
     </div>

@@ -7,7 +7,7 @@ export async function GET(request: NextRequest, { params: { id } }: any) {
   console.log({ id });
   try {
     const res = await pool.query(
-      ` SELECT *,COALESCE(url,'/images/user.png') as url  FROM (
+      ` SELECT *,url as url  FROM (
       SELECT
           earth_distance(
               ll_to_earth(up.location[0], up.location[1]),
