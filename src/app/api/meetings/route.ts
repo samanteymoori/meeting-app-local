@@ -11,12 +11,13 @@ export async function POST(request: NextRequest, { params }: any) {
     meeting_time,
     person_to_meet_id,
   } = requestBody;
+  console.log({ requestBody });
   const values = [
     owner_person_id,
     place_id,
     new Date(meeting_date.substring(0, 10) + " " + meeting_time).toISOString(),
   ];
-
+  console.log({ values });
   try {
     const result = await pool.query(
       `INSERT INTO public.meetings(
@@ -25,7 +26,9 @@ export async function POST(request: NextRequest, { params }: any) {
         RETURNING id;`,
       values
     );
+    console.log("test");
     const meeting_id = result.rows[0]?.id;
+    console.log({ meeting_id });
     await pool.query(
       `INSERT INTO public.meeting_participants(
         meeting_participant_id, meeting_id, user_id)
@@ -35,6 +38,7 @@ export async function POST(request: NextRequest, { params }: any) {
 
     return NextResponse.json({ inserted: result.rows?.[0] }, { status: 200 });
   } catch (error) {
+    console.log({ error });
     return NextResponse.json(
       {
         message: error.message,
