@@ -70,7 +70,7 @@ const Page = ({ params: { lng } }: any) => {
             <div>
               <Link
                 className="text-blue-500 underline"
-                href={"/en/login/registration"}
+                href={"/en/login/email"}
               >
                 Login
               </Link>
