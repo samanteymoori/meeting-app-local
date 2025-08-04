@@ -51,7 +51,7 @@ export async function POST(request: NextRequest, { params: { id } }: any) {
         value: JSON.stringify(token),
         httpOnly: true,
         path: "/",
-        secure: true,
+        secure: false,
       });
       return NextResponse.json({ token, result }, { status: 200 });
     }
