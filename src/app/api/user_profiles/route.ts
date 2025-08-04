@@ -10,10 +10,10 @@ export async function GET(request: NextRequest) {
     join user_profile_pictures upp on up.user_id=upp.user_id
     ORDER BY first_name`);
     return NextResponse.json({ rows: res.rows }, { status: 200 });
-  } catch (error) {
+  } catch (e: any) {
     return NextResponse.json(
       {
-        message: error.message,
+        message: e.message,
       },
       { status: 500 }
     );

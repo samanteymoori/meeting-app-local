@@ -56,11 +56,11 @@ export async function POST(request: NextRequest, { params: { id } }: any) {
       return NextResponse.json({ token, result }, { status: 200 });
     }
     return NextResponse.json({}, { status: 403 });
-  } catch (error) {
-    console.log(error.message);
+  } catch (e: any) {
+    console.log(e.message);
     return NextResponse.json(
       {
-        message: error.message,
+        message: e.message,
       },
       { status: 500 }
     );

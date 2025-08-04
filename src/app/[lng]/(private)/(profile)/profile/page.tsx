@@ -22,7 +22,7 @@ export default function Page() {
       await UserService.updateUserDetail(authenticatedUser);
       getImage();
       alert("Your profile is updated.");
-    } catch (e) {
+    } catch (e: any) {
       console.log(e);
     } finally {
       setLoading(false);

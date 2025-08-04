@@ -37,11 +37,11 @@ export async function POST(request: NextRequest, { params }: any) {
     );
 
     return NextResponse.json({ inserted: result.rows?.[0] }, { status: 200 });
-  } catch (error) {
-    console.log({ error });
+  } catch (e: any) {
+    console.log({ e });
     return NextResponse.json(
       {
-        message: error.message,
+        message: e.message,
       },
       { status: 500 }
     );

@@ -43,7 +43,7 @@ const Page = ({ params: { lng } }: any) => {
         setLoading(false);
       }
       alert("Your profile is created.");
-    } catch (e) {
+    } catch (e: any) {
       console.log(e);
     } finally {
       setLoading(false);

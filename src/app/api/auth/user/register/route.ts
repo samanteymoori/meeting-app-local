@@ -61,7 +61,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
         { status: 403 }
       );
     }
-  } catch (e) {
+  } catch (e: any) {
     console.log(e.message);
     return NextResponse.json(
       { error: "Internal Server Error" },

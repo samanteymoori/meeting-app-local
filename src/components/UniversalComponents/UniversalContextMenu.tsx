@@ -35,6 +35,7 @@ const UniversalContextMenu: React.FC<Props> = ({ open, setOpen }) => {
           )}
           {topMenu.map((menuItem: MenuItem) => (
             <div
+              key={menuItem.key}
               className="flex mr-auto my-2 [&>*]:self-center gap-2"
               onClick={async () => {
                 setOpen(!open);

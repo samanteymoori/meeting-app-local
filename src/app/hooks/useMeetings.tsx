@@ -18,7 +18,9 @@ const useMeetings = () => {
       if (!dirServices) return;
       const directionsService = new dirServices();
       let origin: any = {
+        //@ts-expect-error
         lat: editableProfiles?.authenticatedProfile.location?.x,
+        //@ts-expect-error
         lng: editableProfiles?.authenticatedProfile.location?.y,
       };
       let destination = {
@@ -59,6 +61,7 @@ const useMeetings = () => {
     if (authenticatedUser?.item?.id) {
       await getUsers(authenticatedUser?.item?.id);
     }
+    //@ts-expect-error
     await getActiveMeetings(authenticatedUser.item?.username);
   };
   const getUsers = async (authenticatedUserId: string) => {

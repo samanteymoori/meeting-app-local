@@ -14,11 +14,11 @@ export async function POST(
       values
     );
     return NextResponse.json({}, { status: 200 });
-  } catch (error) {
-    console.log(error.message);
+  } catch (e: any) {
+    console.log(e.message);
     return NextResponse.json(
       {
-        message: error.message,
+        message: e.message,
       },
       { status: 500 }
     );

@@ -28,7 +28,7 @@ export async function middleware(req: NextRequest) {
         return NextResponse.redirect(home_path);
       }
       return NextResponse.next();
-    } catch (e) {
+    } catch (e: any) {
       return NextResponse.redirect(login_path);
     }
   } else {

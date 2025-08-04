@@ -40,10 +40,10 @@ export async function POST(request: NextRequest) {
       [place_id]
     );
     return NextResponse.json({ place_id }, { status: 200 });
-  } catch (error) {
+  } catch (e: any) {
     return NextResponse.json(
       {
-        message: error.message,
+        message: e.message,
       },
       { status: 500 }
     );

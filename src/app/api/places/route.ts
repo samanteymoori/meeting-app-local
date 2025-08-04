@@ -10,10 +10,10 @@ export async function GET(request: NextRequest) {
      join place_pictures plp on pl.id=plp.place_id
      ORDER BY name`);
     return NextResponse.json({ rows: res.rows }, { status: 200 });
-  } catch (error) {
+  } catch (e: any) {
     return NextResponse.json(
       {
-        message: error.message,
+        message: e.message,
       },
       { status: 500 }
     );

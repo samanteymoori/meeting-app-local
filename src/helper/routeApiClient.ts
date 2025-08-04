@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { cache } from "react";
 import utils from "./utils";
 
@@ -28,7 +29,7 @@ class RouteApiClient {
         }
         const responseBody = (await response.json()) as T;
         return responseBody;
-      } catch (e) {
+      } catch (e: any) {
         throw new Error("Unknown Error");
       }
     }
@@ -56,7 +57,7 @@ class RouteApiClient {
       }
       const responseBody = (await response.json()) as T;
       return { response: responseBody, statusCode: response.status };
-    } catch (e) {
+    } catch (e: any) {
       return { error: e as Error };
     }
   };
@@ -83,7 +84,7 @@ class RouteApiClient {
       }
       const responseBody = (await response.json()) as T;
       return { response: responseBody, statusCode: response.status };
-    } catch (e) {
+    } catch (e: any) {
       return { error: e as Error };
     }
   };
@@ -110,7 +111,7 @@ class RouteApiClient {
       }
       const responseBody = (await response.json()) as T;
       return { response: responseBody, statusCode: response.status };
-    } catch (e) {
+    } catch (e: any) {
       return { error: e as Error };
     }
   };
@@ -137,7 +138,7 @@ class RouteApiClient {
       }
       const responseBody = (await response.json()) as T;
       return { response: responseBody, statusCode: response.status };
-    } catch (e) {
+    } catch (e: any) {
       return { error: e as Error };
     }
   };

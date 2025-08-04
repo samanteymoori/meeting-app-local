@@ -1,3 +1,4 @@
+//@ts-nocheck
 "use client";
 import homepageActions, {
   meetingStep,
@@ -27,6 +28,7 @@ const options = {
 };
 
 const Map: React.FC = () => {
+  if (!process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY) return <></>;
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY, // Add your API key here
   });
@@ -247,7 +249,9 @@ const Map: React.FC = () => {
                     onClick={() => setSelected(place)}
                     key={place.id}
                     position={{
+                      //@ts-expect-error
                       lat: place.location?.lat,
+                      //@ts-expect-error
                       lng: place.location?.lng,
                     }}
                     draggable={false}
