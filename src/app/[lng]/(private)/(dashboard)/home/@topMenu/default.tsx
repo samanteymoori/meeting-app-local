@@ -1,6 +1,7 @@
 "use client";
 import RoundedImage from "@/components/Profile/RoundedImage";
 import UniversalContextMenu from "@/components/UniversalComponents/UniversalContextMenu";
+import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 import { HomePageContext } from "../contexts/HomePageContext";
 import { HomePageContextType } from "../contexts/HomePageContextType";
@@ -35,6 +36,12 @@ const Default = () => {
           <div className="xl:block hidden">
             {editableProfiles?.authenticatedProfile && (
               <div className="self-center   flex mx-8 p-4 gap-4">
+                <div className="self-center text-white">
+                  <Link href={"/en/privacy"}>Privacy Policy</Link>
+                </div>
+                <div className="self-center text-white">
+                  <Link href={"/en/terms"}>Terms of use</Link>
+                </div>
                 <div className=" hidden md:block shadow-lg rounded-full flex cursor-pointer bg-white">
                   <div className="self-center mx-auto">
                     <RoundedImage

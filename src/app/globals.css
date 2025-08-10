@@ -14,8 +14,30 @@
 
 body {
 }
-
+.modal {
+  z-index: 10000;
+  height: 500px;
+  width: 70vw;
+  border-radius: 1rem;
+  border: 4px solid gray;
+  left: 15%;
+  top: 30%;
+  position: absolute;
+}
 @layer utilities {
   .text-balance {
   }
+}
+h1 {
+  font-size: 2rem;
+  line-height: 4rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold;
 }

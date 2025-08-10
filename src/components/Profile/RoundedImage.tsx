@@ -122,7 +122,7 @@ const RoundedImage: React.FC<{
       </>
     );
   } else {
-    if (!src) src = "/images/user.png";
+    // if (!src) src = "/images/user.png";
   }
   return (
     <div className={`${item?.wrapper} `} onClick={onClick}>
@@ -131,18 +131,34 @@ const RoundedImage: React.FC<{
           backdrop && backdrop === "backdrop" ? "bg-slate-200" : ""
         } cursor-pointer`}
       >
-        <div className="rounded-lg">
-          <Image
-            className={` mx-auto self-center object-top  mx-auto self-center ${item?.w} ${item?.h} `}
-            src={src}
-            width={512}
-            height={512}
-            alt={""}
-            onError={(e: any) => {
-              // e.target.src = "/images/user.png";
-            }}
-          />
-        </div>
+        {src ? (
+          <div className="rounded-lg">
+            <Image
+              className={` mx-auto self-center object-top  mx-auto self-center ${item?.w} ${item?.h} `}
+              src={src}
+              width={512}
+              height={512}
+              alt={""}
+              onError={(e: any) => {
+                e.target.src = "/images/user.png";
+              }}
+            />
+          </div>
+        ) : (
+          <div>
+            <div className={`${item?.w} ${item?.h} grid `}>
+              <div
+                style={{ backgroundColor: color }}
+                className={` mx-auto flex w-full h-full max-w-60 max-h-60 self-center object-top rounded-full mx-auto self-center  `}
+              >
+                <div className="mx-auto text-3xl font-bold text-white self-center">
+                  {first_name?.substring(0, 1)?.toUpperCase()}
+                  {last_name?.substring(0, 1)?.toUpperCase()}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
       {backdrop && backdrop === "backdrop" && (
         <div

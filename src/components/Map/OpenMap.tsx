@@ -89,7 +89,7 @@ const Map: React.FC = (Map: MapProps) => {
     lng: -123.1207, // Vancouver longitude
   });
   const [selected, setSelected] = useState<any | null>(null);
-  const [zoom, setZoom] = useState<number>(18);
+  const [zoom, setZoom] = useState<number>(15);
 
   const { editableProfiles, dispatch } =
     useContext<HomePageContextType>(HomePageContext);
@@ -185,14 +185,15 @@ const Map: React.FC = (Map: MapProps) => {
 
   return (
     <>
-      <div id="map" className="w-[90vw] mx-auto rounded-lg">
+      <div id="map" className="w-screen mx-auto rounded-lg">
         <MapContainer
-          zoomAnimation={true}
-          boxZoom={true}
+          zoomAnimation={false}
+          boxZoom={false}
           center={selected || center}
           zoom={zoom}
-          touchZoom={true}
-          scrollWheelZoom={true}
+          doubleClickZoom={false}
+          touchZoom={false}
+          scrollWheelZoom={false}
           zoomControl={false}
           style={{ height: "100vh" }}
         >
