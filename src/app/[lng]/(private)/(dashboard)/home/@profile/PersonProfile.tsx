@@ -29,13 +29,13 @@ const PersonProfile: React.FC<Props> = ({ showButton }) => {
         {weight && (
           <>
             <fieldset className="font-bold">Weight</fieldset>
-            <fieldset className="">{weight}</fieldset>
+            <fieldset className="">{parseFloat(weight)?.toFixed(2)}</fieldset>
           </>
         )}
         {height && (
           <>
             <fieldset className="font-bold">Height</fieldset>
-            <fieldset>{height}</fieldset>{" "}
+            <fieldset>{parseFloat(height)?.toFixed(2)}</fieldset>{" "}
           </>
         )}
         {hobbies && (
