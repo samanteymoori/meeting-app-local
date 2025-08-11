@@ -28,7 +28,7 @@ interface MapProps {
 }
 
 const defaults = {
-  zoom: 12,
+  zoom: 1,
 };
 
 const LocationMarker = () => {
@@ -89,7 +89,7 @@ const Map: React.FC = (Map: MapProps) => {
     lng: -123.1207, // Vancouver longitude
   });
   const [selected, setSelected] = useState<any | null>(null);
-  const [zoom, setZoom] = useState<number>(15);
+  const [zoom, setZoom] = useState<number>(12);
 
   const { editableProfiles, dispatch } =
     useContext<HomePageContextType>(HomePageContext);
