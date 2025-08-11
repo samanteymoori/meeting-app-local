@@ -8,7 +8,7 @@ const Layout = async ({ topMenu, swiper, map, profile, picture }: any) => {
         <div className="col-span-6  flex self-top h-20">{topMenu}</div>
         <div className="col-span-6 grid grid-cols-6 flex-auto h-full">
           {swiper}
-          <div className="col-span-6 p-0 modal  gap-2 h-full bg-white  grid md:grid-cols-2">
+          <div className="col-span-6 p-0 modal  mx-auto gap-2 h-full bg-white  grid md:grid-cols-1 overflow-scroll">
             <div className="grid ">
               <div className="">{picture}</div>
             </div>
