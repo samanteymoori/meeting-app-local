@@ -1,11 +1,15 @@
-import { stat } from "fs";
-import { rootCertificates } from "tls";
 import homepageActions, { meetingStep } from "./homepageActions";
 import { ProfileType } from "@/types/ProfileType";
 import { PlaceType } from "@/types/PlaceType";
 
 const homepageReducer = (state: any, action: any) => {
   switch (action.type) {
+    case homepageActions.showModal: {
+      return {
+        ...state,
+        showModal: action.payload,
+      };
+    }
     case homepageActions.setGeoLocation: {
       const location = action.payload;
       return {

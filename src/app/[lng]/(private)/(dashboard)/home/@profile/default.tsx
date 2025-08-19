@@ -29,7 +29,22 @@ const Default = () => {
     });
   };
   if (editableProfiles && editableProfiles.step === meetingStep.find) {
-    return <PersonProfile showButton={true} />;
+    return (
+      <div className="flex">
+        <div>{<PersonProfile showButton={true} />}</div>
+        <div
+          onClick={() =>
+            dispatch?.({
+              type: homepageActions.showModal,
+              payload: !editableProfiles.showModal,
+            })
+          }
+          className="ml-auto m-4 cursor-pointer"
+        >
+          X
+        </div>
+      </div>
+    );
   }
   if (
     editableProfiles &&

@@ -17,6 +17,7 @@ export type ProfileState = {
   meetingRecord: any;
   currentLocation: any;
   step: meetingStep;
+  showModal: boolean;
 };
 export enum profileActions {
   changeCurrentProfile,

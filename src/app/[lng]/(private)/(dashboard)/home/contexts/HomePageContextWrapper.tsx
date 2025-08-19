@@ -21,6 +21,7 @@ const HomePageContextWrapper: React.FC<PropsWithChildren> = ({ children }) => {
     currentPlace: null,
     meetingPlace: null,
     step: meetingStep.find,
+    showmodal: false,
   }) as any;
   useMeetings();
 

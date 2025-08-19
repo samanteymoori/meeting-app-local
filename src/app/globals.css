@@ -17,11 +17,10 @@ body {
 .modal {
   z-index: 10000;
   height: 500px;
-  max-width: 70vw;
+  max-width: 65vw;
   border-radius: 1rem;
   border: 4px solid gray;
-  left: 15vw;
-  right: 15vw;
+  left: 5vw;
   top: 30%;
   position: absolute;
 }
