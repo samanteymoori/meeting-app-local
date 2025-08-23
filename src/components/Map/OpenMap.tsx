@@ -287,8 +287,12 @@ const Map: React.FC = (Map: MapProps) => {
                       <input
                         onClick={(e) => {
                           dispatch?.({
-                            type: homepageActions.pickPersonToMeet,
-                            payload: editableProfiles?.currentProfile,
+                            type: homepageActions.setProfile,
+                            payload: selected,
+                          });
+                          dispatch?.({
+                            type: homepageActions.showModal,
+                            payload: !editableProfiles.showModal,
                           });
                           // setSelected(null);
                           e.stopPropagation();

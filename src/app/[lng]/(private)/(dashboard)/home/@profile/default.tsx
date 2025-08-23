@@ -16,6 +16,7 @@ import { ImCancelCircle, ImBlocked, ImQuestion } from "react-icons/im";
 import { getAuthService } from "@/services/authService";
 import useMeetings from "@/app/hooks/useMeetings";
 import MeetingDecision from "@/components/Decision/MeetingDecision";
+import Picture from "./Picture";
 
 const Default = () => {
   const { editableProfiles, dispatch } =
@@ -30,20 +31,33 @@ const Default = () => {
   };
   if (editableProfiles && editableProfiles.step === meetingStep.find) {
     return (
-      <div className="flex">
-        <div>{<PersonProfile showButton={true} />}</div>
-        <div
-          onClick={() =>
-            dispatch?.({
-              type: homepageActions.showModal,
-              payload: !editableProfiles.showModal,
-            })
-          }
-          className="ml-auto m-4 cursor-pointer"
-        >
-          X
-        </div>
-      </div>
+      <>
+        {(editableProfiles?.showModal === true ||
+          editableProfiles?.showModal === undefined) &&
+          editableProfiles.currentProfile && (
+            <div className="col-span-6 p-0 modal  mx-auto gap-2 h-full bg-white rounded-lg grid md:grid-cols-1 overflow-scroll">
+              <div className="grid grid-cols-2 rounded-lg">
+                <div className="">
+                  <Picture />
+                </div>
+                <div className="flex">
+                  <div>{<PersonProfile showButton={true} />}</div>
+                  <div
+                    onClick={() =>
+                      dispatch?.({
+                        type: homepageActions.showModal,
+                        payload: !editableProfiles.showModal,
+                      })
+                    }
+                    className="ml-auto m-4 cursor-pointer"
+                  >
+                    X
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+      </>
     );
   }
   if (
