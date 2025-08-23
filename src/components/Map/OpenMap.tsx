@@ -257,14 +257,9 @@ const Map: React.FC = (Map: MapProps) => {
                     draggable={false}
                   ></Marker>
                 ))}
-              {selected && selected.location && (
+              {selected && selected.location && !editableProfiles.showModal && (
                 <div className="-mt-4">
-                  <Popup
-                    position={selected.location}
-                    // eventHandlers={{
-                    //   click: () => setSelected(null),
-                    // }}
-                  >
+                  <Popup position={selected.location}>
                     <div
                       onClick={(e) => {
                         dispatch?.({

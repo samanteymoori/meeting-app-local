@@ -32,8 +32,7 @@ const Default = () => {
   if (editableProfiles && editableProfiles.step === meetingStep.find) {
     return (
       <>
-        {(editableProfiles?.showModal === true ||
-          editableProfiles?.showModal === undefined) &&
+        {editableProfiles?.showModal === true &&
           editableProfiles.currentProfile && (
             <div className="col-span-6 p-0 modal  mx-auto gap-2 h-full bg-white rounded-lg grid md:grid-cols-1 overflow-scroll">
               <div className="grid grid-cols-2 rounded-lg">
