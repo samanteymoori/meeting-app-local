@@ -34,7 +34,7 @@ const StepComponent: React.FC = () => {
   ];
   return (
     <div className="h-full flex mx-auto">
-      <div className="self-center  [&>*]:uppercase  cursor-pointer [&>*]:self-center mx-auto [&>*]:h-10 [&>*]:py-8  [&>*]:text-center [&>*]:md:w-44   [&>*]:mx-auto [&>*]:px-4  [&>*]:md:px-8 w-screen md:w-auto md:ml-8 [&>*]:border  shadow-xl  flex">
+      <div className="self-center  [&>*]:uppercase  cursor-pointer [&>*]:self-center mx-auto [&>*]:h-10 [&>*]:py-8  [&>*]:text-center [&>*]:md:w-44   [&>*]:mx-auto [&>*]:px-4  [&>*]:md:px-8 w-[80vw] ml-2 md:w-screen md:w-auto md:ml-8 [&>*]:border  shadow-xl  flex">
         {steps.map((step) => (
           <div
             key={step.title}
@@ -52,11 +52,11 @@ const StepComponent: React.FC = () => {
             }}
             className={` flex mx-auto flex-auto gap-x-4 ${
               step.selected ? "bg-neutral-600" : "bg-neutral-400"
-            } text-white [&>*]:self-center gap-4  flex`}
+            } text-white  [&>*]:self-center gap-4  flex`}
           >
-            <div className="mx-auto [&>*]:self-center flex">
+            <div className="mx-auto  [&>*]:self-center flex">
               <div className="">{step.icon}</div>
-              <div className="ml-2">{step.title}</div>
+              <div className="ml-2 hidden md:block">{step.title}</div>
             </div>
           </div>
         ))}
