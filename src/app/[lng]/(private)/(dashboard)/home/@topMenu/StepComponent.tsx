@@ -1,5 +1,6 @@
 "use client";
-import { useContext } from "react";
+import HamburgerMenu from "@/components/HamburgerMenu/HamburgerMenu";
+import { useContext, useState } from "react";
 import { FaQuestion, FaCalendar, FaSearch, FaWalking } from "react-icons/fa";
 import homepageActions, { meetingStep } from "../contexts/homepageActions";
 import { HomePageContext } from "../contexts/HomePageContext";
@@ -8,6 +9,7 @@ import { HomePageContextType } from "../contexts/HomePageContextType";
 const StepComponent: React.FC = () => {
   const { editableProfiles, dispatch } =
     useContext<HomePageContextType>(HomePageContext);
+  const [offcanvas, setOffcanvas] = useState<boolean>(false);
   const steps = [
     {
       title: "Find",
@@ -34,7 +36,7 @@ const StepComponent: React.FC = () => {
   ];
   return (
     <div className="h-full flex mx-auto">
-      <div className="self-center  [&>*]:uppercase  cursor-pointer [&>*]:self-center mx-auto [&>*]:h-10 [&>*]:py-8  [&>*]:text-center [&>*]:md:w-44   [&>*]:mx-auto [&>*]:px-4  [&>*]:md:px-8 w-[80vw] ml-2 md:w-screen md:w-auto md:ml-8 [&>*]:border  shadow-xl  flex">
+      <div className="self-center  [&>*]:uppercase  cursor-pointer [&>*]:self-center mx-auto [&>*]:h-10 [&>*]:py-8  [&>*]:text-center [&>*]:md:w-44   [&>*]:mx-auto [&>*]:px-4  [&>*]:md:px-8 w-[calc(100vw-1rem)] ml-2 md:w-auto md:ml-8 [&>*]:border  flex">
         {steps.map((step) => (
           <div
             key={step.title}
@@ -60,6 +62,17 @@ const StepComponent: React.FC = () => {
             </div>
           </div>
         ))}
+        <div className="flex-auto flex border-none">
+          <HamburgerMenu
+            className={`tw-pl-5 ml-auto flex  mx-auto flex-auto gap-x-4 ${"bg-neutral-600"} text-white  [&>*]:self-center gap-4  flex  xl:tw-hidden`}
+            onClick={() => setOffcanvas(!offcanvas)}
+            color={"light"}
+            label="Toggle Menu"
+            isOpen={offcanvas}
+            variant="animated"
+            size="md"
+          />
+        </div>
       </div>
     </div>
   );

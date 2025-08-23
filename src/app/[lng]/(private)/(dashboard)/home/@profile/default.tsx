@@ -97,7 +97,7 @@ const Default = () => {
     return (
       <>
         <div></div>
-        <div className="flex h-full p-0 md:p-8">
+        <div className="flex col-span-6 mx-auto h-full p-0 md:p-8">
           <div className="self-center">
             {editableProfiles.step === meetingStep.meet && (
               <div className="self-center mt-4">
