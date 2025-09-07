@@ -34,13 +34,13 @@ const Default = () => {
       <>
         {editableProfiles?.showModal === true &&
           editableProfiles.currentProfile && (
-            <div className="col-span-6 p-0 modal  mx-auto gap-2 h-full bg-white rounded-lg grid md:grid-cols-1 overflow-scroll">
-              <div className="grid grid-cols-2 rounded-lg">
-                <div className="">
+            <div className="col-span-6 p-0 md:max-w-[65w] z-[1000] fixed  top-[0px] md:top-[30%] md:rounded-lg md:border md:max-w-[75vw] md-mx-auto md:border md:border-2 h-screen md:h-[500px] !w-screen mx-auto gap-2 h-full bg-white  grid md:grid-cols-1 overflow-x-hidden">
+              <div className="grid md:grid-cols-2 md:rounded-lg">
+                <div className="md:self-center">
                   <Picture />
                 </div>
                 <div className="flex">
-                  <div>{<PersonProfile showButton={true} />}</div>
+                  <div className="">{<PersonProfile showButton={true} />}</div>
                   <div
                     onClick={() =>
                       dispatch?.({
@@ -48,7 +48,7 @@ const Default = () => {
                         payload: !editableProfiles.showModal,
                       })
                     }
-                    className="ml-auto m-4 cursor-pointer"
+                    className="md:fixed md:top-0 md:text-white md:z-[1001] right-0 ml-auto m-4 cursor-pointer"
                   >
                     X
                   </div>

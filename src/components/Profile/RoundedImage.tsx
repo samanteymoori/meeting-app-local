@@ -67,11 +67,10 @@ const RoundedImage: React.FC<{
     },
     {
       key: "large",
-      w: "w-full object-scale-down p-8 rounded-lg",
+      w: "object-cover mx-auto ",
       h: "h-[25rem]",
       hrem: "25rem",
-      wrapper:
-        " rounded-lg   self-end bg-transparent  absolute   z-20 relative  ",
+      wrapper: "    mx-auto bg-transparent  absolute   z-20 relative  ",
     },
   ];
   function getRandomColor() {
@@ -93,7 +92,7 @@ const RoundedImage: React.FC<{
       <>
         <div className={`${item?.wrapper} `} onClick={onClick}>
           <div
-            className={`grid  p-1 ${item?.wrapper} ${
+            className={`grid mx-auto w-[20rem] ${item?.wrapper} ${
               backdrop && backdrop === "backdrop" ? "bg-slate-200" : ""
             } cursor-pointer`}
           >
@@ -127,7 +126,7 @@ const RoundedImage: React.FC<{
   return (
     <div className={`${item?.wrapper} `} onClick={onClick}>
       <div
-        className={`grid  p-1 ${item?.wrapper} ${
+        className={`grid  ${size !== "large" ? "p-1" : ""} ${item?.wrapper} ${
           backdrop && backdrop === "backdrop" ? "bg-slate-200" : ""
         } cursor-pointer`}
       >

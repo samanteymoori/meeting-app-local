@@ -14,17 +14,7 @@
 
 body {
 }
-.modal {
-  z-index: 10000;
-  height: 500px;
-  max-width: 65vw;
-  border-radius: 1rem;
-  border: 4px solid gray;
-  left: 5vw;
-  overflow: hidden;
-  top: 30%;
-  position: absolute;
-}
+
 @layer utilities {
   .text-balance {
   }

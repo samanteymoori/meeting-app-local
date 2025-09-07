@@ -51,7 +51,7 @@ const HamburgerMenu = ({
       case "animated":
         return {
           container:
-            "relative z-10 flex flex-col ml-auto self-center justify-center items-center cursor-pointer",
+            "relative z-10 md:hidden flex flex-col ml-auto self-center justify-center items-center cursor-pointer",
           line: clsx(
             "transition-all duration-300 ease-in-out origin-center",
             lineHeight[size],
