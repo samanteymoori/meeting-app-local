@@ -19,6 +19,7 @@ import RoundedImage from "../Profile/RoundedImage";
 const mapContainerStyle = {
   width: "md:calc(100vw - 4rem)",
   height: "100vh",
+  zIndex: 50,
 };
 
 const options = {

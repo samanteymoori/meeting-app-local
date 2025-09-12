@@ -195,7 +195,7 @@ const Map: React.FC = (Map: MapProps) => {
           touchZoom={false}
           scrollWheelZoom={false}
           zoomControl={false}
-          style={{ height: "100vh" }}
+          style={{ height: "100vh", zIndex: 50 }}
         >
           <TileLayer
             eventHandlers={{
