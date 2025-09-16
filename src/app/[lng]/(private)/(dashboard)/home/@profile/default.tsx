@@ -48,7 +48,7 @@ const Default = () => {
                         payload: !editableProfiles.showModal,
                       })
                     }
-                    className="md:fixed md:top-0 md:text-white md:z-[1001] right-0 ml-auto m-4 cursor-pointer"
+                    className="md:absolute md:text-black md:top-0 md:text-white md:z-[1001] right-0 ml-auto m-4 cursor-pointer"
                   >
                     X
                   </div>
@@ -306,7 +306,7 @@ const Default = () => {
                       payload: !editableProfiles.showModal,
                     })
                   }
-                  className="md:fixed md:top-0 md:text-white md:z-[1001] right-0 ml-auto m-4 cursor-pointer"
+                  className="md:absolute md:text-black md:top-0 md:text-white md:z-[1001] right-0 ml-auto m-4 cursor-pointer"
                 >
                   X
                 </div>
