@@ -288,6 +288,33 @@ const Default = () => {
     );
   }
 
-  return <PlaceProfile showButton={true} />;
+  return (
+    <>
+      {editableProfiles?.showModal === true &&
+        editableProfiles.currentPlace && (
+          <div className="col-span-6 p-0 md:max-w-[65w] z-[1000] fixed  top-[0px] md:top-[30%] md:rounded-lg md:border md:max-w-[75vw] md-mx-auto md:border md:border-2 h-screen md:h-[500px] !w-screen mx-auto gap-2 h-full bg-white  grid md:grid-cols-1 overflow-x-hidden">
+            <div className="grid md:grid-cols-2 md:rounded-lg">
+              <div className="md:self-center">
+                <Picture />
+              </div>
+              <div className="flex">
+                <div className="">{<PlaceProfile showButton={true} />}</div>
+                <div
+                  onClick={() =>
+                    dispatch?.({
+                      type: homepageActions.showModal,
+                      payload: !editableProfiles.showModal,
+                    })
+                  }
+                  className="md:fixed md:top-0 md:text-white md:z-[1001] right-0 ml-auto m-4 cursor-pointer"
+                >
+                  X
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+    </>
+  );
 };
 export default Default;
