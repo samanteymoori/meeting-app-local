@@ -48,6 +48,7 @@ const homepageReducer = (state: any, action: any) => {
         step: meetingStep.book,
         personToMeet: action.payload,
         meetingDate: new Date(),
+        showModal: false,
       };
     }
     case homepageActions.setMeetingRecord: {
