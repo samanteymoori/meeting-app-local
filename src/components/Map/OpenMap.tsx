@@ -343,10 +343,13 @@ const Map: React.FC = (Map: MapProps) => {
                       <input
                         onClick={() => {
                           dispatch?.({
-                            type: homepageActions.pickPlaceToMeet,
-                            payload: editableProfiles?.currentLocation,
+                            type: homepageActions.setProfile,
+                            payload: selected,
                           });
-                          // setSelected(null);
+                          dispatch?.({
+                            type: homepageActions.showModal,
+                            payload: !editableProfiles.showModal,
+                          });
                         }}
                         type={"button"}
                         className="bg-green-500 cursor-pointer text-white p-4   "
