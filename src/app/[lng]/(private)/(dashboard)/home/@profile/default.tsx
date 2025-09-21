@@ -17,6 +17,9 @@ import { getAuthService } from "@/services/authService";
 import useMeetings from "@/app/hooks/useMeetings";
 import MeetingDecision from "@/components/Decision/MeetingDecision";
 import Picture from "./Picture";
+import StatusCheck from "./StatusCheck";
+import Participants from "./Participants";
+import MeetingLocation from "./MeetingLocation";
 
 const Default = () => {
   const { editableProfiles, dispatch } =
@@ -115,100 +118,8 @@ const Default = () => {
                 <h1 className="font-bold mt-4">
                   {editableProfiles.meetingRecord.meeting_id}
                 </h1>
-                <h2 className="self-center mt-4 text-green-400 text-xl">
-                  Participants:
-                </h2>
-                <div className="mt-4">
-                  <ul>
-                    {
-                      <li className="flex">
-                        <div className="self-center">
-                          <>
-                            {editableProfiles.meetingRecord ? (
-                              <>
-                                {editableProfiles.authenticatedProfile.id ===
-                                editableProfiles.meetingRecord
-                                  ?.creator_user_id ? (
-                                  <>
-                                    {" "}
-                                    {
-                                      editableProfiles.meetingRecord?.first_name
-                                    }{" "}
-                                    {editableProfiles.meetingRecord?.last_name}
-                                  </>
-                                ) : (
-                                  <>
-                                    {" "}
-                                    {
-                                      editableProfiles.meetingRecord
-                                        ?.owner_first_name
-                                    }{" "}
-                                    {
-                                      editableProfiles.meetingRecord
-                                        ?.owner_last_name
-                                    }
-                                  </>
-                                )}
-                              </>
-                            ) : (
-                              <>
-                                {editableProfiles?.currentProfile?.first_name}{" "}
-                                {editableProfiles?.currentProfile?.last_name}
-                              </>
-                            )}
-                          </>
-                        </div>
-                        {editableProfiles.meetingRecord.owner_user_id !==
-                        editableProfiles.authenticatedProfile.id ? (
-                          <div className="self-center text-green-500 ml-2 mr-auto">
-                            <FaCheckCircle />
-                          </div>
-                        ) : (
-                          <>
-                            {editableProfiles.meetingRecord ? (
-                              <>
-                                {(!editableProfiles.meetingRecord
-                                  ?.meeting_participant_status ||
-                                  editableProfiles.meetingRecord
-                                    ?.meeting_participant_status ===
-                                    "pending") && (
-                                  <div className="self-center mr-auto ml-2">
-                                    <FaRegQuestionCircle />
-                                  </div>
-                                )}
-                                {editableProfiles.meetingRecord
-                                  ?.meeting_participant_status === "accept" && (
-                                  <div className="self-center text-green-500 ml-2 mr-auto">
-                                    <FaCheckCircle />
-                                  </div>
-                                )}
-                                {editableProfiles.meetingRecord
-                                  ?.meeting_participant_status === "reject" && (
-                                  <div className="self-center text-red-500 ml-2 mr-auto">
-                                    <ImCancelCircle />
-                                  </div>
-                                )}
-                                {editableProfiles.meetingRecord
-                                  ?.meeting_participant_status === "maybe" && (
-                                  <div className="flex text-yellow-500">
-                                    <div className="self-center text-yellow-500 ml-2 mr-auto">
-                                      <ImQuestion />
-                                    </div>
-                                    <div className="self-center ml-2">
-                                      {"(maybe)"}
-                                    </div>
-                                  </div>
-                                )}
-                              </>
-                            ) : (
-                              <></>
-                            )}
-                          </>
-                        )}
-                      </li>
-                    }
-                  </ul>
-                </div>
+
+                <Participants />
                 <h1 className="font-bold text-green-400 mt-4">
                   {editableProfiles?.meetingRecord?.meeting_date &&
                     moment(editableProfiles.meetingRecord.meeting_date).format(
@@ -217,19 +128,7 @@ const Default = () => {
                 </h1>
               </div>
             )}
-            <h1 className="self-center mt-8 text-xl">Location:</h1>
-            <div className="mt-4 text-lg text-green-500">
-              {editableProfiles?.meetingRecord?.name ||
-                editableProfiles.currentPlace.name}
-            </div>
-            <div className="mt-4">
-              {editableProfiles?.meetingRecord?.address ||
-                editableProfiles.currentPlace.address}
-            </div>
-            <div className="mt-4">
-              {editableProfiles?.meetingRecord?.phone ||
-                editableProfiles.currentPlace.phone}
-            </div>
+            <MeetingLocation />
             {editableProfiles.step === meetingStep.meet && (
               <div className="flex mt-8">
                 <input
