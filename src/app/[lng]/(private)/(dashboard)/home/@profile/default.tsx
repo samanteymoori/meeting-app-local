@@ -3,6 +3,8 @@ import UniversalDatePicker from "@/components/UniversalComponents/UniversalDateP
 import { getMeetingService, MeetingService } from "@/services/meetingService";
 import { LatLng } from "leaflet";
 import moment from "moment";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClose } from "@fortawesome/free-solid-svg-icons";
 
 import { useRouter } from "next/navigation";
 import { useContext, useEffect } from "react";
@@ -37,13 +39,15 @@ const Default = () => {
       <>
         {editableProfiles?.showModal === true &&
           editableProfiles.currentProfile && (
-            <div className="col-span-6 p-0 md:max-w-[65w] z-[1000] fixed  top-[0px] md:top-[30%] md:rounded-lg md:border md:left-[12.5vw] md:max-w-[75vw] md-mx-auto md:border md:border-2 h-screen md:h-[500px] !w-screen mx-auto gap-2 h-full bg-white  grid md:grid-cols-1 overflow-x-hidden">
-              <div className="grid md:grid-cols-2 md:rounded-lg">
+            <div className="col-span-6 p-0 md:max-w-[65w] overflow-y-scroll md:overflow-y-auto z-[1000] fixed  top-[0px] md:top-[30%] md:rounded-lg md:border md:left-[12.5vw] md:max-w-[75vw] md-mx-auto md:border md:border-2 h-screen md:h-[500px] !w-screen mx-auto gap-2 h-full bg-white  grid md:grid-cols-1 overflow-x-hidden">
+              <div className="md:grid md:grid-cols-2 md:rounded-lg">
                 <div className="md:self-center">
                   <Picture />
                 </div>
-                <div className="flex">
-                  <div className="">{<PersonProfile showButton={true} />}</div>
+                <div className="flex md:block">
+                  <div className="overflow-y-scroll md:overflow-y-hidden">
+                    {<PersonProfile showButton={true} />}
+                  </div>
                   <div
                     onClick={() =>
                       dispatch?.({
@@ -51,9 +55,11 @@ const Default = () => {
                         payload: !editableProfiles.showModal,
                       })
                     }
-                    className="md:absolute md:text-black md:top-0 md:text-white md:z-[1001] right-0 ml-auto m-4 cursor-pointer"
+                    className="absolute  md:text-black md:top-0 md:text-white md:z-[1001] right-0 ml-auto m-4 cursor-pointer"
                   >
-                    X
+                    <span>
+                      <FontAwesomeIcon icon={faClose} color="black" />
+                    </span>
                   </div>
                 </div>
               </div>
@@ -191,7 +197,7 @@ const Default = () => {
     <>
       {editableProfiles?.showModal === true &&
         editableProfiles.currentPlace && (
-          <div className="col-span-6 p-0 md:max-w-[65w] z-[1000] fixed  top-[0px] md:top-[30%] md:rounded-lg md:border md:left-[25vw] md:max-w-[50vw] md-mx-auto md:border md:border-2 h-screen md:h-[500px] !w-screen mx-auto gap-2 h-full bg-white  grid md:grid-cols-1 overflow-x-hidden">
+          <div className="col-span-6 p-0 md:max-w-[65w] z-[1000] overflow-y-scroll md:overflow-y-auto fixed  top-[0px] md:top-[30%] md:rounded-lg md:border md:left-[25vw] md:max-w-[50vw] md-mx-auto md:border md:border-2 h-screen md:h-[500px] !w-screen mx-auto gap-2 h-full bg-white  grid md:grid-cols-1 overflow-x-hidden">
             <div className="grid md:grid-cols-2 md:rounded-lg">
               <div className="md:self-center">
                 <Picture />
@@ -207,7 +213,9 @@ const Default = () => {
                   }
                   className="md:absolute md:text-black md:top-0 md:text-white md:z-[1001] right-0 ml-auto m-4 cursor-pointer"
                 >
-                  X
+                  <span>
+                    <FontAwesomeIcon icon={faClose} color="black" />
+                  </span>
                 </div>
               </div>
             </div>

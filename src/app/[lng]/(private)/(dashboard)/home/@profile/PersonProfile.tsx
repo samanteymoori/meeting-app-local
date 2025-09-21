@@ -22,7 +22,7 @@ const PersonProfile: React.FC<Props> = ({ showButton }) => {
   }: any = editableProfiles?.currentProfile;
   return (
     <>
-      <div className="  h-full  rounded-lg grid gap-x-4 gap-y-2 [&>*]:p-4 [&>*]:flex-auto flex">
+      <div className="overflow-y-scroll md:overflow-y-hidden  h-full  rounded-lg grid gap-x-4 gap-y-2 [&>*]:p-4 [&>*]:flex-auto flex">
         <h1 className="col-span-4 capitalize xl:col-span-4 text-2xl text-green-500 ">
           {first_name} {last_name}
         </h1>
