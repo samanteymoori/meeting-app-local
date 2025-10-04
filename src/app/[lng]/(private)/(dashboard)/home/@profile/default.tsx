@@ -109,8 +109,8 @@ const Default = () => {
         <div className="flex col-span-6 mx-auto h-full p-0 md:p-8">
           <div className="self-center">
             {editableProfiles.step === meetingStep.meet && (
-              <div className="self-center mt-4">
-                <h1 className="self-center text-xl">Meet At:</h1>
+              <div className="self-center mt-8">
+                <h1 className="self-center my-4 text-xl">Meet At:</h1>
 
                 <UniversalDatePicker />
               </div>
