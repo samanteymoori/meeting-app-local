@@ -19,7 +19,7 @@ const MeetingDecision: React.FC<Props> = ({
   const { editableProfiles, dispatch } =
     useContext<HomePageContextType>(HomePageContext);
   return (
-    <div className="flex gap-4">
+    <div className="flex gap-4 py-4">
       <UniversalButton
         className={`bg-green-400 ${status !== "accept" && "opacity-50"}`}
         onClick={async () => {

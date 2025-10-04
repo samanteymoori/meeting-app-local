@@ -129,7 +129,7 @@ const Default = () => {
                 <h1 className="font-bold text-green-400 mt-4">
                   {editableProfiles?.meetingRecord?.meeting_date &&
                     moment(editableProfiles.meetingRecord.meeting_date).format(
-                      "yyyy-MM-DD hh:mm A"
+                      "MMM, DD hh:mm A"
                     )}
                 </h1>
               </div>
