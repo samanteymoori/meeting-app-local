@@ -62,7 +62,7 @@ export default function Page() {
         <div className="col-span-6 p-2  gap-2 h-full bg-white  grid md:grid-cols-2">
           <div className="grid ">
             <h1 className="text-2xl m-4">{"Change Profile Detail"}</h1>
-            <div className="grid gap-4 m-4 grid-cols-2">
+            <div className="grid gap-4 m-4 md:grid-cols-2">
               <div>
                 <UniversalTextBox
                   label={"First name"}

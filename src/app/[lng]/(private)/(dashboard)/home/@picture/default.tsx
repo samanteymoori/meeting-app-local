@@ -10,7 +10,7 @@ const Default = () => {
 
   if (editableProfiles && editableProfiles?.step === meetingStep.find) {
     return (
-      <div className="h-[25rem] grid ">
+      <div className="h-[25rem] grid w-screen md:w-auto">
         <RoundedImage
           first_name={editableProfiles?.currentProfile?.first_name}
           last_name={editableProfiles?.currentProfile?.last_name}
@@ -23,7 +23,7 @@ const Default = () => {
   }
   if (editableProfiles && editableProfiles?.step === meetingStep.book) {
     return (
-      <div className="h-[25rem] grid ">
+      <div className="h-[25rem] grid w-screen md:w-auto">
         <RoundedImage
           first_name={editableProfiles.currentPlace.name}
           last_name={""}

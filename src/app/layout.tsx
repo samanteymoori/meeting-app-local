@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`w-screen overflow-x-hidden overflow-y-hidden`}>
+      <body className={`w-screen overflow-x-hidden md:overflow-y-hidden`}>
         <div className="bg-white h-screen w-screen   flex rounded-lg">
           {children}
         </div>

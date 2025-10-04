@@ -25,7 +25,7 @@ const PlaceProfile: React.FC<Props> = ({ showButton }) => {
       <div className="xl:col-span-4">{address}</div>
       <div className="xl:col-span-4">{phone}</div>
       {showButton && (
-        <div className="col-span-2 xl:col-span-4 flex">
+        <div className="col-span-4 xl:col-span-4 flex">
           <div className="mx-auto">
             <input
               onClick={() => {

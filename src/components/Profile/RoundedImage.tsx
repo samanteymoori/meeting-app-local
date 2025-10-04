@@ -70,7 +70,7 @@ const RoundedImage: React.FC<{
       w: "object-cover mx-auto ",
       h: "h-[25rem]",
       hrem: "25rem",
-      wrapper: "    mx-auto bg-transparent  absolute   z-20 relative  ",
+      wrapper: "md:mx-auto bg-transparent     z-20 relative  ",
     },
   ];
   function getRandomColor() {

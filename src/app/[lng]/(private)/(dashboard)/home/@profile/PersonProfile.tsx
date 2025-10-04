@@ -22,42 +22,54 @@ const PersonProfile: React.FC<Props> = ({ showButton }) => {
   }: any = editableProfiles?.currentProfile;
   return (
     <>
-      <div className="overflow-y-scroll md:overflow-y-hidden  h-full  rounded-lg grid gap-x-4 gap-y-2 [&>*]:p-4 [&>*]:flex-auto flex">
-        <h1 className="col-span-4 capitalize xl:col-span-4 text-2xl text-green-500 ">
-          {first_name} {last_name}
-        </h1>
-        {weight && (
-          <>
-            <fieldset className="font-bold">Weight</fieldset>
-            <fieldset className="">{parseFloat(weight)?.toFixed(2)}</fieldset>
-          </>
-        )}
-        {height && (
-          <>
-            <fieldset className="font-bold">Height</fieldset>
-            <fieldset>{parseFloat(height)?.toFixed(2)}</fieldset>{" "}
-          </>
-        )}
-        {hobbies && (
-          <>
-            <fieldset className="font-bold">Hobbies</fieldset>
-            <fieldset>{hobbies}</fieldset>
-          </>
-        )}
-        {education && (
-          <>
-            <fieldset className="font-bold">{"Education"}</fieldset>
-            <fieldset>{education}</fieldset>
-          </>
-        )}
-        {education && (
-          <>
-            <fieldset className="font-bold">{"Job"}</fieldset>
-            <fieldset>{job}</fieldset>
-          </>
-        )}
+      <div className="overflow-y-scroll md:overflow-y-hidden  h-full w-screen md:w-auto  rounded-lg grid  gap-y-2 [&>*]:p-4 [&>*]:flex-auto [&>*]:col-span-2 [&>*]:md:col-span-1 flex">
+        <div className="">
+          <h1 className="col-span-4 capitalize xl:col-span-4 text-2xl text-green-500 ">
+            {first_name} {last_name}
+          </h1>
+        </div>
+        <div>
+          {weight && (
+            <>
+              <div className="font-bold">Weight</div>
+              <div className="">{parseFloat(weight)?.toFixed(2)}</div>
+            </>
+          )}
+        </div>
+        <div>
+          {height && (
+            <>
+              <div className="font-bold">Height</div>
+              <div>{parseFloat(height)?.toFixed(2)}</div>{" "}
+            </>
+          )}
+        </div>
+        <div>
+          {hobbies && (
+            <>
+              <div className="font-bold">Hobbies</div>
+              <div>{hobbies}</div>
+            </>
+          )}
+        </div>
+        <div>
+          {education && (
+            <>
+              <div className="font-bold">{"Education"}</div>
+              <div>{education}</div>
+            </>
+          )}
+        </div>
+        <div>
+          {education && (
+            <>
+              <div className="font-bold">{"Job"}</div>
+              <div>{job}</div>
+            </>
+          )}
+        </div>
         {showButton && (
-          <div className="col-span-2 xl:col-span-4 flex">
+          <div className="col-span-4 xl:col-span-4 w-full flex">
             <div className="mx-auto">
               <input
                 onClick={() =>
