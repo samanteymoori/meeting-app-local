@@ -42,7 +42,7 @@ const Page = ({ params: { lng } }: any) => {
     }
   };
   return (
-    <div className="flex w-screen h-full">
+    <div className="flex w-screen md:w-auto h-full">
       <UniversalForm
         onSubmit={handleSubmit}
         action={""}
