@@ -22,13 +22,13 @@ const PersonProfile: React.FC<Props> = ({ showButton }) => {
   }: any = editableProfiles?.currentProfile;
   return (
     <>
-      <div className="overflow-y-scroll md:overflow-y-hidden  h-full w-screen md:w-auto  rounded-lg grid  gap-y-2 [&>*]:p-4 [&>*]:flex-auto [&>*]:col-span-2 [&>*]:md:col-span-1 flex">
+      <div className="overflow-y-scroll md:overflow-y-hidden  h-full w-screen md:w-auto  rounded-lg  [&>*]:p-4  block">
         <div className="">
           <h1 className="col-span-4 capitalize xl:col-span-4 text-2xl text-green-500 ">
             {first_name} {last_name}
           </h1>
         </div>
-        <div>
+        <div className="inline-block w-[200px]">
           {weight && (
             <>
               <div className="font-bold">Weight</div>
@@ -36,35 +36,37 @@ const PersonProfile: React.FC<Props> = ({ showButton }) => {
             </>
           )}
         </div>
-        <div>
+        <div className="inline-block w-[200px]">
           {height && (
             <>
               <div className="font-bold">Height</div>
-              <div>{parseFloat(height)?.toFixed(2)}</div>{" "}
+              <div className="inline-block w-[200px]">
+                {parseFloat(height)?.toFixed(2)}
+              </div>{" "}
             </>
           )}
         </div>
-        <div>
+        <div className="inline-block w-[200px]">
           {hobbies && (
             <>
               <div className="font-bold">Hobbies</div>
-              <div>{hobbies}</div>
+              <div className="inline-block w-[200px]">{hobbies}</div>
             </>
           )}
         </div>
-        <div>
+        <div className="inline-block w-[200px]">
           {education && (
             <>
               <div className="font-bold">{"Education"}</div>
-              <div>{education}</div>
+              <div className="inline-block w-[200px]">{education}</div>
             </>
           )}
         </div>
-        <div>
+        <div className="inline-block w-[200px]">
           {education && (
             <>
               <div className="font-bold">{"Job"}</div>
-              <div>{job}</div>
+              <div className="inline-block w-[200px]">{job}</div>
             </>
           )}
         </div>
