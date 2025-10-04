@@ -39,8 +39,8 @@ const Default = () => {
       <>
         {editableProfiles?.showModal === true &&
           editableProfiles.currentProfile && (
-            <div className="col-span-6 p-0 md:max-w-[65w] overflow-y-scroll md:overflow-y-auto z-[1000] fixed  top-[0px] md:top-[30%] md:rounded-lg md:border md:left-[12.5vw] md:max-w-[75vw] md-mx-auto md:border md:border-2 h-screen md:h-[500px] !w-screen mx-auto gap-2 h-full bg-white  grid md:grid-cols-1 overflow-x-hidden">
-              <div className="md:grid md:grid-cols-2 md:rounded-lg">
+            <div className="col-span-6 p-0 md:max-w-[65w] overflow-y-scroll md:overflow-y-auto z-[1000] fixed  top-[0px] md:top-[10%] md:rounded-lg md:border md:left-[12.5vw] md:max-w-[75vw] md-mx-auto md:border md:border-2 h-screen md:h-[75vh] !w-screen mx-auto gap-2 h-full bg-white  grid md:grid-cols-1 overflow-x-hidden">
+              <div className="md:grid lg:grid-cols-2 md:rounded-lg">
                 <div className="md:self-center">
                   <Picture />
                 </div>
