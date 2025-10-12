@@ -77,11 +77,10 @@ const Default = () => {
     const submitMeeting = async () => {
       const meetingService = getMeetingService();
       if (!ep.meetingTime || !ep.meetingDate) return;
-
       const place_id = editableProfiles.currentPlace.id;
-
+      const person_to_meet_id = ep?.personToMeet?.id;
       const meeting = {
-        person_to_meet_id: ep?.personToMeet?.id,
+        person_to_meet_id,
         owner_person_id: ep.authenticatedProfile?.id,
         place_id,
         meeting_date: ep.meetingDate,

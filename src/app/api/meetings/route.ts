@@ -31,9 +31,9 @@ export async function POST(request: NextRequest, { params }: any) {
     console.log({ meeting_id });
     await pool.query(
       `INSERT INTO public.meeting_participants(
-        meeting_participant_id, meeting_id, user_id)
-        VALUES ($1, $2, $3)`,
-      [person_to_meet_id, meeting_id, owner_person_id]
+         meeting_id, user_id)
+        VALUES ($1, $2)`,
+      [meeting_id, person_to_meet_id]
     );
 
     return NextResponse.json({ inserted: result.rows?.[0] }, { status: 200 });
