@@ -11,6 +11,7 @@ export async function POST(request: NextRequest, { params }: any) {
     meeting_time,
     person_to_meet_id,
   } = requestBody;
+  debugger;
   console.log({ requestBody });
   const values = [
     owner_person_id,
