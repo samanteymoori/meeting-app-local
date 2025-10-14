@@ -1,26 +1,25 @@
 import { getPool } from "@/helper/dbConnection";
 import { NextRequest, NextResponse } from "next/server";
-export async function generateStaticParams() {
-  return [
-    { action: "cancel" },
-    { action: "decline" },
-    { action: "accept" },
-    { action: "maybe" },
-  ];
-}
-export async function POST(
-  request: NextRequest,
-  { params: { action, id } }: any
-) {
+// // async function generateStaticParams() {
+// //   return [
+// //     { action: "cancel" },
+// //     { action: "decline" },
+// //     { action: "accept" },
+// //     { action: "maybe" },
+// //   ];
+// // }
+
+export async function POST(request: NextRequest, res: NextResponse) {
+  const requestBody = await request.json();
+  const { action, id } = requestBody;
   const pool = getPool();
   const values = [action, id];
-  console.log(JSON.stringify(values));
   try {
     await pool.query(
       `update meetings set action=$1, end_date=now() where id=$2`,
       values
     );
-    return NextResponse.json({}, { status: 403 });
+    return NextResponse.json({}, { status: 200 });
   } catch (e: any) {
     console.log(e.message);
     return NextResponse.json(

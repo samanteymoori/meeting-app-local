@@ -34,10 +34,10 @@ export class MeetingService {
     meeting_id: string;
     action: string;
   }) => {
-    return await this.routeApiClient.post<any>(
-      `/api/meetings/${meeting_id}/action/${action}`,
-      {}
-    );
+    return await this.routeApiClient.post<any>(`/api/meetings/action`, {
+      action,
+      id: meeting_id,
+    });
   };
 
   actionMeetingParticipant = async ({
