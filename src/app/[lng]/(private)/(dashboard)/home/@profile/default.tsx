@@ -78,7 +78,7 @@ const Default = () => {
       const meetingService = getMeetingService();
       if (!ep.meetingTime || !ep.meetingDate) return;
       const place_id = (editableProfiles.currentPlace as any).place_id;
-      debugger;
+
       const person_to_meet_id = ep?.personToMeet?.id;
       const meeting = {
         person_to_meet_id,
